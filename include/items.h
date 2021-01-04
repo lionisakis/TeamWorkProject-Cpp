@@ -2,6 +2,7 @@
 #include <cstring>
 using namespace std;
 
+
 class Item{
     private:
         string name;
