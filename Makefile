@@ -6,7 +6,10 @@ CXXFLAGS= -g -Wall -MMD -I$(IDIR)
 
 LIBS=-lm
 
-OBJ = main.o $(MDIR)Items.o $(MDIR)Weapon.o $(MDIR)Armor.o
+Items=$(MDIR)Items.o $(MDIR)Weapon.o $(MDIR)Armor.o
+Livings=$(MDIR)Living.o $(MDIR)Hero.o $(MDIR)Warrior.o $(MDIR)Sorcerer.o $(MDIR)Paladin.o
+
+OBJ = main.o $(Items) $(Livings)  
 
 EXEC= main
 
