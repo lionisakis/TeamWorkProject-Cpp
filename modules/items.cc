@@ -1,4 +1,4 @@
-#include "../Include/Items.h"
+#include "items.h"
 
 Item::Item(string name_init, int price_init, int level_init){
     this->name = name_init;

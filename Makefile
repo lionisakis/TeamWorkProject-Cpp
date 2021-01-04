@@ -1,12 +1,12 @@
-IDIR =$(dir $(lastword $(MAKEFILE_LIST)))Include/
-MDIR =$(dir $(lastword $(MAKEFILE_LIST)))Modules/
+IDIR =$(dir $(lastword $(MAKEFILE_LIST)))include/
+MDIR =$(dir $(lastword $(MAKEFILE_LIST)))modules/
 
 CXX=g++
 CXXFLAGS= -g -Wall -MMD -I$(IDIR)
 
 LIBS=-lm
 
-OBJ = 
+OBJ = main.o $(MDIR)Items.o
 
 EXEC= main
 
