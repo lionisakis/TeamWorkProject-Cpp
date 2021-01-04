@@ -8,4 +8,5 @@ using namespace std;
 class Paladin:public Hero{
     public:
         Paladin(string name);
+        void levelUp();
 };

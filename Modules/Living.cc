@@ -1,10 +1,10 @@
 #include "Living.h"
 #include <iostream>
-Living::Living(string nameLiving)
+Living::Living(string nameLiving,int levelLiving)
 {
     name=nameLiving;
     healthPower=100;
-    level=1;
+    level=levelLiving;
     cout<<"A new Living organism with name: "<<name<<" has been created\n";
 }
 
@@ -14,7 +14,7 @@ void Living::takeDamage(int damage){
         healthPower=0;
 }
 
-void Living::leveUp(){
+void Living::levelUp(){
     level++;
 }
 
@@ -24,4 +24,11 @@ bool Living::isActive()const{
 
 string Living::getName()const{
     return name;
+}
+
+void Living::printCharacter()const{
+    cout<<"Name:"<<name<<"\n";
+    cout<<"Health Power(HP):"<<healthPower<<"\n";
+    cout<<"Level:"<<level<<"\n";
+
 }

@@ -10,10 +10,11 @@ class Living{
         int healthPower;
         int level;
     protected:
-        void leveUp();
+        void levelUp();
     public:
-        Living(string nameLiving);
+        Living(string nameLiving,int levelLiving=1);
         void takeDamage(int damage);
         bool isActive()const;
         string getName(void)const;
+        void printCharacter()const;
 };
