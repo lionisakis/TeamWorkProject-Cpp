@@ -3,7 +3,6 @@
 #include <cstring>
 using namespace std;
 
-
 class Item{
     private:
         string name;
@@ -12,5 +11,5 @@ class Item{
     public:
         Item(string name_init = "Nothing", int price_init = 0, int level_init = 0);
         ~Item();
-        string get_name(void);
+        string getName(void);
 };
