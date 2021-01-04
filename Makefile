@@ -1,5 +1,5 @@
-IDIR =$(dir $(lastword $(MAKEFILE_LIST)))include
-MDIR =$(dir $(lastword $(MAKEFILE_LIST)))modules/
+IDIR =$(dir $(lastword $(MAKEFILE_LIST)))Include/
+MDIR =$(dir $(lastword $(MAKEFILE_LIST)))Modules/
 
 CXX=g++
 CXXFLAGS= -g -Wall -MMD -I$(IDIR)
