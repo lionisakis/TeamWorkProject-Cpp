@@ -1,1 +1,3 @@
-# Project_C++
+# Project_C+
+
+Object Oriented Programming
