@@ -1,6 +1,7 @@
 #include "Items.h"
 #include "Weapon.h"
 #include "Armor.h"
+#include "Potion.h"
 
 #include "Hero.h"
 #include "Monster.h"
@@ -9,6 +10,10 @@
 #include "Warrior.h"
 #include "Sorcerer.h"
 
+#include "IceSpell.h"
+#include "FireSpell.h"
+#include "LightingSpell.h"
+
 #include "Spirit.h"
 #include "Exoskeleton.h"
 #include "Dragon.h"
@@ -16,7 +21,7 @@
 void checkingForLivings();
 
 int main(void){
-    Armor* item = new Armor("Sward", 4, 2, 1000);
+    LightingSpell* item = new LightingSpell("Sward", 4, 2, 1);
     delete item;
     // checkingForLivings();
 }

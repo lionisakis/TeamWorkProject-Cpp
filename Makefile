@@ -1,16 +1,17 @@
-IDIR =$(dir $(lastword $(MAKEFILE_LIST)))Include/
-MDIR =$(dir $(lastword $(MAKEFILE_LIST)))Modules/
+IDIR = $(dir $(lastword $(MAKEFILE_LIST)))Include/
+MDIR = $(dir $(lastword $(MAKEFILE_LIST)))Modules/
 
-CXX=g++
-CXXFLAGS= -g -Wall -MMD -I$(IDIR)
+CXX = g++
+CXXFLAGS = -g -Wall -MMD -I$(IDIR)
 
-LIBS=-lm
+LIBS = -lm
 
-Items=$(MDIR)Items.o $(MDIR)Weapon.o $(MDIR)Armor.o
-Livings=$(MDIR)Living.o 
-Hero=$(MDIR)Hero.o $(MDIR)Warrior.o $(MDIR)Sorcerer.o $(MDIR)Paladin.o
-Monsters= $(MDIR)Monster.o $(MDIR)Dragon.o $(MDIR)Spirit.o $(MDIR)Exoskeleton.o
-OBJ = main.o $(Items) $(Livings) $(Hero) $(Monsters) 
+Items = $(MDIR)Items.o $(MDIR)Weapon.o $(MDIR)Armor.o $(MDIR)Potion.o
+Hero = $(MDIR)Living.o $(MDIR)Hero.o $(MDIR)Warrior.o $(MDIR)Sorcerer.o $(MDIR)Paladin.o
+Monsters= $(MDIR)Living.o $(MDIR)Monster.o $(MDIR)Dragon.o $(MDIR)Exoskeleton.o $(MDIR)Spirit.o
+Spells = $(MDIR)Spell.o $(MDIR)IceSpell.o $(MDIR)FireSpell.o $(MDIR)LightingSpell.o
+
+OBJ = main.o $(Items) $(Hero) $(Monsters) $(Spells)
 
 EXEC= main
 
