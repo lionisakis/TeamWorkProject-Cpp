@@ -1,12 +1,12 @@
-IDIR =$(dir $(lastword $(MAKEFILE_LIST)))include/
-MDIR =$(dir $(lastword $(MAKEFILE_LIST)))modules/
+IDIR =$(dir $(lastword $(MAKEFILE_LIST)))Include/
+MDIR =$(dir $(lastword $(MAKEFILE_LIST)))Modules/
 
 CXX=g++
 CXXFLAGS= -g -Wall -MMD -I$(IDIR)
 
 LIBS=-lm
 
-OBJ = main.o $(MDIR)Items.o
+OBJ = main.o $(MDIR)Items.o $(MDIR)Weapon.o $(MDIR)Armor.o
 
 EXEC= main
 
@@ -22,7 +22,7 @@ run: $(OBJ)
 .PHONY: clean
 
 clean:
-	rm -f $(OBJ) $(EXEC)
+	rm -f $(OBJ) $(EXEC) 
 
 valgrind: $(OBJ)
 	$(CXX) -o $(EXEC) $^ $(CXXFLAGS) $(LIBS)

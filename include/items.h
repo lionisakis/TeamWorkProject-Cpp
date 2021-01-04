@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -11,4 +12,5 @@ class Item{
     public:
         Item(string name_init = "Nothing", int price_init = 0, int level_init = 0);
         ~Item();
+        string get_name(void);
 };
