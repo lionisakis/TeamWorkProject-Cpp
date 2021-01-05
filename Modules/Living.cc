@@ -27,8 +27,10 @@ string Living::getName()const{
 }
 
 void Living::printCharacter()const{
+    cout<<"------------------------------\n";
     cout<<"Name:"<<name<<"\n";
     cout<<"Health Power(HP):"<<healthPower<<"\n";
     cout<<"Level:"<<level<<"\n";
+    cout<<"------------------------------\n";
 
 }

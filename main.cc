@@ -40,10 +40,17 @@ void checkingForLivings(){
     Spirit spirit= Spirit("Spirit",1);
     Exoskeleton exoskeleton= Exoskeleton("Exoskeleton",1);
 
-    pal.print();
+    // pal.print();
     pal.levelUp();
-    Hero* hero=&pal;
-    drag.print();
-    drag.attack(hero);
-    hero->print();
+
+    pal.addMoney(20);
+    pal.printInventory();
+    Item* item = new Armor("FirstItem", 20, 4, 3);
+    pal.buy(item);
+    pal.printInventory();
+    pal.sell(item);
+    pal.printInventory();
+    delete item;
+    pal.print();
+
 }
