@@ -37,8 +37,9 @@ int Spell::getDamage(int dexterity){
     srand(time(NULL));
     int temp_down = this->damage_up;
     int prob = rand() % (temp_down + 1);
-    while(prob = rand() % (temp_down + 1) <= doge){
+    while(prob <= doge){
         temp_down += 10;
+        prob = rand() % (temp_down + 1);
     }
     int damage;
     while(damage < temp_down){
