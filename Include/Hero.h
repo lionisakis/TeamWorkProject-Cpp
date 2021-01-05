@@ -43,9 +43,9 @@ class Hero: public Living{
         void addToStat(int type,int increase);
 
         // combat
-        void attack(Monster* monster) const;
+        bool attack(Monster* monster) const;
         bool spellcast(Monster* monster,Spell* spell) const;
-        void takeDamage(int damage);
+        bool takeDamage(int damage);
 
         // items of the hero
         bool buy(Item* item);

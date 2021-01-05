@@ -20,7 +20,7 @@ class Monster: public Living{
         Monster(string name,int levelHero,int maxDamageMonster,int minDamageMonster, int armorMonster,int dogeMonster);
 
         void attack(Hero* hero)const;
-        void takeDamage(int damage);
+        bool takeDamage(int damage);
 
         void printStats() const;
         void print() const;

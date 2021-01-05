@@ -20,15 +20,16 @@ void Monster::attack(Hero* hero)const{
     hero->takeDamage(damage);
 }
 
-void Monster::takeDamage(int damage){
+bool Monster::takeDamage(int damage){
     srand(time(NULL));
     int prob= (int) rand()%100;
     if (prob<=doge){
         cout<<"Doged\n";
-        return;
+        return false;
     }
     cout<<"Taking damge: "<<damage-armor<<"\n";
     Living::takeDamage(damage-armor);
+    return true;
 }
 
 void Monster::printStats() const{

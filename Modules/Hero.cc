@@ -50,15 +50,14 @@ void Hero::addToStat(int type,int increase){
     }
 }
 
-void Hero::attack(Monster* monster) const{
+bool Hero::attack(Monster* monster) const{
     cout<<"Attacking Hero\n";
     int weaponDM=0;
     if (weapon1!=NULL)
         weaponDM+=weapon1->getDamage();
     if (weapon2!=NULL)
         weaponDM+=weapon2->getDamage();
-    monster->takeDamage(10+strength+weaponDM);
-
+    return monster->takeDamage(10+strength+weaponDM);
 }
 
 bool Hero::spellcast(Monster* monster,Spell* spell) const{
@@ -66,21 +65,21 @@ bool Hero::spellcast(Monster* monster,Spell* spell) const{
         cout<<"Not enought Magic Power left for this spell\n";
         return false;
     }
-    spell->getDamage(dexerity);
-    return true;
+    return monster->takeDamage(spell->getDamage(dexerity));
 }
-void Hero::takeDamage(int damage){
+bool Hero::takeDamage(int damage){
     srand(time(NULL));
     int prob= (int) rand()%100;
     if (prob<=agility){
         cout<<"Doged\n";
-        return;
+        return false;
     }
     int armorDF=0;
     if (armor!=NULL)
         armorDF=armor->getDefence();
     cout<<"Taking damge: "<<damage-armorDF<<"\n";
     Living::takeDamage(damage-armorDF);
+    return true;
 }
 
 bool Hero::buy(Item* item){
