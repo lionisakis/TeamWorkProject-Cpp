@@ -21,6 +21,7 @@ void Monster::attack(Hero* hero)const{
 }
 
 void Monster::takeDamage(int damage){
+    srand(time(NULL));
     int prob= (int) rand()%100;
     if (prob<=doge){
         cout<<"Doged\n";

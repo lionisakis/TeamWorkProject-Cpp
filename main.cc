@@ -22,8 +22,8 @@ void checkingForLivings();
 void checkingForItems();
 
 int main(void){
-    checkingForItems();
-    // checkingForLivings();
+    // checkingForItems();
+    checkingForLivings();
 }
 
 void checkingForItems(){
@@ -57,6 +57,7 @@ void checkingForLivings(){
     pal.use(item2);
     pal.use(item1);
     pal.printInventory();
+    pal.print();
     delete item1;
     delete item2;
 

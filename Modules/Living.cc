@@ -8,6 +8,10 @@ Living::Living(string nameLiving,int levelLiving)
     cout<<"A new Living organism with name: "<<name<<" has been created\n";
 }
 
+void Living::increaseHealthPower(int increase){
+    healthPower+=increase;
+}
+
 void Living::takeDamage(int damage){
     healthPower-=damage;
     if (healthPower<0)

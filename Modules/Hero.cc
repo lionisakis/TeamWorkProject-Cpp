@@ -32,6 +32,24 @@ void Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPo
     agility+=agilityHero;
 }
 
+void Hero::addToStat(int type,int increase){
+    if(type==0){
+        increaseHealthPower(increase);
+    }
+    else if (type==1){
+        magicPower+=increase;
+    }
+    else if (type==2){
+        strength+=increase;
+    }
+    else if (type==3){
+        dexerity+=increase;
+    }
+    else if (type==4){
+        agility+=increase;
+    }
+}
+
 void Hero::attack(Monster* monster) const{
     cout<<"Attacking Hero\n";
     int weaponDM=0;
@@ -52,8 +70,9 @@ bool Hero::spellcast(Monster* monster,Spell* spell) const{
     return true;
 }
 void Hero::takeDamage(int damage){
+    srand(time(NULL));
     int prob= (int) rand()%100;
-    if (prob<=dexerity){
+    if (prob<=agility){
         cout<<"Doged\n";
         return;
     }
@@ -142,7 +161,7 @@ bool Hero::equipArmor(Item* item){
 
 void Hero::usePotion(Item* item){
     Potion* potion=(Potion*)item;
-    // potion->use();
+    // potion->use(this);
 }
 
 void Hero::unequipWeapon(){

@@ -14,6 +14,12 @@
 
 using namespace std;
 
+#define HEALTHPOWER 0
+#define MAGICPOWER 1
+#define STRENGTH 2
+#define DEXERITY 3
+#define AGILITY 4
+
 class Monster;
 class Hero: public Living{
     private:
@@ -31,10 +37,12 @@ class Hero: public Living{
 
         int findItem(const Item* item)const;
     public:
+        // stats
         Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero);
-        
-        // combat
         void levelUp(int strengthHero,int dexerityHero, int agilityHero,int magicPowerHero=10);
+        void addToStat(int type,int increase);
+
+        // combat
         void attack(Monster* monster) const;
         bool spellcast(Monster* monster,Spell* spell) const;
         void takeDamage(int damage);
