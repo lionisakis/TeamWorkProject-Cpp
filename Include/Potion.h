@@ -2,9 +2,11 @@
 #include "Items.h"
 #include "Hero.h"
 
+class Hero;
+
 class Potion:public Item{
     private:
-        int use; //what increases
+        int type; //what increases
         int amount; //amount of increasment
         bool available;
     public:

@@ -2,7 +2,6 @@
 #include "Items.h"
 
 #define STARTINGSTATS 10
-#define MAGICPOWER 20
 
 Hero::Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero):
 Living(nameHero)
@@ -13,7 +12,7 @@ Living(nameHero)
     weapon1=NULL;
     weapon2=NULL;
     armor=NULL;
-    magicPower=MAGICPOWER;
+    magicPower = 20;
     money=0;
     experience=0;
     hands=0;

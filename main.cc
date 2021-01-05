@@ -49,16 +49,22 @@ void checkingForLivings(){
 
     pal.addMoney(40);
     pal.printInventory();
-    Item* item1 = new Armor("FirstItem", 20, 1, 1);
-    Item* item2 = new Weapon("2Item", 20, 1, 1);
-    pal.buy(item1);
-    pal.buy(item2);
-    pal.printInventory();
-    pal.use(item2);
-    pal.use(item1);
-    pal.printInventory();
-    pal.print();
-    delete item1;
-    delete item2;
+    // Item* item1 = new Armor("FirstItem", 20, 1, 1);
+    // Item* item2 = new Weapon("2Item", 20, 1, 1);
+    // pal.buy(item1);
+    // pal.buy(item2);
+    // pal.printInventory();
+    // pal.use(item2);
+    // pal.use(item1);
+    // pal.printInventory();
+    // pal.print();
+    Hero* p = new Hero("PAL", 1, 1, 1);
+    Potion* potion = new Potion("Name", 3, 1, 10, false);
+    p->print();
+    potion->use(p);
+    p->print();
+    // pal.print();
+    // delete item1;
+    // delete item2;
 
 }
