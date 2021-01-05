@@ -33,19 +33,19 @@ void Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPo
 }
 
 void Hero::addToStat(int type,int increase){
-    if(type==0){
+    if(type==HEALTHPOWER){
         increaseHealthPower(increase);
     }
-    else if (type==1){
+    else if (type==MAGICPOWER){
         magicPower+=increase;
     }
-    else if (type==2){
+    else if (type==STRENGTH){
         strength+=increase;
     }
-    else if (type==3){
+    else if (type==DEXERITY){
         dexerity+=increase;
     }
-    else if (type==4){
+    else if (type==AGILITY){
         agility+=increase;
     }
 }
