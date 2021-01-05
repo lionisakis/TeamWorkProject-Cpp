@@ -34,6 +34,7 @@ class Hero: public Living{
         int experience;
         int hands;
         vector<Item*> items;
+        vector<Spell*> spells;
 
         int findItem(const Item* item)const;
     public:
@@ -43,13 +44,16 @@ class Hero: public Living{
         void addToStat(int type,int increase);
 
         // combat
+        bool castSpell(Monster* monster)const;
         bool attack(Monster* monster) const;
         bool spellcast(Monster* monster,Spell* spell) const;
         bool takeDamage(int damage);
 
         // items of the hero
+        bool buy(Spell* spell);
         bool buy(Item* item);
         const vector<Item*> inventory()const;
+        bool useInBattle();
         bool use(Item* item);
         bool sell(Item* item);
         void addMoney(int addMoney);
@@ -63,7 +67,11 @@ class Hero: public Living{
 
         // print functions
         void printStats() const;
+        void printCombatStats() const;
         void printEquipedItems() const;
+        void printSpells() const;
+        void printItems() const;
+        void printMoney() const;
         void printInventory() const;
         void print() const;
 };

@@ -49,6 +49,26 @@ void Hero::addToStat(int type,int increase){
     }
 }
 
+bool Hero::castSpell(Monster* monster)const{
+    int action;
+    while(true){
+        cout<<"Magic power: "<<magicPower<<"\n";
+        cout<<"Choose a Spell to cast\n";
+        cout<<"0) cansel action\n";
+        printSpells();
+        cin>>action;
+        if (cin.bad()) {
+            cout<<"Problem With cin\n";
+            return false;
+        }
+        if(action==0)
+            return false;
+        if(!spellcast(monster,spells.at(action-1)))
+            return true;    
+    }    
+
+}
+
 bool Hero::attack(Monster* monster) const{
     cout<<"Attacking Hero\n";
     int weaponDM=0;
@@ -81,6 +101,14 @@ bool Hero::takeDamage(int damage){
     return true;
 }
 
+bool Hero::buy(Spell* spell){
+    if (money-spell->getPrice()<0)
+        return false;
+    money-=spell->getPrice()/2;
+    spells.push_back(spell);
+    return true;
+}
+
 bool Hero::buy(Item* item){
     if (money-item->getPrice()<0)
         return false;
@@ -90,6 +118,38 @@ bool Hero::buy(Item* item){
 }
 const vector<Item*> Hero::inventory()const{
     return items;
+}
+
+bool Hero::useInBattle(){
+    vector<Potion*> potions;
+    for(int i=0;i<items.size();i++){
+        if(items.at(i)->getType()==3)
+            potions.push_back((Potion*)items.at(i));
+    }
+    
+    int which;
+    do{
+
+        cout<<"Choose a potion\n";
+        cout<<"0) cansel action\n";
+
+        for(int i=0;i<potions.size();i++){
+            cout<<i+1<<")";
+            potions.at(i)->print();
+        }
+        int action;
+        cin>>action;
+        if (cin.bad()) {
+            cout<<"Problem With cin\n";
+            return false;
+        }
+        if (action==0){
+            return false;
+        }
+        return use((Item*) potions.at(action));
+
+    }while(which!=0);
+    return false;
 }
 
 bool Hero::use(Item* item){
@@ -184,6 +244,17 @@ void Hero::printStats() const {
     cout<<"------------------------------\n";
 }
 
+void Hero::printCombatStats() const{
+    Living::printCharacter();
+    cout<<"Magic Power: "<<magicPower<<"\n";
+    cout<<"Magic Power: "<<magicPower<<"\n";
+    cout<<"Strength: "<<strength<<"\n";
+    cout<<"Dexerity: "<<dexerity<<"\n";
+    cout<<"Agility: "<<agility<<"\n";
+    cout<<"------------------------------\n";
+    
+}
+
 void Hero::printEquipedItems() const{
     cout<<"Weapon at hand : ";
     if (weapon1!=NULL){
@@ -203,14 +274,23 @@ void Hero::printEquipedItems() const{
     cout<<"\n";
 }
 
-void Hero::printInventory() const{
-    cout<<"------------------------------\n";
-    cout<<"Money : "<<money<<"\n";
+void Hero::printSpells() const{
+    cout<<"Spells:\n";
+    if (spells.size()==0){
+        cout<<"\tNo spells\n";
+    }
+    else{
+        for (int i=0 ; i< items.size(); i++){
+            cout<<"\t"<<i+1<<") ";
+            spells.at(i)->print();
+        }
+    }
+}
+void Hero::printItems() const{
     cout<<"Items:\n";
     if (items.size()==0){
         cout<<"\tNo items\n";
         printEquipedItems();
-        cout<<"------------------------------\n";
     }
     else{
         for (int i=0 ; i< items.size(); i++){
@@ -218,10 +298,18 @@ void Hero::printInventory() const{
             items.at(i)->print();
         }
         printEquipedItems();
-        cout<<"------------------------------\n";
-
     }
+}
+
+void Hero::printMoney() const{
+    cout<<"------------------------------\n";
+    cout<<"Money : "<<money<<"\n";
    
+}
+void Hero::printInventory() const{
+    printMoney();
+    printItems();
+    printSpells();
 }
 
 void Hero::print() const{

@@ -17,6 +17,7 @@ class Living{
         int getLevel() const;
         void takeDamage(int damage);
         bool isActive()const;
+        int getHP() const;
         string getName(void)const;
         void printCharacter()const;
 };

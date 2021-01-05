@@ -32,11 +32,12 @@ string Living::getName()const{
 int Living::getLevel() const{
     return level;
 }
+int Living::getHP() const{
+    return healthPower;
+}
 void Living::printCharacter()const{
-    cout<<"------------------------------\n";
     cout<<"Name:"<<name<<"\n";
     cout<<"Health Power(HP):"<<healthPower<<"\n";
     cout<<"Level:"<<level<<"\n";
     cout<<"------------------------------\n";
-
 }

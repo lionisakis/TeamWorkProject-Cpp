@@ -18,12 +18,16 @@
 #include "Exoskeleton.h"
 #include "Dragon.h"
 
+#include "UI.h"
+
 void checkingForLivings();
 void checkingForItems();
+void checkingFighting();
 
 int main(void){
     // checkingForItems();
-    checkingForLivings();
+    // checkingForLivings();
+    checkingFighting();
 }
 
 void checkingForItems(){
@@ -67,4 +71,10 @@ void checkingForLivings(){
     // delete item1;
     // delete item2;
 
+}
+
+void checkingFighting(){
+    vector<Hero*> heros;
+    heros.push_back(new Paladin("Paladin"));
+    battle(heros);
 }

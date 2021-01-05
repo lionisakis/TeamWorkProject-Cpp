@@ -6,8 +6,8 @@
 
 #define STARTINGSTATS 10
 
-Monster::Monster(string name,int levelHero,int maxDamageMonster,int minDamageMonster, int armorMonster,int dogeMonster):
-Living(name),maxDamage(maxDamageMonster+levelHero*10),minDamage(minDamageMonster+levelHero*10),
+Monster::Monster(string name,string typeMonster,int levelHero,int maxDamageMonster,int minDamageMonster, int armorMonster,int dogeMonster):
+Living(name),type(typeMonster),maxDamage(maxDamageMonster+levelHero*10),minDamage(minDamageMonster+levelHero*10),
 armor(armorMonster+levelHero*10),doge(dogeMonster+levelHero*10)
 {
 }
@@ -31,6 +31,10 @@ bool Monster::takeDamage(int damage){
     return true;
 }
 
+string Monster::getType() const{
+    return type;
+}
+
 void Monster::printStats() const{
     cout<<"Damage: ("<<minDamage<<","<<maxDamage<<")\n";
     cout<<"Armor: "<<armor<<"\n";
@@ -40,5 +44,6 @@ void Monster::printStats() const{
 
 void Monster::print() const{
     Living::printCharacter();
+    cout<<"Type: "<<type<<"\n";
     printStats();
 }
