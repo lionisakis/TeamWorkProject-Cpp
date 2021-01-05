@@ -66,7 +66,7 @@ bool Hero::spellcast(Monster* monster,Spell* spell) const{
         cout<<"Not enought Magic Power left for this spell\n";
         return false;
     }
-    // spell->getDamage(10+);
+    spell->getDamage(dexerity);
     return true;
 }
 void Hero::takeDamage(int damage){
