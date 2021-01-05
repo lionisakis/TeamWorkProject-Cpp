@@ -4,6 +4,7 @@ Item::Item(string name_init, int price_init, int level_init){
     this->name = name_init;
     this->price = price_init;
     this->level = level_init;
+    this->type = 0;
     // cout << "A new item with name: " << this->name << " has been created" << endl;
 }
 
@@ -25,4 +26,12 @@ int Item::getLevel(void){
 
 void Item::use(void){
     cout << "You are in items use finction" << endl;
+}
+
+int Item::getType(void){
+    return this->type;
+}
+
+void Item::setType(int type){
+    this->type = type;
 }

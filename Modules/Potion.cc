@@ -4,6 +4,7 @@ Potion::Potion(string name_init, int price_init, int level_init, int use_init, i
     this->use = use_init;
     this->amount = amount_init;
     this->available = available_init;
+    Item::setType(POTION);
     cout << "A new potion with name: " << Item::getName() << " has been created" << endl; 
 }
 
