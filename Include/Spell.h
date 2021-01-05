@@ -27,4 +27,5 @@ class Spell{
         int getDamage(void);
         int getType(void);
         void setType(int);
+        void print(void);
 };

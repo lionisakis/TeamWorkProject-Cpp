@@ -10,4 +10,5 @@ class Weapon:public Item{
         ~Weapon();
         int getDamage(void);
         int getHands(void);
+        void printInfo(void);
 };

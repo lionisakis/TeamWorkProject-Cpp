@@ -22,4 +22,5 @@ class Item{
         void use(void);
         int getType(void);
         void setType(int);
+        void print(void);
 };

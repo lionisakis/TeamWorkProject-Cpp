@@ -35,3 +35,7 @@ int Item::getType(void){
 void Item::setType(int type){
     this->type = type;
 }
+
+void Item::print(void){
+    cout << this->name << ", " << this->price << ", " << this->level << endl;
+}

@@ -13,3 +13,8 @@ LightingSpell::~LightingSpell(){
 int LightingSpell::getDecreaseAvoid(void){
     return this->decrease_avoid;
 }
+
+void LightingSpell::printInfo(void){
+    Spell::print();
+    cout << "Decrease Avoid: " << this->decrease_avoid << endl;
+}

@@ -13,3 +13,8 @@ IceSpell::~IceSpell(){
 int IceSpell::getDecreaseDamage(void){
     return this->decrease_damage;
 }
+
+void IceSpell::printInfo(void){
+    Spell::print();
+    cout << "Decrease Damage: " << this->decrease_damage << endl;
+}

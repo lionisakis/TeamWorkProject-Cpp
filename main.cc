@@ -22,13 +22,17 @@ void checkingForLivings();
 void checkingForItems();
 
 int main(void){
-    // checkingForItems();
-    checkingForLivings();
+    checkingForItems();
+    // checkingForLivings();
 }
 
 void checkingForItems(){
-    Item* item = new Armor("FirstItem", 2, 4, 3);
+    Armor* item = new Armor("FirstItem", 2, 4, 3);
     item->use();
+    item->printInfo();
+
+    IceSpell* spell = new IceSpell("IceSpell", 5, 2, 10);
+    spell->printInfo();
 }
 
 void checkingForLivings(){
