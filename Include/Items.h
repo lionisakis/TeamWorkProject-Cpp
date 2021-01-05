@@ -3,9 +3,9 @@
 #include <cstring>
 using namespace std;
 
-#define WEAPON 1;
-#define ARMOR 2;
-#define POTION 3;
+#define WEAPON 1
+#define ARMOR 2
+#define POTION 3
 
 class Item{
     private:
