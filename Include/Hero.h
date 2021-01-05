@@ -16,8 +16,8 @@ using namespace std;
 class Monster;
 class Hero: public Living{
     private:
-        Weapon* weapon;
-        Armor* armor;
+        Item* weapon;
+        Item* armor;
         int magicPower;
         int strength;
         int dexerity;
@@ -42,10 +42,16 @@ class Hero: public Living{
         bool use(Item* item);
         bool sell(Item* item);
         void addMoney(int addMoney);
-        void printEquipedItems() const;
         
+        // un/equip items
+        bool equipWeapon(Item* item);
+        bool equipArmor(Item* item);
+        void unequipWeapon();
+        void unequipArmor();
+
         // print functions
         void printStats() const;
+        void printEquipedItems() const;
         void printInventory() const;
         void print() const;
 };

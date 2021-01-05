@@ -32,8 +32,8 @@ void Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPo
 void Hero::attack(Monster* monster) const{
     cout<<"Attacking Hero\n";
     int weaponDM=0;
-    if (weapon!=NULL)
-        weaponDM=weapon->getDamage();
+    // if (weapon!=NULL)
+        // weaponDM=weapon->use();
     monster->takeDamage(10+strength+weaponDM);
 
 }
@@ -53,21 +53,10 @@ void Hero::takeDamage(int damage){
         return;
     }
     int armorDF=0;
-    if (armor!=NULL)
-        armorDF=armor->getDefence();
+    // if (armor!=NULL)
+        // armorDF=armor->use();
     cout<<"Taking damge: "<<damage-armorDF<<"\n";
     Living::takeDamage(damage-armorDF);
-}
-
-void Hero::printStats() const {
-    cout<<"------------------------------\n";
-    cout<<"Magic Power: "<<magicPower<<"\n";
-    cout<<"Strength: "<<strength<<"\n";
-    cout<<"Dexerity: "<<dexerity<<"\n";
-    cout<<"Agility: "<<agility<<"\n";
-    cout<<"Experience: "<<experience<<"\n";
-    cout<<"Money: "<<money<<"\n";
-    cout<<"------------------------------\n";
 }
 
 bool Hero::buy(Item* item){
@@ -88,11 +77,11 @@ bool Hero::use(Item* item){
         return false;
     }
     return true;
-    // if (item->type()=="Weapon"){
-        
+    // if (item->getType()=="Weapon"){
+        // equipWeapon(item);
     // }
-    // else if (item->type()=="Armor"){
-
+    // else if (item->getType()=="Armor"){
+        // equipArmor(item);
     // }
     // else{
     //     item->use();
@@ -111,7 +100,42 @@ bool Hero::sell(Item* item){
 void Hero::addMoney(int addMoney){
     money+=addMoney;
 }
-        
+
+bool Hero::equipWeapon(Item* item){
+    // if (findItem(item)<0 || item->getType()=="Weapon"){
+    //     cout<<"You cannot equip that item!\n";
+    //     return false;
+    // }
+    unequipWeapon();
+    weapon=item;
+}
+bool Hero::equipArmor(Item* item){
+    // if (findItem(item)<0 || item->getType()=="Armor"){
+    //     cout<<"You do cannot equipthat item!\n";
+    //     return false;
+    // }
+    unequipArmor();
+    armor=item;
+}
+void Hero::unequipWeapon(){
+    weapon=NULL;
+}
+void Hero::unequipArmor(){
+    armor=NULL;
+}
+
+
+void Hero::printStats() const {
+    cout<<"------------------------------\n";
+    cout<<"Magic Power: "<<magicPower<<"\n";
+    cout<<"Strength: "<<strength<<"\n";
+    cout<<"Dexerity: "<<dexerity<<"\n";
+    cout<<"Agility: "<<agility<<"\n";
+    cout<<"Experience: "<<experience<<"\n";
+    cout<<"Money: "<<money<<"\n";
+    cout<<"------------------------------\n";
+}
+
 void Hero::printEquipedItems() const{
     cout<<"Weapon : ";
     if (weapon!=NULL)
