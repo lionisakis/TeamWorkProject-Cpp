@@ -87,7 +87,6 @@ bool Hero::use(Item* item){
         cout<<"You do not have that item";
         return false;
     }
-    return true;
     if (item->getType()==1){
         equipWeapon(item);
     }
@@ -108,6 +107,7 @@ bool Hero::sell(Item* item){
     }
     items.erase(items.begin()+index);
     addMoney(item->getPrice());
+    return true;
 }
 void Hero::addMoney(int addMoney){
     money+=addMoney;
@@ -128,6 +128,7 @@ bool Hero::equipWeapon(Item* item){
         weapon1=weapon;
     else
         weapon2=weapon;
+    return true;
 }
 bool Hero::equipArmor(Item* item){
     if (findItem(item)<0 || item->getType()==ARMOR){
@@ -136,9 +137,10 @@ bool Hero::equipArmor(Item* item){
     }
     unequipArmor();
     armor=(Armor*)item;
+    return true;
 }
 
-void usePotion(Item* item){
+void Hero::usePotion(Item* item){
     Potion* potion=(Potion*)item;
     // potion->use();
 }
@@ -192,14 +194,16 @@ void Hero::printInventory() const{
         cout<<"\tNo items\n";
         printEquipedItems();
         cout<<"------------------------------\n";
-        return;
     }
-    for (int i=0 ; i< items.size(); i++)
-        cout<<"\t"<<i+1<<") "<<items.at(i)->getName()<<"\n";
+    else{
+        for (int i=0 ; i< items.size(); i++)
+            cout<<"\t"<<i+1<<") "<<items.at(i)->getName()<<"\n";
         // items.at(i)->print();
-    printEquipedItems();
-    cout<<"------------------------------\n";
+        printEquipedItems();
+        cout<<"------------------------------\n";
 
+    }
+   
 }
 
 void Hero::print() const{
