@@ -13,3 +13,8 @@ FireSpell::~FireSpell(){
 int FireSpell::getDecreaseDefence(void){
     return this->decrease_defence;
 }
+
+void FireSpell::printInfo(void){
+    Spell::print();
+    cout << "Decrease Defence: " << this->decrease_defence << endl;
+}

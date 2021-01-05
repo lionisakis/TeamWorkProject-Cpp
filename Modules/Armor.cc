@@ -13,3 +13,8 @@ Armor::~Armor(){
 int Armor::getDefence(void){
     return this->defence;
 }
+
+void Armor::printInfo(void){
+    Item::print();
+    cout << "Defence: " << this->defence << endl;
+}

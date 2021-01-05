@@ -18,3 +18,8 @@ int Weapon::getDamage(void){
 int Weapon::getHands(void){
     return this->hands;
 }
+
+void Weapon::printInfo(void){
+    Item::print();
+    cout << "Damage: " << this->damage << endl;
+}

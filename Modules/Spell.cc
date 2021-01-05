@@ -48,3 +48,7 @@ int Spell::getType(void){
 void Spell::setType(int type){
     this->type = type;
 }
+
+void Spell::print(void){
+    cout << this->name << ", " << this->price << ", " << this->level << endl;
+}

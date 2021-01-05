@@ -12,4 +12,5 @@ class Potion:public Item{
         int getUse(void);
         int getAmount(void);
         bool getAvailable(void);
+        void printInfo(void);
 };

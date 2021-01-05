@@ -23,3 +23,8 @@ int Potion::getAmount(void){
 bool Potion::getAvailable(void){
     return this->available;
 }
+
+void Potion::printInfo(void){
+    Item::print();
+    cout << "Amount of increasment: " << this->amount << endl;
+}
