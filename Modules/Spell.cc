@@ -27,8 +27,8 @@ int Spell::getLevel(void){
     return this->level;
 }
 
-int Spell::getHealth(void){
-    return this->health;
+int Spell::getMagicPower(void){
+    return this->magicPower;
 }
 
 int Spell::getDamage(void){

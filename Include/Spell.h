@@ -10,7 +10,7 @@ class Spell{
         int level;
         int damage_up;
         int damage_down;
-        int health;
+        int magicPower;
     public:
         Spell(string name_init = "Nothing", int price_init = 0, int level_init = 0, int damage_up_init = 0, int damage_down_init = 0, int health = 0);
         ~Spell();
@@ -18,5 +18,5 @@ class Spell{
         int getPrice(void);
         int getLevel(void);
         int getHealth(void);
-        int getDamage(void);
+        int getMagicPower(void);
 };
