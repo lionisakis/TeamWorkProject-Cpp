@@ -25,7 +25,9 @@ bool Living::isActive()const{
 string Living::getName()const{
     return name;
 }
-
+int Living::getLevel() const{
+    return level;
+}
 void Living::printCharacter()const{
     cout<<"------------------------------\n";
     cout<<"Name:"<<name<<"\n";

@@ -13,6 +13,7 @@ class Living{
         void levelUp();
     public:
         Living(string nameLiving,int levelLiving=1);
+        int getLevel() const;
         void takeDamage(int damage);
         bool isActive()const;
         string getName(void)const;

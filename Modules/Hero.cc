@@ -1,4 +1,5 @@
 #include "Hero.h"
+#include "Items.h"
 
 #define STARTINGSTATS 10
 #define MAGICPOWER 20
@@ -9,11 +10,13 @@ Living(nameHero)
     strength=STARTINGSTATS+strengthHero;
     dexerity=STARTINGSTATS+dexerityHero;
     agility=STARTINGSTATS+agilityHero;
-    weapon=NULL;
+    weapon1=NULL;
+    weapon2=NULL;
     armor=NULL;
     magicPower=MAGICPOWER;
     money=0;
     experience=0;
+    hands=0;
 }
 
 void Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPowerHero){
@@ -32,19 +35,21 @@ void Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPo
 void Hero::attack(Monster* monster) const{
     cout<<"Attacking Hero\n";
     int weaponDM=0;
-    // if (weapon!=NULL)
-        // weaponDM=weapon->use();
+    if (weapon1!=NULL)
+        weaponDM+=weapon1->getDamage();
+    if (weapon2!=NULL)
+        weaponDM+=weapon2->getDamage();
     monster->takeDamage(10+strength+weaponDM);
 
 }
 
 bool Hero::spellcast(Monster* monster,Spell* spell) const{
-    // if (magicPower-spell->getMagic()<0){
-    //     cout<<"Not enought Magic Power left for this spell\n"
-    //     return false;
-    // }
+    if (magicPower-spell->getMagicPower()<0){
+        cout<<"Not enought Magic Power left for this spell\n";
+        return false;
+    }
     // spell->getDamage(10+);
-    return false;
+    return true;
 }
 void Hero::takeDamage(int damage){
     int prob= (int) rand()%100;
@@ -53,8 +58,8 @@ void Hero::takeDamage(int damage){
         return;
     }
     int armorDF=0;
-    // if (armor!=NULL)
-        // armorDF=armor->use();
+    if (armor!=NULL)
+        armorDF=armor->getDefence();
     cout<<"Taking damge: "<<damage-armorDF<<"\n";
     Living::takeDamage(damage-armorDF);
 }
@@ -72,21 +77,28 @@ const vector<Item*> Hero::inventory()const{
 
 bool Hero::use(Item* item){
     int index = findItem(item);
+    if (item->getLevel()>getLevel()){
+        cout<<"The hero has not enough level for this item\n";
+        cout<<"Item level: "<<item->getLevel()<<"\n";
+        cout<<"Hero level: "<<getLevel()<<"\n";
+        return false;
+    }
     if (index<0){
         cout<<"You do not have that item";
         return false;
     }
     return true;
-    // if (item->getType()=="Weapon"){
-        // equipWeapon(item);
-    // }
-    // else if (item->getType()=="Armor"){
-        // equipArmor(item);
-    // }
-    // else{
-    //     item->use();
-    // }
-}
+    if (item->getType()==1){
+        equipWeapon(item);
+    }
+    else if (item->getType()==2){
+        equipArmor(item);
+    }
+    else if (item->getType()==3){
+        usePotion(item);
+    }
+    return true;
+}   
 
 bool Hero::sell(Item* item){
     int index=findItem(item);
@@ -102,23 +114,40 @@ void Hero::addMoney(int addMoney){
 }
 
 bool Hero::equipWeapon(Item* item){
-    // if (findItem(item)<0 || item->getType()=="Weapon"){
-    //     cout<<"You cannot equip that item!\n";
-    //     return false;
-    // }
-    unequipWeapon();
-    weapon=item;
+    if (findItem(item)<0 || item->getType()==WEAPON){
+        cout<<"You cannot equip that item!\n";
+        return false;
+    }
+    Weapon* weapon=(Weapon*)item;
+    if (hands-weapon->getHands()<0){
+        cout<<"Not enough hands to cary this.\n";
+        cout<<"Unequip the current Weapon\n";
+        return false;
+    }
+    if(hands==0)
+        weapon1=weapon;
+    else
+        weapon2=weapon;
 }
 bool Hero::equipArmor(Item* item){
-    // if (findItem(item)<0 || item->getType()=="Armor"){
-    //     cout<<"You do cannot equipthat item!\n";
-    //     return false;
-    // }
+    if (findItem(item)<0 || item->getType()==ARMOR){
+        cout<<"You do cannot equipthat item!\n";
+        return false;
+    }
     unequipArmor();
-    armor=item;
+    armor=(Armor*)item;
 }
+
+void usePotion(Item* item){
+    Potion* potion=(Potion*)item;
+    // potion->use();
+}
+
 void Hero::unequipWeapon(){
-    weapon=NULL;
+    if(hands==2){
+        weapon2=NULL;
+    }
+    weapon1=NULL;
 }
 void Hero::unequipArmor(){
     armor=NULL;
@@ -137,13 +166,17 @@ void Hero::printStats() const {
 }
 
 void Hero::printEquipedItems() const{
-    cout<<"Weapon : ";
-    if (weapon!=NULL)
-        weapon->getName();
+    cout<<"Weapon at hand : ";
+    if (weapon1!=NULL){
+        weapon1->getName();
+        if(weapon2!=NULL){
+            weapon2->getName();
+        }
+    }
     else 
         cout<<" NONE";
     cout<<"\n";
-    cout<<"Armor  : ";
+    cout<<"Armor equipd : ";
     if (armor!=NULL)
         armor->getName();
     else 
