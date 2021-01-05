@@ -59,7 +59,7 @@ void checkingForLivings(){
     // pal.printInventory();
     // pal.print();
     Hero* p = new Hero("PAL", 1, 1, 1);
-    Potion* potion = new Potion("Name", 3, 1, 10, false);
+    Potion* potion = new Potion("Name", 3, 1, 2, 10, false);
     p->print();
     potion->use(p);
     p->print();
