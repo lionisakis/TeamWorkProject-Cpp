@@ -9,6 +9,7 @@ Spell::Spell(string name_init, int price_init, int level_init, int damage_up_ini
     this->damage_down = damage_down_init;
     this->magicPower = magic_power_init;
     this->type = 0;
+    this->doge = 150;
     // cout << "A new item with name: " << this->name << " has been created" << endl;
 }
 
@@ -32,10 +33,15 @@ int Spell::getMagicPower(void){
     return this->magicPower;
 }
 
-int Spell::getDamage(void){
+int Spell::getDamage(int dexterity){
     srand(time(NULL));
-    int damage = rand() % (this->damage_up + 1);
-    while(damage < this->damage_down){
+    int temp_down = this->damage_up;
+    int prob = rand() % (temp_down + 1);
+    while(prob = rand() % (temp_down + 1) <= doge){
+        temp_down += 10;
+    }
+    int damage;
+    while(damage < temp_down){
         damage = rand() % (this->damage_up + 1);
     }
     return damage;
