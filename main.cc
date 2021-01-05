@@ -19,11 +19,16 @@
 #include "Dragon.h"
 
 void checkingForLivings();
+void checkingForItems();
 
 int main(void){
-    LightingSpell* item = new LightingSpell("Sward", 4, 2, 1);
-    delete item;
-    // checkingForLivings();
+    // checkingForItems();
+    checkingForLivings();
+}
+
+void checkingForItems(){
+    Item* item = new Armor("FirstItem", 2, 4, 3);
+    item->use();
 }
 
 void checkingForLivings(){

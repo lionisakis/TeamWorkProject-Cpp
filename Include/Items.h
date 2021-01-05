@@ -14,4 +14,5 @@ class Item{
         string getName(void);
         int getPrice(void);
         int getLevel(void);
+        void use(void);
 };

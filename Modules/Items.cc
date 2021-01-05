@@ -22,3 +22,7 @@ int Item::getPrice(void){
 int Item::getLevel(void){
     return this->level;
 }
+
+void Item::use(void){
+    cout << "You are in items use finction" << endl;
+}
