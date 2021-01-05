@@ -14,7 +14,7 @@ class Item{
         int level;
         int type;
     public:
-        Item(string name_init = "Nothing", int price_init = 0, int level_init = 0);
+        Item(string name_init = "Nothing", int price_init = 0, int level_init = 1);
         ~Item();
         string getName(void);
         int getPrice(void);

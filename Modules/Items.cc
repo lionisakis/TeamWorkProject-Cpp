@@ -37,5 +37,5 @@ void Item::setType(int type){
 }
 
 void Item::print(void){
-    cout << this->name << ", " << this->price << ", " << this->level << endl;
+    cout <<  "Name: " << this->name << ", Price: " << this->price << ", Level: " << this->level << endl;
 }

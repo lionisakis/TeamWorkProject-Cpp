@@ -17,7 +17,7 @@ class Spell{
         int magicPower;
         int type;
     public:
-        Spell(string name_init = "Nothing", int price_init = 0, int level_init = 0, int damage_up_init = 0, int damage_down_init = 0, int magic_power_init = 0);
+        Spell(string name_init = "Nothing", int price_init = 0, int level_init = 1, int damage_up_init = 0, int damage_down_init = 0, int magic_power_init = 0);
         ~Spell();
         string getName(void);
         int getPrice(void);
