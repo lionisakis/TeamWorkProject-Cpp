@@ -49,12 +49,11 @@ void checkingForLivings(){
 
     pal.addMoney(40);
     pal.printInventory();
-    Item* item1 = new Armor("FirstItem", 20, 4, 3);
-    Item* item2 = new Weapon("2Item", 20, 4, 3);
+    Item* item1 = new Armor("FirstItem", 20, 1, 1);
+    Item* item2 = new Weapon("2Item", 20, 1, 1);
     pal.buy(item1);
     pal.buy(item2);
     pal.printInventory();
-    // pal.printInventory();
     pal.use(item2);
     pal.use(item1);
     pal.printInventory();
