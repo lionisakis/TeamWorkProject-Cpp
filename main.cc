@@ -22,8 +22,8 @@ void checkingForLivings();
 void checkingForItems();
 
 int main(void){
-    checkingForItems();
-    // checkingForLivings();
+    // checkingForItems();
+    checkingForLivings();
 }
 
 void checkingForItems(){
