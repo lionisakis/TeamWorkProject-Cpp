@@ -15,6 +15,14 @@ OBJ = main.o $(Items) $(Hero) $(Monsters) $(Spells)
 
 EXEC= main
 
+Itemsd = $(MDIR)Items.d $(MDIR)Weapon.d $(MDIR)Armor.d $(MDIR)Potion.d
+Herod = $(MDIR)Living.d $(MDIR)Hero.d $(MDIR)Warrior.d $(MDIR)Sorcerer.d $(MDIR)Paladin.d
+Monstersd = $(MDIR)Living.d $(MDIR)Monster.d $(MDIR)Dragon.d $(MDIR)Exoskeleton.d $(MDIR)Spirit.d
+Spellsd = $(MDIR)Spell.d $(MDIR)IceSpell.d $(MDIR)FireSpell.d $(MDIR)LightingSpell.d
+
+
+D= main.d $(Itemsd) $(Herod) $(Monstersd) $(Spellsd)
+
 ARGS = 
 
 $(EXEC)/%.o: %.c $(DEPS)
@@ -27,7 +35,7 @@ run: $(OBJ)
 .PHONY: clean
 
 clean:
-	rm -f $(OBJ) $(EXEC) 
+	rm -f $(OBJ) $(EXEC) $(D)
 
 valgrind: $(OBJ)
 	$(CXX) -o $(EXEC) $^ $(CXXFLAGS) $(LIBS)
