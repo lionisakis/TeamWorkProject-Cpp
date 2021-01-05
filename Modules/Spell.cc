@@ -8,6 +8,7 @@ Spell::Spell(string name_init, int price_init, int level_init, int damage_up_ini
     this->damage_up = damage_up_init;
     this->damage_down = damage_down_init;
     this->health = health_init;
+    this->type = 0;
     // cout << "A new item with name: " << this->name << " has been created" << endl;
 }
 
@@ -38,4 +39,12 @@ int Spell::getDamage(void){
         damage = rand() % (this->damage_up + 1);
     }
     return damage;
+}
+
+int getType(void){
+    return this->type;
+}
+
+void setType(int type){
+    this->type = type;
 }
