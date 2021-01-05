@@ -35,12 +35,13 @@ int Spell::getMagicPower(void){
 
 int Spell::getDamage(int dexterity){
     srand(time(NULL));
-    int temp_up = this->damage_up;
-    int prob = rand() % (this->temp_up + 1);
-    while(prob = rand() % (this->temp_up + 1) <= doge){
-        temp_up += 10;
+    int temp_down = this->damage_up;
+    int prob = rand() % (temp_down + 1);
+    while(prob = rand() % (temp_down + 1) <= doge){
+        temp_down += 10;
     }
-    while(damage < this->temp_down){
+    int damage;
+    while(damage < temp_down){
         damage = rand() % (this->damage_up + 1);
     }
     return damage;
