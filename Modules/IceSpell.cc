@@ -8,3 +8,7 @@ IceSpell::IceSpell(string name_init, int price_init, int level_init, int decreas
 IceSpell::~IceSpell(){
     cout << "An IceSpell with name: " << Spell::getName() << " is about to be destroyed" << endl; 
 }
+
+int IceSpell::getDecreaseDamage(void){
+    return this->decrease_damage;
+}

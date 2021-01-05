@@ -9,4 +9,7 @@ class Potion:public Item{
     public:
         Potion(string name_init = "Nothing", int price_init = 0, int level_init = 0, int use = 0, int amount = 0, bool available_init = false);
         ~Potion();
+        int getUse(void);
+        int getAmount(void);
+        bool getAvailable(void);
 };

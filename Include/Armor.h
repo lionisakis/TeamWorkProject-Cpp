@@ -7,4 +7,5 @@ class Armor:public Item{
     public:
         Armor(string name_init = "Nothing", int price_init = 0, int level_init = 0, int defence = 0);
         ~Armor();
+        int getDefence(void);
 };

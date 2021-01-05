@@ -8,3 +8,7 @@ FireSpell::FireSpell(string name_init, int price_init, int level_init, int decre
 FireSpell::~FireSpell(){
     cout << "An FireSpell with name: " << Spell::getName() << " is about to be destroyed" << endl; 
 }
+
+int FireSpell::getDecreaseDefence(void){
+    return this->decrease_defence;
+}

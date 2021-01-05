@@ -1,4 +1,5 @@
 #include "Spell.h"
+#include <cstdlib>
 
 Spell::Spell(string name_init, int price_init, int level_init, int damage_up_init, int damage_down_init, int health_init){
     this->name = name_init;
@@ -14,6 +15,27 @@ Spell::~Spell(){
     // cout << "An item with name: " << this->name << " is about to be destroyed" << endl;
 }
 
-string Spell::getName(){
+string Spell::getName(void){
     return this->name;
+}
+
+int Spell::getPrice(void){
+    return this->price;
+}
+
+int Spell::getLevel(void){
+    return this->level;
+}
+
+int Spell::getHealth(void){
+    return this->health;
+}
+
+int Spell::getDamage(void){
+    srand(time(NULL));
+    int damage = rand() % (this->damage_up + 1);
+    while(damage < this->damage_down){
+        damage = rand() % (this->damage_up + 1);
+    }
+    return damage;
 }

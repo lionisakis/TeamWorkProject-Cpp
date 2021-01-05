@@ -15,4 +15,8 @@ class Spell{
         Spell(string name_init = "Nothing", int price_init = 0, int level_init = 0, int damage_up_init = 0, int damage_down_init = 0, int health = 0);
         ~Spell();
         string getName(void);
+        int getPrice(void);
+        int getLevel(void);
+        int getHealth(void);
+        int getDamage(void);
 };

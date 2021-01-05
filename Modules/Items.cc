@@ -14,3 +14,11 @@ Item::~Item(){
 string Item::getName(){
     return this->name;
 }
+
+int Item::getPrice(void){
+    return this->price;
+}
+
+int Item::getLevel(void){
+    return this->level;
+}

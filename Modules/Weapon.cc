@@ -9,3 +9,11 @@ Weapon::Weapon(string name_init, int price_init, int level_init, int damage_init
 Weapon::~Weapon(){
     cout << "A weapon with name: " << Item::getName() << " is about to be destroyed" << endl; 
 }
+
+int Weapon::getDamage(void){
+    return this->damage;
+}
+
+int Weapon::getHands(void){
+    return this->hands;
+}

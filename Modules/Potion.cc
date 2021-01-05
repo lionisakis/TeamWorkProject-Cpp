@@ -10,3 +10,15 @@ Potion::Potion(string name_init, int price_init, int level_init, int use_init, i
 Potion::~Potion(){
     cout << "A potion with name: " << Item::getName() << " is about to be destroyed" << endl; 
 }
+
+int Potion::getUse(void){
+    return this->use;
+}
+
+int Potion::getAmount(void){
+    return this->amount;
+}
+
+bool Potion::getAvailable(void){
+    return this->available;
+}

@@ -8,3 +8,7 @@ Armor::Armor(string name_init, int price_init, int level_init, int defence_init)
 Armor::~Armor(){
     cout << "A armor with name: " << Item::getName() << " is about to be destroyed" << endl; 
 }
+
+int Armor::getDefence(void){
+    return this->defence;
+}

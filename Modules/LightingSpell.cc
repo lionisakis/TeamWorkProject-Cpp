@@ -8,3 +8,7 @@ LightingSpell::LightingSpell(string name_init, int price_init, int level_init, i
 LightingSpell::~LightingSpell(){
     cout << "An LightingSpell with name: " << Spell::getName() << " is about to be destroyed" << endl; 
 }
+
+int LightingSpell::getDecreaseAvoid(void){
+    return this->decrease_avoid;
+}
