@@ -28,3 +28,9 @@ void Potion::printInfo(void){
     Item::print();
     cout << "Amount of increasment: " << this->amount << endl;
 }
+
+void Potion::use(Hero* hero){
+    int type = this->getUse();
+    int amount = this->getAmount();
+    hero->addToStat(type, amount);
+}

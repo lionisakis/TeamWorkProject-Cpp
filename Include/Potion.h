@@ -1,5 +1,6 @@
 #pragma once
 #include "Items.h"
+#include "Hero.h"
 
 class Potion:public Item{
     private:
@@ -13,4 +14,5 @@ class Potion:public Item{
         int getAmount(void);
         bool getAvailable(void);
         void printInfo(void);
+        void use(Hero*);
 };
