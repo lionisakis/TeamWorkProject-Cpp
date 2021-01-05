@@ -5,7 +5,6 @@
 #include "Monster.h"
 
 #define STARTINGSTATS 10
-#define MAGICPOWER 20
 
 Monster::Monster(string name,int levelHero,int maxDamageMonster,int minDamageMonster, int armorMonster,int dogeMonster):
 Living(name),maxDamage(maxDamageMonster+levelHero*10),minDamage(minDamageMonster+levelHero*10),
