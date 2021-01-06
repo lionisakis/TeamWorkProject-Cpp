@@ -1,8 +1,6 @@
 #include "Hero.h"
 #include "Items.h"
 
-#define STARTINGSTATS 10
-
 Hero::Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero):
 Living(nameHero,1,100)
 {   
@@ -205,7 +203,7 @@ bool Hero::useInBattle(){
 
 bool Hero::use(Item* item){
     int index = findItem(item);
-    if (item->getLevel()>getLevel()){
+    if (item->getLevel() > getLevel()){
         cout<<"The hero has not enough level for this item\n";
         cout<<"Item level: "<<item->getLevel()<<"\n";
         cout<<"Hero level: "<<getLevel()<<"\n";

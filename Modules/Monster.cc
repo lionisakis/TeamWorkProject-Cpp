@@ -4,8 +4,6 @@
 #include "Hero.h"
 #include "Monster.h"
 
-#define STARTINGSTATS 10
-
 int countHP(int level){
     srand(time(NULL));
     return rand()%(10*level+20)+25;

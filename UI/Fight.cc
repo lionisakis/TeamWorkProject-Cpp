@@ -116,13 +116,13 @@ void help(Hero* hero){
     cout<< "HP:"<<hero->getHP()<<"\t";
     cout<< "Magic Power: "<<hero->getMagicPower()<<"\n";
     cout<<"\nChoose one of the following move:\n";
-    cout<<"stats: For the stats of the hero\n";
-    cout<<"monsters: For the info of the monsters\n";
-    cout<<"attack: For the hero to attack\n";
-    cout<<"castSpell: For the hero to cast spell\n";
-    cout<<"use: For the hero to use a potion\n";
-    cout<<"quit: For quiting the Game\n";
-    cout<<"help: For the availble comands\n";
+    cout<<"Stats: For the stats of the hero\n";
+    cout<<"Monsters: For the info of the monsters\n";
+    cout<<"Attack: For the hero to attack\n";
+    cout<<"CastSpell: For the hero to cast spell\n";
+    cout<<"Use: For the hero to use a potion\n";
+    cout<<"Quit: For quiting the Game\n";
+    cout<<"Help: For the availble comands\n";
 }
 void printMonsters(vector<Monster*> monsters){
     for (int i=0;i<monsters.size();i++){
@@ -149,16 +149,16 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                 cout<<"Problem With cin\n";
                 // return false;
             }
-            if(action=="stats"){
+            if(action=="Stats"){
                 heros.at(i)->printCharacter();
                 heros.at(i)->printStats();
             }
-            else if(action=="monsters"){
+            else if(action=="Monsters"){
                 printMonsters(monsters);
             }
-            else if(action=="attack"){
+            else if(action=="Attack"){
                 cout<<"Choose a Monster\n";
-                cout<<"0) cansel action\n";
+                cout<<"0) Cancel action\n";
                 printMonsters(monsters);
                 int which;
                 cin>>which;
@@ -180,7 +180,7 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
 
                 heros.at(i)->attack(monsters.at(which-1));
             }
-            else if(action=="castSpell"){
+            else if(action=="CastSpell"){
                 cout<<"Choose a Monster\n";
                 cout<<"0: For changing move\n";
                 printMonsters(monsters);
@@ -207,15 +207,15 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                     flag=false;
                 }
             }
-            else if (action=="use"){
+            else if (action=="Use"){
                 if(!heros.at(i)->useInBattle()){
                     flag=false;
                 }
             }
-            else if (action=="help"){
+            else if (action=="Help"){
                 help(heros.at(i));
             }
-            else if (action=="quit"){
+            else if (action=="Quit"){
                 return true;
             }
 
