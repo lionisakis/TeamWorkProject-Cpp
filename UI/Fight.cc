@@ -50,12 +50,11 @@ int battle(vector<Hero*> heros){
         herosLose(heros,monsters);
 
     // Wrong with delete
-    // for(int i=0;i<monsters.size();i++){
-    //     Monster* temp=monsters.at(i);
-    //     monsters.at(i)=NULL;
-    //     delete temp;
-    // }
-    // cout<<"DONE\n";
+    for(int i=0;i<monsters.size();i++){
+        Monster* temp=monsters.at(i);
+        monsters.at(i)=NULL;
+        delete temp;
+    }
 }
 
 vector<Monster*> createMonster(vector<Hero*> heros){

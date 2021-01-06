@@ -76,6 +76,9 @@ void checkingForLivings(){
 void checkingFighting(){
     vector<Hero*> heros;
     heros.push_back(new Paladin("Paladin"));
+    heros.push_back(new Warrior("Warrior"));
+    heros.push_back(new Sorcerer("Sorcerer"));
+
     Item* item = new Weapon("Basic Weapon",0,1,10,1);
     Spell* spell = new FireSpell("Fire Ball",0,1,0);
     heros.at(0)->addMoney(100);

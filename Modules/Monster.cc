@@ -8,7 +8,7 @@
 
 int countHP(int level){
     srand(time(NULL));
-    return 1;
+    return rand()%(10*level+20)+25;
 }
 
 Monster::Monster(string name,string typeMonster,int levelHero,int minDamageMonster,int maxDamageMonster, int armorMonster,int dogeMonster):
