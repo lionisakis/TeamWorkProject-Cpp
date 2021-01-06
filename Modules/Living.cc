@@ -15,6 +15,7 @@ void Living::increaseHealthPower(int increase){
     maxHP+=increase;
 }
 
+
 void Living::takeDamage(int damage){
     healthPower-=damage;
     if (healthPower<0)

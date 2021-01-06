@@ -12,3 +12,5 @@ using namespace std;
 #include "Hero.h"
 
 bool battle(vector<Hero*> heros,Util util);
+void quitGame(vector<Hero*> heros);
+vector<Hero*> spawnHeros();

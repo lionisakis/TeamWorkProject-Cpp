@@ -48,7 +48,7 @@ bool battle(vector<Hero*> heros,Util util){
             break;
     }
     if(flag){
-        if(!checkAliveHeros(heros))
+        if(checkAliveHeros(heros))
             herosWin(heros,monsters);
         else 
             herosLose(heros,monsters);

@@ -51,6 +51,7 @@ class Hero: public Living{
         int getDexterity(void);
         int getMP(void);
         int getMPused()const;
+        int giveEXP(int exp);
 
         // combat
         void useMagicPower(int usemagicPowerHero);
