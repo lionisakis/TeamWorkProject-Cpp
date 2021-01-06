@@ -14,6 +14,14 @@ using namespace std;
 #include "Monster.h"
 #include "Hero.h"
 
+#ifdef _WIN32
+#include <Windows.h>
+#define SLEEP true
+#else
+#include <unistd.h>
+#define SLEEP false
+#endif
+
 vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters,Util util);
 bool checkAlive(vector<Hero*> heros,vector<Monster*> monsters);
 bool moveHero(vector<Hero*> heros,vector<Monster*> monsters);
@@ -134,11 +142,20 @@ void printMonsters(vector<Monster*> monsters){
 } 
 bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
     for(int i=0;i<heros.size();i++){
+        
         if(heros.at(i)->getHP()==0)
             continue;
         bool flag=false;
         if(!checkAliveMonsters(monsters))
             return true;
+
+        if(SLEEP){
+            sleep(40);
+        }
+        else{
+            usleep(4000000);
+        }
+
         help(heros.at(i));
         do {
             
@@ -229,6 +246,12 @@ bool moveMonster(vector<Hero*> heros,vector<Monster*> monsters){
     for (int i=0;i<monsters.size();i++){
         if(monsters.at(i)->getHP()==0)
             continue;
+        if(SLEEP){
+            sleep(40);
+        }
+        else{
+            usleep(4000000);
+        }
         cout<<monsters.at(i)->getName()<<" is attacking\n";
         if(!checkAliveHeros(heros))
             return true;
