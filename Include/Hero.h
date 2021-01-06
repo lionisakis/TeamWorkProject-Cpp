@@ -21,6 +21,8 @@ using namespace std;
 #define AGILITY 4
 
 class Monster;
+class Spell;
+
 class Hero: public Living{
     private:
         Weapon* weapon1;
@@ -47,9 +49,9 @@ class Hero: public Living{
         void restoreMP(int mp);
         int getDexterity(void);
         int getMP(void);
+        int getMPused()const;
 
         // combat
-        int getMPused()const;
         void useMagicPower(int usemagicPowerHero);
         bool castSpell(Monster* monster)const;
         bool attack(Monster* monster) const;
