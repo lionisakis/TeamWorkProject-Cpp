@@ -6,4 +6,11 @@
 #define FIRESPELL 5
 #define LIGHTINGSPELL 6
 
+#define DRAGON 11
+#define EXOSKELETON 12
+#define SPIRIT 13
+
+
 #define STARTINGSTATS 10
+
+#define PATH "./names/"

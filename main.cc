@@ -19,16 +19,19 @@
 #include "Dragon.h"
 
 #include "UI.h"
+#include "Util.h"
+
 
 void checkingForLivings();
 void checkingForItems();
-void checkingFighting();
+void checkingFighting(Util util);
 void quitGame(vector<Hero*>);
 
 int main(void){
+    Util util;
     // checkingForItems();
     // checkingForLivings();
-    checkingFighting();
+    checkingFighting(util);
 }
 
 void checkingForItems(){
@@ -74,14 +77,15 @@ void checkingForLivings(){
 
 }
 
-void checkingFighting(){
+void checkingFighting(Util util){
     vector<Hero*> heros;
-    heros.push_back(new Paladin("Paladin"));
-    heros.push_back(new Warrior("Warrior"));
-    heros.push_back(new Sorcerer("Sorcerer"));
 
-    Item* item = new Weapon("Basic Weapon",0,1,10,1);
-    Spell* spell = new FireSpell("Fire Ball",0,1,0);
+    heros.push_back(new Paladin(util.randomName(SPIRIT)));
+    heros.push_back(new Warrior(util.randomName(SPIRIT)));
+    heros.push_back(new Sorcerer(util.randomName(SPIRIT)));
+
+    Item* item = util.spawnWeapon(0,1,10,0);
+    Spell* spell = util.spawnSpell(FIRESPELL,0,1,10);
     heros.at(0)->addMoney(100);
     heros.at(0)->buy(item);
     heros.at(0)->buy(spell);
