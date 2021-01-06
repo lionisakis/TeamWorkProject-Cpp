@@ -78,11 +78,12 @@ void checkingFighting(){
     heros.push_back(new Paladin("Paladin"));
     Item* item = new Weapon("Basic Weapon",0,1,10,1);
     Spell* spell = new FireSpell("Fire Ball",0,1,0);
+    heros.at(0)->addMoney(100);
     heros.at(0)->buy(item);
     heros.at(0)->buy(spell);
     heros.at(0)->use(item);
     heros.at(0)->printCombatStats();
-    heros.at(0)->printSpells();
+    heros.at(0)->printInventory();
     cout<<"\n";
     battle(heros);
     heros.at(0)->print();

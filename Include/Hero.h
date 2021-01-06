@@ -53,11 +53,12 @@ class Hero: public Living{
 
         // combat
         void useMagicPower(int usemagicPowerHero);
-        bool castSpell(Monster* monster)const;
+        bool castSpell(Monster* monster);
         bool attack(Monster* monster) const;
-        bool spellcast(Monster* monster,Spell* spell) const;
+        bool spellcast(Monster* monster,Spell* spell);
         bool takeDamage(int damage);
         void addEXP(int exp);
+        
 
         // items of the hero
         bool buy(Spell* spell);

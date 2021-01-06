@@ -32,19 +32,19 @@ int battle(vector<Hero*> heros){
     srand(time(NULL));
     vector<Monster*> monsters=createMonster(heros);
     printTheBegining(heros,monsters);
-    // cout<<"\n";
-    // while(true){
-    //     if(checkAlive(heros,monsters))
-    //         break;
-    //     restoreHP(heros,monsters);
-    //     if(moveHero(heros,monsters))
-    //         return -1;
-    //     if(checkAlive(heros,monsters))
-    //         break;
-    //     if(moveMonster(heros,monsters))
-    //         break;
-    // }
-    if(checkAliveHeros(heros))
+    cout<<"\n";
+    while(true){
+        if(checkAlive(heros,monsters))
+            break;
+        restoreHP(heros,monsters);
+        if(moveHero(heros,monsters))
+            return -1;
+        if(checkAlive(heros,monsters))
+            break;
+        if(moveMonster(heros,monsters))
+            break;
+    }
+    if(!checkAliveHeros(heros))
         herosWin(heros,monsters);
     else 
         herosLose(heros,monsters);
@@ -309,7 +309,7 @@ void herosLose(vector<Hero*> heros,vector<Monster*> monsters){
     cout<<"HEROS HAVE LOST THE FIGHT!\n";
     for(int i=0;i<heros.size();i++){
         int money=heros.at(i)->getMoney();
-        heros.at(i)->addMoney(money/2);
+        heros.at(i)->addMoney(-money/2);
         // maybe?
         // restoreHP(heros,monsters);
     }

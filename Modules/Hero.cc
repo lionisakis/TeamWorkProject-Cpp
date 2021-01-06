@@ -67,7 +67,7 @@ int Hero::getMP(void){
     return magicPower;
 }
 
-bool Hero::castSpell(Monster* monster)const{
+bool Hero::castSpell(Monster* monster){
     int action;
     while(true){
         cout<<"Magic power: "<<magicPower<<"\n";
@@ -109,12 +109,12 @@ void Hero::useMagicPower(int usemagicPowerHero){
 int Hero::getMPused()const{
     return mpUsed;
 }
-bool Hero::spellcast(Monster* monster,Spell* spell) const{
+bool Hero::spellcast(Monster* monster,Spell* spell){
     if (magicPower-spell->getMagicPower()<0){
         cout<<"Not enought Magic Power left for this spell\n";
         return false;
     }
-    // monster->takeDamage(spell->getDamage(dexerity),this);
+    monster->takeDamage(spell->getDamage(this));
     return true;
 }
 bool Hero::takeDamage(int damage){
@@ -268,7 +268,7 @@ bool Hero::equipArmor(Item* item){
 
 void Hero::usePotion(Item* item){
     Potion* potion=(Potion*)item;
-    // potion->use(this);
+    potion->use(this);
 }
 
 void Hero::unequipWeapon(){
