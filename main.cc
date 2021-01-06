@@ -23,7 +23,6 @@
 #include "Market.h"
 
 
-void checkingForLivings();
 void checkingForItems();
 void checkingFighting(Util util);
 void quitGame(vector<Hero*>);
@@ -32,6 +31,7 @@ void checkMarket(Util);
 
 int main(void){
     Util util;
+    vector<Hero*>heros=spawnHeros();
     // checkingForItems();
     // checkingForLivings();
     // checkingFighting(util);
@@ -46,16 +46,6 @@ void checkMarket(Util util){
     market->buy(hero);
 }
 
-void names(Util util){
-    util.spawnExoskeleton(0);
-    util.spawnExoskeleton(0);
-    util.spawnSpirit(0);
-    util.spawnSpirit(0);
-    util.spawnDragon(0);
-    util.spawnDragon(0);
-}
-
-
 void checkingForItems(){
     Armor* item = new Armor("FirstItem", 2, 4, 3);
     item->use();
@@ -65,49 +55,13 @@ void checkingForItems(){
     spell->printInfo();
 }
 
-void checkingForLivings(){
-    Paladin pal=Paladin("Paladin");
-    Warrior war=Warrior("Warrior");
-    Sorcerer sorc=Sorcerer("Sorcerer");
 
-    Dragon drag= Dragon("Dragaris",1);
-    Spirit spirit= Spirit("Spirit",1);
-    Exoskeleton exoskeleton= Exoskeleton("Exoskeleton",1);
+void checkingFighting(vector<Hero*> heros,Util util){
 
-    // pal.print();
-    pal.levelUp();
-
-    pal.addMoney(40);
-    pal.printInventory();
-    // Item* item1 = new Armor("FirstItem", 20, 1, 1);
-    // Item* item2 = new Weapon("2Item", 20, 1, 1);
-    // pal.buy(item1);
-    // pal.buy(item2);
-    // pal.printInventory();
-    // pal.use(item2);
-    // pal.use(item1);
-    // pal.printInventory();
-    // pal.print();
-    Hero* p = new Hero("PAL", 1, 1, 1);
-    Potion* potion = new Potion("Name", 3, 1, 2, 10, false);
-    p->print();
-    potion->use(p);
-    p->print();
-    // pal.print();
-    // delete item1;
-    // delete item2;
-
-}
-
-void checkingFighting(Util util){
-    vector<Hero*> heros;
-
-    heros.push_back(new Paladin(util.randomName(SPIRIT)));
-    heros.push_back(new Warrior(util.randomName(SPIRIT)));
-    heros.push_back(new Sorcerer(util.randomName(SPIRIT)));
-
-    Item* item = util.spawnWeapon(0,1,10,0);
-    Spell* spell = util.spawnSpell(FIRESPELL,0,1,10);
+    Item* item = util.spawnWeapon(0,2,5,0);
+    heros.at(0)->giveEXP(100);
+    heros.at(0)->levelUp(0,0,0,0);
+    Spell* spell = util.spawnSpell(LIGHTINGSPELL,0,1,10);
     heros.at(0)->addMoney(100);
     heros.at(0)->buy(item);
     heros.at(0)->buy(spell);
@@ -115,17 +69,9 @@ void checkingFighting(Util util){
     heros.at(0)->printCombatStats();
     heros.at(0)->printInventory();
     cout<<"\n";
-    if(!battle(heros))
+    if(!battle(heros,util))
         return quitGame(heros);
-    heros.at(0)->print();
+    // heros.at(0)->print();
     return quitGame(heros);    
 }
 
-void quitGame(vector<Hero*> heros){
-    int size=heros.size();
-    for(int i=0;i<size;i++){
-        Hero* temp=heros.back();
-        heros.pop_back();
-        delete temp;
-    }
-}

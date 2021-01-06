@@ -5,6 +5,7 @@
 #include "Define.h"
 using namespace std;
 
+class Hero;
 class Spell{
     private:
         string name;

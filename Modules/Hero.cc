@@ -95,6 +95,10 @@ bool Hero::castSpell(Monster* monster){
             cout<<"There is no spell with that number!\n";
             continue;
         }
+        if(spells.at(action-1)->getLevel()>getLevel()){
+            cout<<"You do not have enought level to cast this spell!\n";
+            continue;
+        }
         return spellcast(monster,spells.at(action-1));
     }    
 
@@ -119,12 +123,17 @@ void Hero::useMagicPower(int usemagicPowerHero){
 int Hero::getMPused()const{
     return mpUsed;
 }
+int Hero::giveEXP(int exp){
+    return experience+=exp;
+}
 bool Hero::spellcast(Monster* monster,Spell* spell){
     if (magicPower-spell->getMagicPower()<0){
         cout<<"Not enought Magic Power left for this spell\n";
         return false;
     }
-    monster->takeDamage(spell->getDamage(this));
+    
+    if(monster->takeDamage(spell->getDamage(this)))
+        monster->getDepuff(spell);
     return true;
 }
 bool Hero::takeDamage(int damage){
