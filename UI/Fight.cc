@@ -14,7 +14,7 @@ using namespace std;
 #include "Monster.h"
 #include "Hero.h"
 
-vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters);
+vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters,Util util);
 bool checkAlive(vector<Hero*> heros,vector<Monster*> monsters);
 bool moveHero(vector<Hero*> heros,vector<Monster*> monsters);
 bool moveMonster(vector<Hero*> heros,vector<Monster*> monsters);  
@@ -27,10 +27,10 @@ void restoreMP(vector<Hero*> heros);
 void herosLose(vector<Hero*> heros,vector<Monster*> monsters);
 void herosWin(vector<Hero*> heros,vector<Monster*> monsters);
 
-bool battle(vector<Hero*> heros){
+bool battle(vector<Hero*> heros,Util util){
     srand(time(NULL));
     vector<Monster*> monsters;
-    monsters=createMonster(heros,monsters);
+    monsters=createMonster(heros,monsters,util);
     printTheBegining(heros,monsters);
     cout<<"\n";
     bool flag=true;
@@ -64,8 +64,8 @@ bool battle(vector<Hero*> heros){
     return flag;
 }
 
-vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters){
-    Util util;
+vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters,Util util){
+    
     int heroLevel=0;
     for (int i=0;i<heros.size();i++)
         heroLevel+=heros.at(i)->getLevel();

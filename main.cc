@@ -32,19 +32,8 @@ int main(void){
     Util util;
     // checkingForItems();
     // checkingForLivings();
-    // checkingFighting(util);
-    names(util);
+    checkingFighting(util);
 }
-
-void names(Util util){
-    util.spawnExoskeleton(0);
-    util.spawnExoskeleton(0);
-    util.spawnSpirit(0);
-    util.spawnSpirit(0);
-    util.spawnDragon(0);
-    util.spawnDragon(0);
-}
-
 
 void checkingForItems(){
     Armor* item = new Armor("FirstItem", 2, 4, 3);
@@ -105,7 +94,7 @@ void checkingFighting(Util util){
     heros.at(0)->printCombatStats();
     heros.at(0)->printInventory();
     cout<<"\n";
-    if(!battle(heros))
+    if(!battle(heros,util))
         return quitGame(heros);
     heros.at(0)->print();
     return quitGame(heros);    
