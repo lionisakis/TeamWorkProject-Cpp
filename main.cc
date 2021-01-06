@@ -31,12 +31,17 @@ void checkMarket(Util);
 
 int main(void){
     Util util;
-    // vector<Hero*>heros = spawnHeros();
+    // Spawn Heros
+    vector<Hero*>heros = spawnHeros();
+   
+    // Check for Debug
+
     // checkingForItems();
-    // checkingForLivings();
-    // checkingFighting(heros, util);
-    // names(util);
-    checkMarket(util);
+    checkingFighting(heros, util);
+    // checkMarket(util);
+
+    // Delete Heros
+    quitGame(heros);
 }
 
 void checkMarket(Util util){
@@ -69,9 +74,9 @@ void checkingFighting(vector<Hero*> heros,Util util){
     heros.at(0)->printCombatStats();
     heros.at(0)->printInventory();
     cout<<"\n";
+    // if false then quit game
     if(!battle(heros,util))
-        return quitGame(heros);
-    // heros.at(0)->print();
-    return quitGame(heros);    
+        return ;
+    return ;    
 }
 

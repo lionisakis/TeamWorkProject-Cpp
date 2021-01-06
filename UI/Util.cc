@@ -112,7 +112,7 @@ string Util::randomName(int indexType) {
         return takeRandomName(namesSpell,4);
     else if (indexType==ICESPELL)
         return takeRandomName(namesSpell,4);
-    cout<<"PROBLEM\n";
+    cout<<"PROBLEM1\n";
     return "PROBLEM";
 }
 
@@ -123,7 +123,7 @@ Monster* Util::spawnMonster(int indexType,int levelHero){
         return spawnExoskeleton(levelHero);
     else if (indexType==SPIRIT)
         return spawnSpirit(levelHero);
-    cout<<"PROBLEM\n";
+    cout<<"PROBLEM2\n";
     return NULL;
 }
 Monster* Util::spawnDragon(int levelHero){
@@ -143,7 +143,7 @@ Item* Util::spawnItem(int indexType,int price , int level , int  damage_defence_
         return spawnPotion(price ,level ,damage_defence_use,hands_amount,available);
     else if (indexType==WEAPON)
         return spawnWeapon(price,level,damage_defence_use,hands_amount);
-    cout<<"PROBLEM\n";
+    cout<<"PROBLEM3\n";
     return NULL;
 }
 Item* Util::spawnArmor(int price , int level , int  defence){
@@ -165,7 +165,7 @@ Spell* Util::spawnSpell(int indexType, int price , int level , int decrease){
         return spawnFireSpell(price,level,decrease);
     else if (indexType==ICESPELL)
         return spawnIceSpell(price,level,decrease);
-    cout<<"PROBLEM\n";
+    cout<<"PROBLEM4\n";
     return NULL;
 }
 Spell* Util::spawnLightingSpell(int price , int level , int decrease){

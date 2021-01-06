@@ -107,4 +107,5 @@ void quitGame(vector<Hero*> heros){
         heros.pop_back();
         delete temp;
     }
+    cout<<"The Game is closing\n";
 }
