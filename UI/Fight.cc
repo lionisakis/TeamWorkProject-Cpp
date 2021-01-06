@@ -246,23 +246,25 @@ void printTheBegining(vector<Hero*> heros,vector<Monster*> monsters){
     int indexh=0;
     int indexm=0;
     int middle=0;
+    cout<<"------------------------------\n";
     if(monsters.size()>heros.size())
         middle=monsters.size()%2;
     else
         middle=heros.size()%2;
+    
     while(true){
         if(indexh<heros.size()){
             if(indexh==middle)
-                cout<<heros.at(indexh)->getName()<<"\t\t\t\tvs\t";
+                cout<<heros.at(indexh)->getName()<<"\t\tvs\t";
             else
-                cout<<heros.at(indexh)->getName()<<"\t\t\t\t\t";
+                cout<<heros.at(indexh)->getName()<<"\t\t\t";
             indexh++;
         }
         else{
             if(indexm==middle)
-                cout<<"\t\t\t\tvs\t";
+                cout<<"\t\tvs\t";
             else
-                cout<<"\t\t\t\t\t";
+                cout<<"\t\t\t";
         }
         if(indexm<monsters.size()){
             cout<<monsters.at(indexm)->getName()<<" "<<monsters.at(indexm)->getType();
@@ -272,6 +274,8 @@ void printTheBegining(vector<Hero*> heros,vector<Monster*> monsters){
             break;
         cout<<"\n";
     }
+    cout<<"\n";
+    cout<<"------------------------------\n";
 }
 
 void restoreHP(vector<Hero*> heros,vector<Monster*> monsters){
