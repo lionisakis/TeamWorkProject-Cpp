@@ -24,7 +24,7 @@
 
 
 void checkingForItems();
-void checkingFighting(Util util);
+void checkingFighting(vector<Hero*> hero, Util util);
 void quitGame(vector<Hero*>);
 void names(Util);
 void checkMarket(Util);
@@ -34,9 +34,9 @@ int main(void){
     vector<Hero*>heros=spawnHeros();
     // checkingForItems();
     // checkingForLivings();
-    // checkingFighting(util);
-    names(util);
-    checkMarket(util);
+    checkingFighting(heros, util);
+    // names(util);
+    // checkMarket(util);
 }
 
 void checkMarket(Util util){
