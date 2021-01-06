@@ -1,0 +1,159 @@
+Potion
+Hi-Potion
+X-Potion
+Mega-Potion
+Ether
+Turbo Ether
+Elixir
+Megalixir
+Phoenix Down
+Mega Phoenix
+Antidote
+Echo Screen
+Eye Drops
+Holy Water
+Remedy
+Soft
+Al Bhed Potion
+Healing Water
+Tetra Elemental
+Candle of Life
+Dream Powder
+Farplane Shadow
+Farplane Wind
+Frag Grenade
+Silence Grenade
+Sleeping Powder
+Smoke Bomb
+Petrify Grenade
+Poison Fang
+Blessed Gem
+Dark Matter
+Shadow Gem
+Shining Gem
+Supreme Gem
+Gold Hourglass
+Healing Spring
+Light Curtain
+Lunar Curtain
+Mana Spring
+Mana Tablet
+Mana Tonic
+Purifying Salt
+Silver Hourglass
+Soul Spring
+Stamina Spring
+Stamina Tablet
+Stamina Tonic
+Star Curtain
+Three Stars
+Twin Stars
+Ability Distiller
+Amulet
+Designer Wallet
+Door to Tomorrow
+Gambler's Spirit
+Hypello Potion
+Mana Distiller
+Map
+Musk
+Pendulum
+Power Distiller
+Shining Thorn
+Speed Distiller
+Underdog's Secret
+Wings to Discovery
+Winning Formula
+spells
+Παράθεση:
+Flame
+Torch
+Eruption
+Flare
+Blaze
+Inferno
+Fireball
+Explosion
+Meteor
+Salamander’s Blade
+Dragon Fire
+Sinkhole
+Pit
+Chasm
+Vine
+Thorn
+Nettle
+Rockfall
+Landslide
+Avalanche
+Chill
+Freeze
+Frostbite
+Douse
+Deluge
+Flood
+Wave
+Surge
+Tsunami
+Nyad’s Lore
+Sleep
+Slumber
+Shock
+Bolt
+Plasma
+Gust
+Gale
+Tempest
+Whirlwhind
+Cyclone
+Vortex
+Wyvern’s Wings
+Daze
+Stun
+Confuse
+Light
+Flash
+Radiance
+Cleanse
+Scour
+Purge
+Wrath
+Retribution
+Judgment
+Angel’s Mercy
+Darkness
+Shade
+Gloom
+Decay
+Fester
+Corrupt
+Spite
+Rancor
+Malice
+Demon’s Rage
+Drain
+Siphon
+Void
+Bolt Strike
+Freeze Wave
+Inferno Blaze
+Channel Energy
+Shadow Blade
+Heaven's Sword
+Blazing Katana
+Staff of Ice
+Arrow of Purity
+Blazing Arrows
+Burn the Soul
+Fire Wings
+Fury of Osano-Wo
+Gaijin Flames
+Hungry Blade
+Yakamo’s Wrath
+Yakamo’s Eye
+Breath of Suitengu
+The Inner Ocean
+Surging Soul
+Endless Depth
+Kharmic Intent
+Whispered Blade
