@@ -35,7 +35,7 @@ int main(void){
     // checkingForItems();
     // checkingForLivings();
     // checkingFighting(util);
-    // names(util);
+    names(util);
     checkMarket(util);
 }
 
