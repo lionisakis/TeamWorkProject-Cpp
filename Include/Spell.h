@@ -2,11 +2,8 @@
 #include <iostream>
 #include <cstring>
 #include "Hero.h"
+#include "Define.h"
 using namespace std;
-
-#define ICESPELL 4
-#define FIRESPELL 5
-#define LIGHTINGSPELL 6
 
 class Spell{
     private:
