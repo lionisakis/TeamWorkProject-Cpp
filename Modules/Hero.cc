@@ -59,6 +59,18 @@ void Hero::restoreMP(int mp){
 }
 
 
+int Hero::getDexterity(void){
+    return dexerity;
+}
+
+int Hero::getMP(void){
+    return magicPower;
+}
+
+void Hero::changeMP(int mp){
+    magicPower -= mp;
+}
+
 bool Hero::castSpell(Monster* monster)const{
     int action;
     while(true){

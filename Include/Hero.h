@@ -45,6 +45,8 @@ class Hero: public Living{
         bool levelUp(int strengthHero,int dexerityHero, int agilityHero,int magicPowerHero=10);
         void addToStat(int type,int increase);
         void restoreMP(int mp);
+        int getDexterity(void);
+        int getMP(void);
 
         // combat
         int getMPused()const;

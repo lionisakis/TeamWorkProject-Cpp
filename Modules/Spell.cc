@@ -33,7 +33,15 @@ int Spell::getMagicPower(void){
     return this->magicPower;
 }
 
-int Spell::getDamage(int dexterity){
+int Spell::getDamage(Hero* hero){
+    int magicPower = hero->getMP();
+    if(magicPower < this->getMagicPower()){
+        cout << "There is not enough MP for that spell" << endl;
+    }
+    else{
+        hero->changeMP(this->getMagicPower());
+    }
+    int dexterity = hero->getDexterity();
     srand(time(NULL));
     int temp_down = this->damage_up;
     int prob = rand() % (temp_down + 1);
