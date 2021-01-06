@@ -11,29 +11,32 @@ using namespace std;
 vector<Hero*> basicCombo(int howMany);
 vector<Hero*> yourChoise(int howMany);
 vector<Hero*> spawnHeros(){
-    int howMany=0;
-    do{
-        cout<<"Type a number of how many heros do you want form 1-3\n";
-        cin>>howMany;
-        if(!(howMany>0&&howMany<4))
-            cout<<"Not acceptable ansewer!\n";
-    }while(!(howMany>0&&howMany<4));
-    int what;
-    do{
-        cout<<"Do you want the basic combo?\n No:0, Yes:1\n";
-        cout<<"Basic Combo:\nIf Party is 1 then Hero is Pladin\n";
-        cout<<"If Party is 2 then Hero is Pladin and Sorcerer\n";
-        cout<<"If Party is 3 then Hero is Pladin and Sorcerer and Warior\n";
-        cin>>what;
-        if(!(what>-1&&what<2))
-            cout<<"Not acceptable ansewer!\n";
-    }while(!(what>-1&&what<2));
-    if(what==1){
-        return basicCombo(howMany);
+    if(false){
+        int howMany=0;
+        do{
+            cout<<"Type a number of how many heros do you want form 1-3\n";
+            cin>>howMany;
+            if(!(howMany>0&&howMany<4))
+                cout<<"Not acceptable ansewer!\n";
+        }while(!(howMany>0&&howMany<4));
+        int what;
+        do{
+            cout<<"Do you want the basic combo?\n No:0, Yes:1\n";
+            cout<<"Basic Combo:\nIf Party is 1 then Hero is Pladin\n";
+            cout<<"If Party is 2 then Hero is Pladin and Sorcerer\n";
+            cout<<"If Party is 3 then Hero is Pladin and Sorcerer and Warior\n";
+            cin>>what;
+            if(!(what>-1&&what<2))
+                cout<<"Not acceptable ansewer!\n";
+        }while(!(what>-1&&what<2));
+        if(what==1){
+            return basicCombo(howMany);
+        }
+        else{
+            return yourChoise(howMany);
+        }
     }
-    else{
-        return yourChoise(howMany);
-    }
+    return basicCombo(3);
 }
 
 vector<Hero*> basicCombo(int howMany){
