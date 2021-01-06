@@ -92,6 +92,10 @@ void checkingFighting(){
     heros.at(0)->print();
     delete item;
     delete spell;
-    // for(int i=0;i<heros.size();i++)
-    //     delete heros.at(i);
+    int size=heros.size();
+    for(int i=0;i<size;i++){
+        Hero* temp=heros.back();
+        heros.pop_back();
+        delete temp;
+    }
 }

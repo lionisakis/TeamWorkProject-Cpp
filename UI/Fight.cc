@@ -50,9 +50,10 @@ int battle(vector<Hero*> heros){
         herosLose(heros,monsters);
 
     // Wrong with delete
-    for(int i=0;i<monsters.size();i++){
-        Monster* temp=monsters.at(i);
-        monsters.at(i)=NULL;
+    int size=monsters.size();
+    for(int i=0;i<size;i++){
+        Monster* temp=monsters.back();
+        monsters.pop_back();
         delete temp;
     }
 }
