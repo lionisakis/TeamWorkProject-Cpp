@@ -93,7 +93,7 @@ string Util::takeRandomName(vector<string> item,int vec){
     return item.at(i);
 }
 
-string Util::randomName(int indexType) {
+string Util::randomName(string indexType) {
     if (indexType==DRAGON)
         return takeRandomName(namesLiving,0);
     else if (indexType==EXOSKELETON)
@@ -116,16 +116,16 @@ string Util::randomName(int indexType) {
     return "PROBLEM";
 }
 
-Monster* Util::spawnMonster(int indexType,int levelHero){
-    if (indexType==DRAGON)
-        return spawnDragon(levelHero);
-    else if (indexType==EXOSKELETON)
-        return spawnExoskeleton(levelHero);
-    else if (indexType==SPIRIT)
-        return spawnSpirit(levelHero);
-    cout<<"PROBLEM2\n";
-    return NULL;
-}
+// Monster* Util::spawnMonster(string indexType,int levelHero){
+//     if (indexType==DRAGON)
+//         return spawnDragon(levelHero);
+//     else if (indexType==EXOSKELETON)
+//         return spawnExoskeleton(levelHero);
+//     else if (indexType==SPIRIT)
+//         return spawnSpirit(levelHero);
+//     cout<<"PROBLEM2\n";
+//     return NULL;
+// }
 Monster* Util::spawnDragon(int levelHero){
     return (Monster*) new Dragon(randomName(DRAGON),levelHero);
 }
@@ -136,20 +136,20 @@ Monster* Util::spawnSpirit(int levelHero){
     return (Monster*) new Spirit(randomName(SPIRIT),levelHero);
 }
 
-Item* Util::spawnItem(int indexType,int price , int level , int  damage_defence_use,int hands_amount,bool available){
-    if (indexType==ARMOR)
-        return spawnArmor(price,level,damage_defence_use);
-    else if (indexType==POTION)
-        return spawnPotion(price ,level ,damage_defence_use,hands_amount,available);
-    else if (indexType==WEAPON)
-        return spawnWeapon(price,level,damage_defence_use,hands_amount);
-    cout<<"PROBLEM3\n";
-    return NULL;
-}
+// Item* Util::spawnItem(string indexType,int price , int level , int  damage_defence_use,int hands_amount,bool available){
+//     if (indexType==ARMOR)
+//         return spawnArmor(price,level,damage_defence_use);
+//     else if (indexType==POTION)
+//         return spawnPotion(price ,level ,damage_defence_use,hands_amount,available);
+//     else if (indexType==WEAPON)
+//         return spawnWeapon(price,level,damage_defence_use,hands_amount);
+//     cout<<"PROBLEM3\n";
+//     return NULL;
+// }
 Item* Util::spawnArmor(int price , int level , int  defence){
     return (Item*) new Armor(randomName(ARMOR),price,level,defence);
 }
-Item* Util::spawnPotion(int price , int level , int  use,int amount,bool available){
+Item* Util::spawnPotion(int price , int level , string  use,int amount,bool available){
     return (Item*) new Potion(randomName(POTION),price,level,use,amount,available);
 
 }
@@ -158,16 +158,16 @@ Item* Util::spawnWeapon(int price , int level , int  damage,int hands){
 
 }
 
-Spell* Util::spawnSpell(int indexType, int price , int level , int decrease){
-    if (indexType==LIGHTINGSPELL)
-        return spawnLightingSpell(price,level,decrease);
-    else if (indexType==FIRESPELL)
-        return spawnFireSpell(price,level,decrease);
-    else if (indexType==ICESPELL)
-        return spawnIceSpell(price,level,decrease);
-    cout<<"PROBLEM4\n";
-    return NULL;
-}
+// Spell* Util::spawnSpell(string indexType, int price , int level , int decrease){
+//     if (indexType==LIGHTINGSPELL)
+//         return spawnLightingSpell(price,level,decrease);
+//     else if (indexType==FIRESPELL)
+//         return spawnFireSpell(price,level,decrease);
+//     else if (indexType==ICESPELL)
+//         return spawnIceSpell(price,level,decrease);
+//     cout<<"PROBLEM4\n";
+//     return NULL;
+// }
 Spell* Util::spawnLightingSpell(int price , int level , int decrease){
     return (Spell*) new LightingSpell(randomName(LIGHTINGSPELL),price,level,decrease);
 }

@@ -26,7 +26,7 @@ armor(armorMonster+levelHero*5),doge(dogeMonster+levelHero*5)
 }
 
 void Monster::getDepuff(Spell* spell){
-    int type= spell->getType();
+    string type= spell->getType();
     int round= spell->getLevel()/2;
     if(type==FIRESPELL){
         FireSpell* fireSpell=(FireSpell*)spell;

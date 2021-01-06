@@ -1,20 +1,20 @@
-#define WEAPON 10
-#define ARMOR 9
-#define POTION 8
+#define DRAGON "Dragon"
+#define EXOSKELETON "Exoskeleton"
+#define SPIRIT "Spirit"
 
-#define ICESPELL 5
-#define FIRESPELL 6
-#define LIGHTINGSPELL 7
+#define WEAPON "Weapon"
+#define ARMOR "Armor"
+#define POTION "Potion"
 
-#define HEALTHPOWER 0
-#define MAGICPOWER 1
-#define STRENGTH 2
-#define DEXERITY 3
-#define AGILITY 4
+#define ICESPELL "Ice Spell"
+#define FIRESPELL "Fire Spell"
+#define LIGHTINGSPELL "Lighting Spell"
 
-#define DRAGON 11
-#define EXOSKELETON 12
-#define SPIRIT 13
+#define HEALTHPOWER "HP"
+#define MAGICPOWER "MP"
+#define STRENGTH "Strength"
+#define DEXERITY "Dexerity"
+#define AGILITY "Agility"
 
 #define STARTINGSTATS 10
 

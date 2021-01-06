@@ -8,7 +8,7 @@ Spell::Spell(string name_init, int price_init, int level_init, int damage_up_ini
     this->damage_up = damage_up_init;
     this->damage_down = damage_down_init;
     this->magicPower = magic_power_init;
-    this->type = 0;
+    this->type = "None";
     this->doge = 25;
 }
 
@@ -51,11 +51,11 @@ int Spell::getDamage(Hero* hero){
     return damage;
 }
 
-int Spell::getType(void){
+string Spell::getType(void){
     return this->type;
 }
 
-void Spell::setType(int type){
+void Spell::setType(string type){
     this->type = type;
 }
 

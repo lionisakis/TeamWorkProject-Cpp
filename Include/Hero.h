@@ -40,7 +40,7 @@ class Hero: public Living{
         Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero);
         ~Hero();
         bool levelUp(int strengthHero,int dexerityHero, int agilityHero,int magicPowerHero=10);
-        void addToStat(int type,int increase);
+        void addToStat(string type,int increase);
         void restoreMP(int mp);
         int getDexterity(void);
         int getMP(void);

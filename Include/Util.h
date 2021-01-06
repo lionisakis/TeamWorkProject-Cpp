@@ -26,19 +26,19 @@ class Util{
     public:
         Util();
 
-        string randomName(int indexType) ;
+        string randomName(string indexType) ;
         
-        Monster* spawnMonster(int indexType,int levelHero);
+        // Monster* spawnMonster(string indexType,int levelHero);
         Monster* spawnDragon(int levelHero);
         Monster* spawnExoskeleton(int levelHero);
         Monster* spawnSpirit(int levelHero);
 
-        Item* spawnItem(int indexType,int price , int level , int  damage_defence_use,int hands_amount=0,bool available=false);
+        // Item* spawnItem(string indexType,int price , int level , int  damage_defence_use,int hands_amount=0,bool available=false);
         Item* spawnArmor(int price , int level , int  defence);
-        Item* spawnPotion(int price , int level , int  use,int amount,bool available=false);
+        Item* spawnPotion(int price , int level , string  use,int amount,bool available=false);
         Item* spawnWeapon(int price , int level , int  damage,int hands);
 
-        Spell* spawnSpell(int indexType, int price , int level , int decrease);
+        // Spell* spawnSpell(string indexType, int price , int level , int decrease);
         Spell* spawnLightingSpell(int price , int level , int decrease);
         Spell* spawnFireSpell(int price , int level , int decrease);
         Spell* spawnIceSpell(int price , int level , int decrease);

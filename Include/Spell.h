@@ -14,7 +14,7 @@ class Spell{
         int damage_up;
         int damage_down;
         int magicPower;
-        int type;
+        string type;
         int doge;
     public:
         Spell(string name_init = "Nothing", int price_init = 0, int level_init = 1, int damage_up_init = 0, int damage_down_init = 0, int magic_power_init = 0);
@@ -25,7 +25,7 @@ class Spell{
         int getHealth(void);
         int getMagicPower(void);
         int getDamage(Hero*);
-        int getType(void);
-        void setType(int);
+        string getType(void);
+        void setType(string);
         void print(void);
 };

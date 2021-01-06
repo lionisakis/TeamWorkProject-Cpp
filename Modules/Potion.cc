@@ -1,6 +1,6 @@
 #include "Potion.h"
 
-Potion::Potion(string name_init, int price_init, int level_init, int use_init, int amount_init, bool available_init):Item(name_init, price_init, level_init){
+Potion::Potion(string name_init, int price_init, int level_init, string use_init, int amount_init, bool available_init):Item(name_init, price_init, level_init){
     this->type = use_init;
     this->amount = amount_init;
     this->available = available_init;
@@ -10,7 +10,7 @@ Potion::Potion(string name_init, int price_init, int level_init, int use_init, i
 Potion::~Potion(){
 }
 
-int Potion::getUse(void){
+string Potion::getUse(void){
     return this->type;
 }
 
@@ -36,7 +36,7 @@ void Potion::use(Hero* hero){
         cout << "This potion has already be used" << endl;
         return;
     }
-    int type = this->getUse();
+    string type = this->getUse();
     int amount = this->getAmount();
     this->available = false;
     hero->addToStat(type, amount);

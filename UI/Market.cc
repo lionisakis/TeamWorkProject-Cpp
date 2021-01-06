@@ -27,8 +27,20 @@ Market::Market(Util util){
         int price = rand() % 15;
         int level = rand() % 10;
         int use = rand() % 5;
+        string useString="none";
+        if(use==0)
+            useString=HEALTHPOWER;
+        else if(use==1)
+            useString=MAGICPOWER;
+        else if(use==2)
+            useString=STRENGTH;
+        else if(use==3)
+            useString=DEXERITY;
+        else if(use==4)
+            useString=AGILITY;
+
         int amount = rand() % 60;
-        Item* potion = util.spawnPotion(price, level, use, amount, true);
+        Item* potion = util.spawnPotion(price, level, useString, amount, true);
         this->items.push_back(*potion);
     }
 

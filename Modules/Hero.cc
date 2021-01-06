@@ -45,7 +45,7 @@ bool Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPo
     return true;
 }
 
-void Hero::addToStat(int type,int increase){
+void Hero::addToStat(string type,int increase){
     if(type==HEALTHPOWER){
         increaseHealthPower(increase);
     }
@@ -181,7 +181,7 @@ const vector<Item*> Hero::inventory()const{
 bool Hero::useInBattle(){
     vector<Potion*> potions;
     for(int i=0;i<items.size();i++){
-        if(items.at(i)->getType()==3)
+        if(items.at(i)->getType()==POTION)
             potions.push_back((Potion*)items.at(i));
     }
     
@@ -222,13 +222,13 @@ bool Hero::use(Item* item){
         cout<<"You do not have that item";
         return false;
     }
-    if (item->getType()==1){
+    if (item->getType()==WEAPON){
         equipWeapon(item);
     }
-    else if (item->getType()==2){
+    else if (item->getType()==ARMOR){
         equipArmor(item);
     }
-    else if (item->getType()==3){
+    else if (item->getType()==POTION){
         usePotion(item);
     }
     return true;
