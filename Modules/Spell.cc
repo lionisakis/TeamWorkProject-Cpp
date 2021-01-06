@@ -44,7 +44,7 @@ int Spell::getDamage(Hero* hero){
         temp_down += 10;
         prob = rand() % (temp_down + 1);
     }
-    int damage = 300;
+    int damage = (this->damage_up + this->damage_down) / 2;
     while(damage < temp_down){
         damage = rand() % (this->damage_up + 1);
     }
