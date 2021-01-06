@@ -7,12 +7,11 @@
 using namespace std;
 
 #include "UI.h"
+#include "Util.h"
+
+#include "Define.h"
 
 #include "Monster.h"
-#include "Dragon.h"
-#include "Spirit.h"
-#include "Exoskeleton.h"
-
 #include "Hero.h"
 
 vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters);
@@ -66,6 +65,7 @@ bool battle(vector<Hero*> heros){
 }
 
 vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters){
+    Util util;
     int heroLevel=0;
     for (int i=0;i<heros.size();i++)
         heroLevel+=heros.at(i)->getLevel();
@@ -81,11 +81,11 @@ vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters){
         if(levelMonster==0)
             levelMonster=1;
         if(whichMonster==0)
-            monsters.push_back( new Dragon("Dragon",levelMonster));
+            monsters.push_back( util.spawnDragon(levelMonster));
         else if(whichMonster==1)
-            monsters.push_back(new Spirit("Spirit",levelMonster));
+            monsters.push_back(util.spawnSpirit(levelMonster));
         else
-            monsters.push_back(new Exoskeleton("Exoskeleton",levelMonster));
+            monsters.push_back(util.spawnExoskeleton(levelMonster));
 
     }
     return monsters;

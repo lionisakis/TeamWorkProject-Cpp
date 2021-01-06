@@ -26,13 +26,25 @@ void checkingForLivings();
 void checkingForItems();
 void checkingFighting(Util util);
 void quitGame(vector<Hero*>);
+void names(Util);
 
 int main(void){
     Util util;
     // checkingForItems();
     // checkingForLivings();
-    checkingFighting(util);
+    // checkingFighting(util);
+    names(util);
 }
+
+void names(Util util){
+    util.spawnExoskeleton(0);
+    util.spawnExoskeleton(0);
+    util.spawnSpirit(0);
+    util.spawnSpirit(0);
+    util.spawnDragon(0);
+    util.spawnDragon(0);
+}
+
 
 void checkingForItems(){
     Armor* item = new Armor("FirstItem", 2, 4, 3);

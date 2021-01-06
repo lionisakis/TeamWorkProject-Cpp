@@ -75,30 +75,43 @@ Util::Util(){
     namesLivingFile.close();
 }
 
-string takeRandomName(vector<string> item){
-    srand(time(NULL));
-    return item.at(rand()%item.size());
+bool Util::checkTheNumber(int number,vector<string> item,int vec){
+    for(int i=0;i<previous[vec].size();i++)
+        if(number==previous[vec].at(i))
+            return false;
+    if(previous[vec].size()==item.size()/2)
+        previous[vec].clear();
+    return true;
+}
+
+string Util::takeRandomName(vector<string> item,int vec){
+    int i;
+    do{
+        i=rand()%item.size();
+    }while(!checkTheNumber(i,item,vec));
+    previous[vec].push_back(i);
+    return item.at(i);
 }
 
 string Util::randomName(int indexType) {
     if (indexType==DRAGON)
-        return takeRandomName(namesLiving);
+        return takeRandomName(namesLiving,0);
     else if (indexType==EXOSKELETON)
-        return takeRandomName(namesLiving);
+        return takeRandomName(namesLiving,0);
     else if (indexType==SPIRIT)
-        return takeRandomName(namesLiving);
+        return takeRandomName(namesLiving,0);
     else if (indexType==ARMOR)
-        return takeRandomName(namesArmor);
+        return takeRandomName(namesArmor,1);
     else if (indexType==POTION)
-        return takeRandomName(namesPotion);
+        return takeRandomName(namesPotion,2);
     else if (indexType==WEAPON)
-        return takeRandomName(namesWeapon);
+        return takeRandomName(namesWeapon,3);
     else if (indexType==LIGHTINGSPELL)
-        return takeRandomName(namesSpell);
+        return takeRandomName(namesSpell,4);
     else if (indexType==FIRESPELL)
-        return takeRandomName(namesSpell);
+        return takeRandomName(namesSpell,4);
     else if (indexType==ICESPELL)
-        return takeRandomName(namesSpell);
+        return takeRandomName(namesSpell,4);
     cout<<"PROBLEM\n";
     return "PROBLEM";
 }

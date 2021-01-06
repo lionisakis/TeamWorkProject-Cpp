@@ -96,4 +96,3 @@ Thrym
 Vhaeraun
 Yurtrus
 Zinzerena
-weapons

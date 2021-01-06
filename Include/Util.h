@@ -12,17 +12,22 @@ using namespace std;
 
 class Util{
     private:
-        vector<string> namesLiving;
         vector<string> namesArmor;
-        vector<string> namesWeapon; 
-        vector<string> namesSpell;
+        vector<string> namesLiving;
         vector<string> namesPotion;         
+        vector<string> namesSpell;
+        vector<string> namesWeapon; 
+
+        vector<int> previous[5];
+        
+        string takeRandomName(vector<string> item,int vec);
+        bool checkTheNumber(int number,vector<string> item,int vec);
 
     public:
         Util();
 
         string randomName(int indexType) ;
-
+        
         Monster* spawnMonster(int indexType,int levelHero);
         Monster* spawnDragon(int levelHero);
         Monster* spawnExoskeleton(int levelHero);
