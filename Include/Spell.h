@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cstring>
+#include "Hero.h"
 using namespace std;
 
 #define ICESPELL 4
@@ -25,7 +26,7 @@ class Spell{
         int getLevel(void);
         int getHealth(void);
         int getMagicPower(void);
-        int getDamage(int);
+        int getDamage(Hero*);
         int getType(void);
         void setType(int);
         void print(void);

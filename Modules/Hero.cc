@@ -49,6 +49,18 @@ void Hero::addToStat(int type,int increase){
     }
 }
 
+int Hero::getDexterity(void){
+    return dexerity;
+}
+
+int Hero::getMP(void){
+    return magicPower;
+}
+
+void Hero::changeMP(int mp){
+    magicPower -= mp;
+}
+
 bool Hero::castSpell(Monster* monster)const{
     int action;
     while(true){
@@ -84,7 +96,7 @@ bool Hero::spellcast(Monster* monster,Spell* spell) const{
         cout<<"Not enought Magic Power left for this spell\n";
         return false;
     }
-    return monster->takeDamage(spell->getDamage(dexerity));
+    return monster->takeDamage(spell->getDamage(this));
 }
 bool Hero::takeDamage(int damage){
     srand(time(NULL));

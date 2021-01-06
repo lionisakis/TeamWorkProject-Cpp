@@ -30,7 +30,16 @@ void Potion::printInfo(void){
 }
 
 void Potion::use(Hero* hero){
+    if(hero->getLevel() < this->getLevel()){
+        cout << "Hero needs to be in a higher level to use that spell" << endl;
+        return;
+    }
+    if(this->available == false){
+        cout << "This potion has already be used" << endl;
+        return;
+    }
     int type = this->getUse();
     int amount = this->getAmount();
+    this->available = false;
     hero->addToStat(type, amount);
 }
