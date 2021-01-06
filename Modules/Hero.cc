@@ -19,6 +19,18 @@ Living(nameHero,1,100)
     experience=0;
     hands=2;
 }
+Hero::~Hero(){
+    for(int i=0;i<items.size();i++){
+        Item* temp=items.back();
+        items.pop_back();
+        delete temp;
+    }
+    for(int i=0;i<spells.size();i++){
+        Spell* temp=spells.back();
+        spells.pop_back();
+        delete temp;
+    }
+}
 
 bool Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPowerHero){
     if (experience<100){

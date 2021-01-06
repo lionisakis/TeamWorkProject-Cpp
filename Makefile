@@ -42,4 +42,4 @@ clean:
 
 valgrind: $(OBJ)
 	$(CXX) -o $(EXEC) $^ $(CXXFLAGS) $(LIBS)
-	valgrind ./$(EXEC) $(ARGS)
+	valgrind --leak-check=full  ./$(EXEC) $(ARGS)

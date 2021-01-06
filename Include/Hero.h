@@ -44,6 +44,7 @@ class Hero: public Living{
     public:
         // stats
         Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero);
+        ~Hero();
         bool levelUp(int strengthHero,int dexerityHero, int agilityHero,int magicPowerHero=10);
         void addToStat(int type,int increase);
         void restoreMP(int mp);

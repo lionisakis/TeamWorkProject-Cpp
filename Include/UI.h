@@ -8,4 +8,4 @@ using namespace std;
 
 #include "Hero.h"
 
-int battle(vector<Hero*> heros);
+bool battle(vector<Hero*> heros);

@@ -15,7 +15,7 @@ using namespace std;
 
 #include "Hero.h"
 
-vector<Monster*> createMonster(vector<Hero*> heros);
+vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters);
 bool checkAlive(vector<Hero*> heros,vector<Monster*> monsters);
 bool moveHero(vector<Hero*> heros,vector<Monster*> monsters);
 bool moveMonster(vector<Hero*> heros,vector<Monster*> monsters);  
@@ -28,43 +28,48 @@ void restoreMP(vector<Hero*> heros);
 void herosLose(vector<Hero*> heros,vector<Monster*> monsters);
 void herosWin(vector<Hero*> heros,vector<Monster*> monsters);
 
-int battle(vector<Hero*> heros){
+bool battle(vector<Hero*> heros){
     srand(time(NULL));
-    vector<Monster*> monsters=createMonster(heros);
+    vector<Monster*> monsters;
+    monsters=createMonster(heros,monsters);
     printTheBegining(heros,monsters);
     cout<<"\n";
-    while(true){
+    bool flag=true;
+    while(flag){
         if(checkAlive(heros,monsters))
             break;
         restoreHP(heros,monsters);
-        if(moveHero(heros,monsters))
-            return -1;
+        if(moveHero(heros,monsters)){
+            flag=false;
+            break;
+        }
         if(checkAlive(heros,monsters))
             break;
         if(moveMonster(heros,monsters))
             break;
     }
-    if(!checkAliveHeros(heros))
-        herosWin(heros,monsters);
-    else 
-        herosLose(heros,monsters);
-
-    // Wrong with delete
+    if(flag){
+        if(!checkAliveHeros(heros))
+            herosWin(heros,monsters);
+        else 
+            herosLose(heros,monsters);
+    }
     int size=monsters.size();
-    for(int i=0;i<size;i++){
+    while(size>0){
         Monster* temp=monsters.back();
         monsters.pop_back();
         delete temp;
+        size=monsters.size();
     }
-    return 0;
+    
+    return flag;
 }
 
-vector<Monster*> createMonster(vector<Hero*> heros){
+vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters){
     int heroLevel=0;
     for (int i=0;i<heros.size();i++)
         heroLevel+=heros.at(i)->getLevel();
     heroLevel/=heros.size();
-    vector<Monster*> monsters;
     int size;
     if (heros.size()<3)
         size=rand()%(heros.size()*3)+1;
@@ -142,7 +147,7 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
             cin>>action;
             if (cin.bad()) {
                 cout<<"Problem With cin\n";
-                return false;
+                // return false;
             }
             if(action=="stats"){
                 heros.at(i)->printCharacter();
@@ -260,11 +265,12 @@ void printTheBegining(vector<Hero*> heros,vector<Monster*> monsters){
                 cout<<"\t\t\t\t\t";
         }
         if(indexm<monsters.size()){
-            cout<<monsters.at(indexm)->getName()<<" "<<monsters.at(indexm)->getType()<<"\n";
+            cout<<monsters.at(indexm)->getName()<<" "<<monsters.at(indexm)->getType();
             indexm++;
         }
         if(indexh==heros.size()&&indexm==monsters.size())
             break;
+        cout<<"\n";
     }
 }
 

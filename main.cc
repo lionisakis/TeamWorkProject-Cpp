@@ -23,6 +23,7 @@
 void checkingForLivings();
 void checkingForItems();
 void checkingFighting();
+void quitGame(vector<Hero*>);
 
 int main(void){
     // checkingForItems();
@@ -88,10 +89,13 @@ void checkingFighting(){
     heros.at(0)->printCombatStats();
     heros.at(0)->printInventory();
     cout<<"\n";
-    battle(heros);
+    if(!battle(heros))
+        return quitGame(heros);
     heros.at(0)->print();
-    delete item;
-    delete spell;
+    return quitGame(heros);    
+}
+
+void quitGame(vector<Hero*> heros){
     int size=heros.size();
     for(int i=0;i<size;i++){
         Hero* temp=heros.back();
