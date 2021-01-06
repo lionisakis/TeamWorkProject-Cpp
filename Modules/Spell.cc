@@ -10,11 +10,9 @@ Spell::Spell(string name_init, int price_init, int level_init, int damage_up_ini
     this->magicPower = magic_power_init;
     this->type = 0;
     this->doge = 25;
-    // cout << "A new item with name: " << this->name << " has been created" << endl;
 }
 
 Spell::~Spell(){
-    // cout << "An item with name: " << this->name << " is about to be destroyed" << endl;
 }
 
 string Spell::getName(void){

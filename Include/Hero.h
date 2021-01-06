@@ -14,12 +14,6 @@
 
 using namespace std;
 
-#define HEALTHPOWER 0
-#define MAGICPOWER 1
-#define STRENGTH 2
-#define DEXERITY 3
-#define AGILITY 4
-
 class Monster;
 class Spell;
 

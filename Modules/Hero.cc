@@ -153,7 +153,7 @@ void Hero::addEXP(int exp){
 bool Hero::buy(Spell* spell){
     if (money-spell->getPrice()<0)
         return false;
-    money-=spell->getPrice()/2;
+    money-=spell->getPrice();
     spells.push_back(spell);
     return true;
 }
@@ -161,7 +161,7 @@ bool Hero::buy(Spell* spell){
 bool Hero::buy(Item* item){
     if (money-item->getPrice()<0)
         return false;
-    money-=item->getPrice()/2;
+    money-=item->getPrice();
     items.push_back(item);
     return true;
 }
@@ -360,7 +360,7 @@ void Hero::printSpells() const{
         cout<<"\tNo spells\n";
     }
     else{
-        for (int i=0 ; i< items.size(); i++){
+        for (int i=0 ; i< spells.size(); i++){
             cout<<"\t"<<i+1<<") ";
             spells.at(i)->print();
         }

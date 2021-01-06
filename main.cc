@@ -20,6 +20,7 @@
 
 #include "UI.h"
 #include "Util.h"
+#include "Market.h"
 
 
 void checkingForLivings();
@@ -27,13 +28,22 @@ void checkingForItems();
 void checkingFighting(Util util);
 void quitGame(vector<Hero*>);
 void names(Util);
+void checkMarket(Util);
 
 int main(void){
     Util util;
     // checkingForItems();
     // checkingForLivings();
     // checkingFighting(util);
-    names(util);
+    // names(util);
+    checkMarket(util);
+}
+
+void checkMarket(Util util){
+    Market* market = new Market(util);
+    Hero* hero = new Hero("AN", 100, 100, 100);
+    hero->addMoney(100);
+    market->buy(hero);
 }
 
 void names(Util util){
