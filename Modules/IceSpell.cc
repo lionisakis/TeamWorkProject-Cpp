@@ -5,14 +5,11 @@ IceSpell::IceSpell(string name_init, int price_init, int level_init, int decreas
     Spell::setType(ICESPELL);
 }
 
-IceSpell::~IceSpell(){
-}
-
-int IceSpell::getDecreaseDamage(void){
+int IceSpell::getDecreaseDamage(void)const{
     return this->decrease_damage;
 }
 
-void IceSpell::printInfo(void){
+void IceSpell::printInfo(void)const{
     Spell::print();
     cout << "Decrease Damage: " << this->decrease_damage << endl;
 }

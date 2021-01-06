@@ -10,14 +10,15 @@ class Item{
         int price;
         int level;
         string type;
+    protected:
+        void setType(string);
     public:
         Item(string name_init = "Nothing", int price_init = 0, int level_init = 1);
         ~Item();
-        string getName(void);
-        int getPrice(void);
-        int getLevel(void);
+        string getName(void)const;
+        int getPrice(void)const;
+        int getLevel(void)const;
         void use(void);
-        string getType(void);
-        void setType(string);
-        void print(void);
+        string getType(void)const;
+        void print(void)const;
 };

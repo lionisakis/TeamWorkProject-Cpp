@@ -11,10 +11,9 @@ class Potion:public Item{
         bool available;
     public:
         Potion(string name_init = "Nothing", int price_init = 0, int level_init = 0, string use = 0, int amount = 0, bool available_init = true);
-        ~Potion();
         string getUse(void);
-        int getAmount(void);
-        bool getAvailable(void);
-        void printInfo(void);
+        int getAmount(void)const;
+        bool getAvailable(void)const;
+        void printInfo(void)const;
         void use(Hero*);
 };

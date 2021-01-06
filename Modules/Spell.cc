@@ -15,23 +15,23 @@ Spell::Spell(string name_init, int price_init, int level_init, int damage_up_ini
 Spell::~Spell(){
 }
 
-string Spell::getName(void){
+string Spell::getName(void)const{
     return this->name;
 }
 
-int Spell::getPrice(void){
+int Spell::getPrice(void)const{
     return this->price;
 }
 
-int Spell::getLevel(void){
+int Spell::getLevel(void)const{
     return this->level;
 }
 
-int Spell::getMagicPower(void){
+int Spell::getMagicPower(void)const{
     return this->magicPower;
 }
 
-int Spell::getDamage(Hero* hero){
+int Spell::getDamage(Hero* hero)const{
     int magicPower = hero->getMP();
     hero->useMagicPower(this->getMagicPower());
     int dexterity = hero->getDexterity();
@@ -51,7 +51,7 @@ int Spell::getDamage(Hero* hero){
     return damage;
 }
 
-string Spell::getType(void){
+string Spell::getType(void)const{
     return this->type;
 }
 
@@ -59,6 +59,6 @@ void Spell::setType(string type){
     this->type = type;
 }
 
-void Spell::print(void){
+void Spell::print(void)const{
     cout << "Name: " << this->name << ", Price: " << this->price << ", Level: " << this->level << endl;
 }

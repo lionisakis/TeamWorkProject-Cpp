@@ -5,14 +5,11 @@ Armor::Armor(string name_init, int price_init, int level_init, int defence_init)
     Item::setType(ARMOR);
 }
 
-Armor::~Armor(){
-}
-
-int Armor::getDefence(void){
+int Armor::getDefence(void)const{
     return this->defence;
 }
 
-void Armor::printInfo(void){
+void Armor::printInfo(void)const{
     Item::print();
     cout << "Defence: " << this->defence << endl;
 }

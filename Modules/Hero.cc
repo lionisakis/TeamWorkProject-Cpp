@@ -69,11 +69,11 @@ void Hero::restoreMP(int mp){
 }
 
 
-int Hero::getDexterity(void){
+int Hero::getDexterity(void)const{
     return dexerity;
 }
 
-int Hero::getMP(void){
+int Hero::getMP(void)const{
     return magicPower;
 }
 
@@ -308,7 +308,7 @@ void Hero::unequipArmor(){
     armor=NULL;
 }
 
-int Hero::getMagicPower(void){
+int Hero::getMagicPower(void)const{
     return magicPower;
 }
 

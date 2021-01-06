@@ -6,7 +6,6 @@ class Armor:public Item{
         int defence;
     public:
         Armor(string name_init = "Nothing", int price_init = 0, int level_init = 0, int defence_init = 0);
-        ~Armor();
-        int getDefence(void);
-        void printInfo(void);
+        int getDefence(void)const;
+        void printInfo(void)const;
 };

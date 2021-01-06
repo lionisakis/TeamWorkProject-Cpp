@@ -6,18 +6,15 @@ Weapon::Weapon(string name_init, int price_init, int level_init, int damage_init
     Item::setType(WEAPON);
 }
 
-Weapon::~Weapon(){
-}
-
-int Weapon::getDamage(void){
+int Weapon::getDamage(void)const{
     return this->damage;
 }
 
-int Weapon::getHands(void){
+int Weapon::getHands(void)const{
     return this->hands;
 }
 
-void Weapon::printInfo(void){
+void Weapon::printInfo(void)const{
     Item::print();
     cout << "Damage: " << this->damage << endl;
 }

@@ -37,7 +37,7 @@ int main(void){
     // Check for Debug
 
     // checkingForItems();
-    // checkingFighting(heros, util);
+    checkingFighting(heros, util);
     // checkMarket(util);
 
     // Delete Heros

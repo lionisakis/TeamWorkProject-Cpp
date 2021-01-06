@@ -76,24 +76,24 @@ Market::Market(Util util){
 }
 
 Market::~Market(){
-
+    // still left
 }
 
-void Market::printItems(void){
+void Market::printItems(void)const{
     cout << "The items the market contains are: " << endl;
     for(int i = 0; i < this->items.size(); i++){
         this->items.at(i).print();
     }
 }
 
-void Market::printSpells(void){
+void Market::printSpells(void)const{
     cout << "The spells the market contains are: " << endl;
     for(int i = 0; i < this->spells.size(); i++){
         this->spells.at(i).print();
     }
 }
 
-void Market::printMarket(void){
+void Market::printMarket(void)const{
     this->printItems();
     this->printSpells();
 }

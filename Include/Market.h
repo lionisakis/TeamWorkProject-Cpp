@@ -28,8 +28,8 @@ class Market{
         Market(Util);
         ~Market();
 
-        void printItems(void);
-        void printSpells(void);
-        void printMarket(void);
+        void printItems(void)const;
+        void printSpells(void)const;
+        void printMarket(void)const;
         void buy(Hero*);
 };

@@ -7,22 +7,19 @@ Potion::Potion(string name_init, int price_init, int level_init, string use_init
     Item::setType(POTION);
 }
 
-Potion::~Potion(){
-}
-
 string Potion::getUse(void){
     return this->type;
 }
 
-int Potion::getAmount(void){
+int Potion::getAmount(void)const{
     return this->amount;
 }
 
-bool Potion::getAvailable(void){
+bool Potion::getAvailable(void)const{
     return this->available;
 }
 
-void Potion::printInfo(void){
+void Potion::printInfo(void)const{
     Item::print();
     cout << "Amount of increasment: " << this->amount << endl;
 }

@@ -12,15 +12,15 @@ Item::~Item(){
     // cout << "An item with name: " << this->name << " is about to be destroyed" << endl;
 }
 
-string Item::getName(){
+string Item::getName()const{
     return this->name;
 }
 
-int Item::getPrice(void){
+int Item::getPrice(void)const{
     return this->price;
 }
 
-int Item::getLevel(void){
+int Item::getLevel(void)const{
     return this->level;
 }
 
@@ -28,7 +28,7 @@ void Item::use(void){
     cout << "You are in items use finction" << endl;
 }
 
-string Item::getType(void){
+string Item::getType(void)const{
     return this->type;
 }
 
@@ -36,6 +36,6 @@ void Item::setType(string type){
     this->type = type;
 }
 
-void Item::print(void){
+void Item::print(void)const{
     cout <<  "Name: " << this->name << ", Price: " << this->price << ", Level: " << this->level << endl;
 }

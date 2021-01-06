@@ -33,8 +33,9 @@ class Hero: public Living{
         int hands;
         vector<Item*> items;
         vector<Spell*> spells;
-
         int findItem(const Item* item)const;
+
+        bool spellcast(Monster* monster,Spell* spell);
     public:
         // stats
         Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero);
@@ -42,8 +43,8 @@ class Hero: public Living{
         bool levelUp(int strengthHero,int dexerityHero, int agilityHero,int magicPowerHero=10);
         void addToStat(string type,int increase);
         void restoreMP(int mp);
-        int getDexterity(void);
-        int getMP(void);
+        int getDexterity(void)const;
+        int getMP(void)const;
         int getMPused()const;
         int giveEXP(int exp);
 
@@ -51,7 +52,6 @@ class Hero: public Living{
         void useMagicPower(int usemagicPowerHero);
         bool castSpell(Monster* monster);
         bool attack(Monster* monster) const;
-        bool spellcast(Monster* monster,Spell* spell);
         bool takeDamage(int damage);
         void addEXP(int exp);
         
@@ -74,7 +74,7 @@ class Hero: public Living{
         void unequipArmor();
 
         // get functions
-        int getMagicPower(void);
+        int getMagicPower(void)const;
 
         // print functions
         void printStats() const;

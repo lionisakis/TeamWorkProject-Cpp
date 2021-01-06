@@ -5,14 +5,11 @@ FireSpell::FireSpell(string name_init, int price_init, int level_init, int decre
     Spell::setType(FIRESPELL);
 }
 
-FireSpell::~FireSpell(){
-}
-
-int FireSpell::getDecreaseDefence(void){
+int FireSpell::getDecreaseDefence(void)const{
     return this->decrease_defence;
 }
 
-void FireSpell::printInfo(void){
+void FireSpell::printInfo(void)const{
     Spell::print();
     cout << "Decrease Defence: " << this->decrease_defence << endl;
 }
