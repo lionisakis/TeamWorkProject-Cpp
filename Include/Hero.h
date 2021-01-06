@@ -27,6 +27,8 @@ class Hero: public Living{
         Weapon* weapon2;
         Armor* armor;
         int magicPower;
+        int mpUsed;
+        int maxMP;
         int strength;
         int dexerity;
         int agility;
@@ -40,14 +42,18 @@ class Hero: public Living{
     public:
         // stats
         Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero);
-        void levelUp(int strengthHero,int dexerityHero, int agilityHero,int magicPowerHero=10);
+        bool levelUp(int strengthHero,int dexerityHero, int agilityHero,int magicPowerHero=10);
         void addToStat(int type,int increase);
+        void restoreMP(int mp);
 
         // combat
+        int getMPused()const;
+        void useMagicPower(int usemagicPowerHero);
         bool castSpell(Monster* monster)const;
         bool attack(Monster* monster) const;
         bool spellcast(Monster* monster,Spell* spell) const;
         bool takeDamage(int damage);
+        void addEXP(int exp);
 
         // items of the hero
         bool buy(Spell* spell);
@@ -57,6 +63,7 @@ class Hero: public Living{
         bool use(Item* item);
         bool sell(Item* item);
         void addMoney(int addMoney);
+        int getMoney()const;
         
         // un/equip items
         bool equipWeapon(Item* item);
@@ -64,6 +71,9 @@ class Hero: public Living{
         void usePotion(Item* item);
         void unequipWeapon();
         void unequipArmor();
+
+        // get functions
+        int getMagicPower(void);
 
         // print functions
         void printStats() const;

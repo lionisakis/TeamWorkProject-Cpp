@@ -1,21 +1,25 @@
 #include "Living.h"
 #include <iostream>
-Living::Living(string nameLiving,int levelLiving)
+Living::Living(string nameLiving,int levelLiving,int heathlPowerLiving)
 {
     name=nameLiving;
-    healthPower=100;
+    healthPower=heathlPowerLiving;
     level=levelLiving;
     cout<<"A new Living organism with name: "<<name<<" has been created\n";
+    used=0;
+    maxHP=healthPower;
 }
 
 void Living::increaseHealthPower(int increase){
     healthPower+=increase;
+    maxHP+=increase;
 }
 
 void Living::takeDamage(int damage){
     healthPower-=damage;
     if (healthPower<0)
         healthPower=0;
+    used+=damage;
 }
 
 void Living::levelUp(){
@@ -35,7 +39,15 @@ int Living::getLevel() const{
 int Living::getHP() const{
     return healthPower;
 }
+void Living::restoreHP(int hp){
+    if(healthPower+hp<=maxHP)
+        healthPower+=hp;
+}
+int Living::getHPUsed()const{
+    return used;
+}
 void Living::printCharacter()const{
+    cout<<"------------------------------\n";
     cout<<"Name:"<<name<<"\n";
     cout<<"Health Power(HP):"<<healthPower<<"\n";
     cout<<"Level:"<<level<<"\n";

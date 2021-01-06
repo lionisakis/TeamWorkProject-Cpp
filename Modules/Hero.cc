@@ -4,8 +4,9 @@
 #define STARTINGSTATS 10
 
 Hero::Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero):
-Living(nameHero)
-{
+Living(nameHero,1,100)
+{   
+    mpUsed=0;
     strength=STARTINGSTATS+strengthHero;
     dexerity=STARTINGSTATS+dexerityHero;
     agility=STARTINGSTATS+agilityHero;
@@ -13,22 +14,25 @@ Living(nameHero)
     weapon2=NULL;
     armor=NULL;
     magicPower = 20;
+    maxMP=20;
     money=0;
     experience=0;
-    hands=0;
+    hands=2;
 }
 
-void Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPowerHero){
+bool Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPowerHero){
     if (experience<100){
-        cout<<"Cannot level up. Experience:"<<experience<<"%\n";
-        return;
+        return false;
     }
     Living::levelUp();
+    cout<<"Hero "<<getName()<<" has leved up! Level: "<<getLevel()<<"\n";
     experience=experience-100;
     magicPower+=magicPowerHero;
+    maxMP+=magicPowerHero;
     strength+=strengthHero;
     dexerity+=dexerityHero;
     agility+=agilityHero;
+    return true;
 }
 
 void Hero::addToStat(int type,int increase){
@@ -37,6 +41,7 @@ void Hero::addToStat(int type,int increase){
     }
     else if (type==MAGICPOWER){
         magicPower+=increase;
+        maxMP+=increase;
     }
     else if (type==STRENGTH){
         strength+=increase;
@@ -48,6 +53,11 @@ void Hero::addToStat(int type,int increase){
         agility+=increase;
     }
 }
+void Hero::restoreMP(int mp){
+    if(magicPower+mp<=maxMP)
+        magicPower+=mp;
+}
+
 
 bool Hero::castSpell(Monster* monster)const{
     int action;
@@ -63,14 +73,17 @@ bool Hero::castSpell(Monster* monster)const{
         }
         if(action==0)
             return false;
-        if(!spellcast(monster,spells.at(action-1)))
-            return true;    
+        if(action>spells.size()){
+            cout<<"There is no spell with that number!\n";
+            continue;
+        }
+        return spellcast(monster,spells.at(action-1));
     }    
 
 }
 
 bool Hero::attack(Monster* monster) const{
-    cout<<"Attacking Hero\n";
+    cout<<getName()<<"is atacking "<<monster->getName()<<"\n";
     int weaponDM=0;
     if (weapon1!=NULL)
         weaponDM+=weapon1->getDamage();
@@ -79,18 +92,28 @@ bool Hero::attack(Monster* monster) const{
     return monster->takeDamage(10+strength+weaponDM);
 }
 
+void Hero::useMagicPower(int usemagicPowerHero){
+    magicPower-=usemagicPowerHero;
+    if(magicPower<=0)
+        magicPower=0;
+    mpUsed+=usemagicPowerHero;
+}
+int Hero::getMPused()const{
+    return mpUsed;
+}
 bool Hero::spellcast(Monster* monster,Spell* spell) const{
     if (magicPower-spell->getMagicPower()<0){
         cout<<"Not enought Magic Power left for this spell\n";
         return false;
     }
-    return monster->takeDamage(spell->getDamage(dexerity));
+    // monster->takeDamage(spell->getDamage(dexerity),this);
+    return true;
 }
 bool Hero::takeDamage(int damage){
     srand(time(NULL));
     int prob= (int) rand()%100;
     if (prob<=agility){
-        cout<<"Doged\n";
+        cout<<"Doged the attack\n";
         return false;
     }
     int armorDF=0;
@@ -98,9 +121,17 @@ bool Hero::takeDamage(int damage){
         armorDF=armor->getDefence();
     cout<<"Taking damge: "<<damage-armorDF<<"\n";
     Living::takeDamage(damage-armorDF);
+    cout<<getName()<<" has HP: "<<getHP()<<"\n";
+    if(getHP()==0){
+        cout<<getName()<<" was killed in combat\n";
+    }
     return true;
 }
-
+void Hero::addEXP(int exp){
+    experience+=exp;
+    int level=getLevel();
+    while(levelUp(strength/level,dexerity/level,agility/level,magicPower/level));
+}
 bool Hero::buy(Spell* spell){
     if (money-spell->getPrice()<0)
         return false;
@@ -189,7 +220,9 @@ bool Hero::sell(Item* item){
 void Hero::addMoney(int addMoney){
     money+=addMoney;
 }
-
+int Hero::getMoney()const{
+    return money;
+}
 bool Hero::equipWeapon(Item* item){
     if (findItem(item)<0 || item->getType()!=WEAPON){
         cout<<"You cannot equip that item!\n";
@@ -201,10 +234,18 @@ bool Hero::equipWeapon(Item* item){
         cout<<"Unequip the current Weapon\n";
         return false;
     }
-    if(hands==0)
+    if(hands==2)
         weapon1=weapon;
     else
         weapon2=weapon;
+    hands-=weapon->getHands();
+    cout<<"Weapon Equiped:";
+    if (weapon1!=NULL){
+        weapon1->print();
+        if(weapon2!=NULL){
+            weapon2->print();
+        }
+    }
     return true;
 }
 bool Hero::equipArmor(Item* item){
@@ -223,40 +264,61 @@ void Hero::usePotion(Item* item){
 }
 
 void Hero::unequipWeapon(){
-    if(hands==2){
+    if(hands==0){
         weapon2=NULL;
     }
     weapon1=NULL;
+    hands=2;
+    cout<<"Weapon Unequiped:";
+    if (weapon1!=NULL){
+        weapon1->print();
+        if(weapon2!=NULL){
+            weapon2->print();
+        }
+    }
 }
 void Hero::unequipArmor(){
     armor=NULL;
 }
 
+int Hero::getMagicPower(void){
+    return magicPower;
+}
 
 void Hero::printStats() const {
     cout<<"------------------------------\n";
+    cout<<"Damage From Weapon: ";
+    int dmg=0;
+    if (weapon1!=NULL){
+        dmg=weapon1->getDamage();
+        if(weapon2!=NULL)
+            dmg+=weapon2->getDamage();
+    }
+    cout<<dmg+10+strength<<"\n";
+    cout<<"Weapon Equiped:";
+    if (weapon1!=NULL){
+        weapon1->print();
+        if(weapon2!=NULL){
+            weapon2->print();
+        }
+    }
     cout<<"Magic Power: "<<magicPower<<"\n";
     cout<<"Strength: "<<strength<<"\n";
     cout<<"Dexerity: "<<dexerity<<"\n";
     cout<<"Agility: "<<agility<<"\n";
     cout<<"Experience: "<<experience<<"\n";
-    cout<<"Money: "<<money<<"\n";
     cout<<"------------------------------\n";
 }
 
 void Hero::printCombatStats() const{
-    Living::printCharacter();
-    cout<<"Magic Power: "<<magicPower<<"\n";
-    cout<<"Magic Power: "<<magicPower<<"\n";
-    cout<<"Strength: "<<strength<<"\n";
-    cout<<"Dexerity: "<<dexerity<<"\n";
-    cout<<"Agility: "<<agility<<"\n";
     cout<<"------------------------------\n";
-    
+    Living::printCharacter();
+    printStats();
+    cout<<"------------------------------\n";
 }
 
 void Hero::printEquipedItems() const{
-    cout<<"Weapon at hand : ";
+    cout<<"Weapon Equiped:";
     if (weapon1!=NULL){
         weapon1->print();
         if(weapon2!=NULL){
@@ -302,14 +364,15 @@ void Hero::printItems() const{
 }
 
 void Hero::printMoney() const{
-    cout<<"------------------------------\n";
     cout<<"Money : "<<money<<"\n";
    
 }
 void Hero::printInventory() const{
+    cout<<"------------------------------\n";
     printMoney();
     printItems();
     printSpells();
+    cout<<"------------------------------\n";
 }
 
 void Hero::print() const{

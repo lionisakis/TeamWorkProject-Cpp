@@ -6,16 +6,21 @@
 
 #define STARTINGSTATS 10
 
-Monster::Monster(string name,string typeMonster,int levelHero,int maxDamageMonster,int minDamageMonster, int armorMonster,int dogeMonster):
-Living(name),type(typeMonster),maxDamage(maxDamageMonster+levelHero*10),minDamage(minDamageMonster+levelHero*10),
-armor(armorMonster+levelHero*10),doge(dogeMonster+levelHero*10)
+int countHP(int level){
+    srand(time(NULL));
+    return 1;
+}
+
+Monster::Monster(string name,string typeMonster,int levelHero,int minDamageMonster,int maxDamageMonster, int armorMonster,int dogeMonster):
+Living(name,levelHero,countHP(levelHero)),type(typeMonster),maxDamage(maxDamageMonster+levelHero*5),minDamage(minDamageMonster+levelHero*5),
+armor(armorMonster+levelHero*5),doge(dogeMonster+levelHero*5)
 {
 }
 
 void Monster::attack(Hero* hero)const{
     srand(time(NULL));
     int damage=rand()%maxDamage+minDamage;
-    cout<<"Attacking Hero with damage:"<<damage<<"\n";
+    cout<<"Attacking Hero("<<hero->getName()<<") with damage:"<<damage<<"\n";
     hero->takeDamage(damage);
 }
 
@@ -23,11 +28,15 @@ bool Monster::takeDamage(int damage){
     srand(time(NULL));
     int prob= (int) rand()%100;
     if (prob<=doge){
-        cout<<"Doged\n";
+        cout<<"Doged the attacked\n";
         return false;
     }
     cout<<"Taking damge: "<<damage-armor<<"\n";
     Living::takeDamage(damage-armor);
+    cout<<getName()<<" has HP: "<<getHP()<<"\n";
+    if(getHP()==0){
+        cout<<getName()<<" was killed\n";
+    }
     return true;
 }
 
