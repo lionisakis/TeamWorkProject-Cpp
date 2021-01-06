@@ -56,6 +56,7 @@ int battle(vector<Hero*> heros){
         monsters.pop_back();
         delete temp;
     }
+    return 0;
 }
 
 vector<Monster*> createMonster(vector<Hero*> heros){

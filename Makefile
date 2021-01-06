@@ -3,7 +3,7 @@ MDIR = $(dir $(lastword $(MAKEFILE_LIST)))Modules/
 UDIR = $(dir $(lastword $(MAKEFILE_LIST)))UI/
 
 CXX = g++
-CXXFLAGS = -g -Wall -MMD -I$(IDIR)
+CXXFLAGS = -g -MMD -I$(IDIR)
 
 LIBS = -lm
 
