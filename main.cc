@@ -47,7 +47,7 @@ void checkingFighting(vector<Hero*> heros,Util util){
     Item* item = util.spawnWeapon(0,2,5,0);
     heros.at(0)->giveEXP(100);
     heros.at(0)->levelUp(0,0,0,0);
-    Spell* spell = util.spawnSpell(FIRESPELL,0,1,10);
+    Spell* spell = util.spawnSpell(LIGHTINGSPELL,0,1,10);
     heros.at(0)->addMoney(100);
     heros.at(0)->buy(item);
     heros.at(0)->buy(spell);

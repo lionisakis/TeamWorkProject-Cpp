@@ -33,20 +33,26 @@ void Monster::getDepuff(Spell* spell){
         decreanseDefence+=fireSpell->getDecreaseDefence();
         rounds[0]=round;
         cout<<"Defence has fallen\n";
+        if(round==0)
+            cout<<"Defence Debuf has ended";
     }
     else if(type==FIRESPELL){
         IceSpell* iceSpell=(IceSpell*)spell;
         decreaseDamage+=iceSpell->getDecreaseDamage();
         rounds[1]=round;
         cout<<"Damage has fallen\n";
+        if(round==0)
+            cout<<"Damage Debuf has ended";
     }
     else{
         LightingSpell* lightingSpell=(LightingSpell*)spell;
         decreaseAvoid+=lightingSpell->getDecreaseAvoid();
         rounds[2]=round;
         cout<<"Doge has decreased\n";
+        if(round==0)
+            cout<<"Doge Debuf has ended";
     }
-
+    
 }
 
 void Monster::attack(Hero* hero){
@@ -100,7 +106,20 @@ void Monster::printStats() const{
     cout<<"Damage: ("<<minDamage<<","<<maxDamage<<")\n";
     cout<<"Armor: "<<armor<<"\n";
     cout<<"Doge propability: "<<doge<<"%\n";
-
+    for(int i=0;i<3;i++){
+        if(rounds[i]>0){
+            if(i==0){
+                cout<<"There is a Defence Debuf with power:"<<decreanseDefence;
+            }
+            else if(i==1){
+                cout<<"There is a Defence Debuf with power:"<<decreaseDamage;
+            }
+            else if (i==2){
+                cout<<"There is a Defence Debuf with power:"<<decreaseAvoid;
+            }
+            cout<<" and is for "<<rounds[i]<<" round(s)\n";
+        }
+    }
 }
 
 void Monster::print() const{
