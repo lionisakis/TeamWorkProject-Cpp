@@ -38,11 +38,11 @@ int main(void){
     // Item* item = util.spawnPotion(1, 1, HEALTHPOWER, 10, false);
     // item->printCombat();
 
-    battle(heros,util);
-    // checkMarket(util);
+    // battle(heros,util);
+    checkMarket(util);
 
     // Delete Heros
-    quitGame(heros);
+    // quitGame(heros);
 }
 
 void checkMarket(Util util){

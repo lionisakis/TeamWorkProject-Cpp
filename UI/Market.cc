@@ -142,14 +142,16 @@ void Market::sell(Hero* hero){
         hero->printItems();
         cout << "Choose item by nymber" << endl;
         cin >> in;
-        Item* temp = hero->items.at(in);
+        in--;
+        Item* temp = hero->getItem(in);
         hero->sell(temp);
     }
-    // if(index == 2){
-    //     hero->printSpells();
-    //     cout << "Choose spell by nymber" << endl;
-    //     cin >> in;
-    //     Spell* temp = hero->spells.at(in);
-    //     hero->sell(temp);
-    // }
+    if(index == 2){
+        hero->printSpells();
+        cout << "Choose spell by nymber" << endl;
+        cin >> in;
+         in--;
+        Spell* temp = hero->getSpell(in);
+        hero->sell(temp);
+    }
 }

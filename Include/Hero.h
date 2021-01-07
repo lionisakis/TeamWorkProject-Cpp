@@ -34,6 +34,7 @@ class Hero: public Living{
         vector<Item*> items;
         vector<Spell*> spells;
         int findItem(const Item* item)const;
+        int findSpell(const Spell* spell)const;
 
         bool spellcast(Monster* monster,Spell* spell);
         void printSpellsCombat() const;
@@ -65,6 +66,7 @@ class Hero: public Living{
         bool useInventory();
         bool use(Item* item);
         bool sell(Item* item);
+        bool sell(Spell* spell);
         void addMoney(int addMoney);
         int getMoney()const;
         
@@ -77,6 +79,8 @@ class Hero: public Living{
 
         // get functions
         int getMagicPower(void)const;
+        Item* getItem(int);
+        Spell* getSpell(int);
 
         // print functions
         void printStats() const;
