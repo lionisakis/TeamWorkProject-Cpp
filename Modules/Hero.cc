@@ -1,6 +1,6 @@
 #include "Hero.h"
 #include "Items.h"
-
+#include <limits>
 #ifdef _WIN32
     #include <Windows.h>
     #define SLEEP true
@@ -99,32 +99,43 @@ int Hero::getMP(void)const{
 }
 
 bool Hero::castSpell(Monster* monster){
-    int action;
     cout<<"\n";
     while(true){
-        
-        cout<<"Magic power: "<<magicPower<<"\n";
-        cout<<"Spells give enemy debufs accordingly to their type and the rounds is affected by their level. Debufs are:\n";
-        cout<<"Fire Spell: Defence Dencrease,\t Ice Spell: Damage Dencrease,\t Lighting Spell Doge Propability Dencrease\n";
-        cout<<"Choose a Spell to cast\n";
-        cout<<"0) cansel action\n";
-        printSpellsCombat();
-        cin>>action;
-        if (cin.bad()) {
-            cout<<"Problem With cin\n";
+        int which;
+        bool flag;
+        do{
+            cout<<"Magic power: "<<magicPower<<"\n";
+            cout<<"Spells give enemy debufs accordingly to their type and the rounds is affected by their level. Debufs are:\n";
+            cout<<"Fire Spell: Defence Dencrease,\t Ice Spell: Damage Dencrease,\t Lighting Spell Doge Propability Dencrease\n";
+            cout<<"Choose a Spell to cast\n";
+            cout<<"0) cansel action\n";
+            printSpellsCombat();
+            cin>>which;
+            if (cin.bad()) {
+                cout<<"Problem With cin\n";
+                return false;
+            } 
+            if(cin.fail()){
+                cout<< "Data entered is not of int type\n"; 
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                flag=true;
+            }
+            else{
+                flag=false;
+            }
+        }while(flag);
+        if(which==0)
             return false;
-        }
-        if(action==0)
-            return false;
-        if(action>spells.size()){
+        if(which>spells.size()){
             cout<<"There is no spell with that number!\n";
             continue;
         }
-        if(spells.at(action-1)->getLevel()>getLevel()){
+        if(spells.at(which-1)->getLevel()>getLevel()){
             cout<<"You do not have enought level to cast this spell!\n";
             continue;
         }
-        return spellcast(monster,spells.at(action-1));
+        return spellcast(monster,spells.at(which-1));
     }    
 }
 
@@ -223,30 +234,43 @@ void Hero::printItemsForInventory() const{
 }
 bool Hero::useInventory(){
     int action;
-    do{
+    while(true){
+        int which;
+        bool flag=false;
+        do{
+            cout<<"Choose a item\n";
+            cout<<"0) cansel action\n";
+            printItemsForInventory();
+            cout<<items.size()+1<<") Unequip Sword\n";
+            cout<<items.size()+2<<") Unequip Armor\n";
 
-        cout<<"Choose a item\n";
-        cout<<"0) cansel action\n";
-        printItemsForInventory();
-        cout<<items.size()+1<<") Unequip Sword\n";
-        cout<<items.size()+2<<") Unequip Armor\n";
-        cin>>action;
-        if (cin.bad()) {
-            cout<<"Problem With cin\n";
+            cin>>which;
+            if (cin.bad()) {
+                cout<<"Problem With cin\n";
+                return false;
+            } 
+            if(cin.fail()){
+                cout<< "Data entered is not of int type\n"; 
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                flag=true;
+            }
+            else{
+                flag=false;
+            }
+        }while(flag);
+        if (which==0){
             return false;
         }
-        if (action==0){
-            return false;
-        }
-        if(action<0||action>items.size()+2)
+        if(which<0||which>items.size()+2)
             continue;
-        if(action==items.size()+1)
+        if(which==items.size()+1)
             unequipWeapon();
-        else if(action==items.size()+2)
+        else if(which==items.size()+2)
             unequipArmor();
         else
-            return use(items.at(action-1));
-    }while(action!=0);
+            return use(items.at(which-1));
+    }
     return false;
 }
 

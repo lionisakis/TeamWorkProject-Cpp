@@ -2,12 +2,14 @@
 #include <time.h>
 #include <stdlib.h>
 #include <vector>
+#include <limits>
 #include <string>
 
 using namespace std;
 
 #include "UI.h"
 #include "Util.h"
+#include "stdlib.h"
 
 #include "Define.h"
 
@@ -193,15 +195,27 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                 printMonsters(monsters);
             }
             else if(action=="Attack"){
-                cout<<"Choose a Monster\n";
-                cout<<"0) Cancel action\n";
-                printMonsters(monsters);
                 int which;
-                cin>>which;
-                if (cin.bad()) {
-                    cout<<"Problem With cin\n";
-                    return false;
-                }
+                bool falg;
+                do{
+                    cout<<"Choose a Monster\n";
+                    cout<<"0) For changing move\n";
+                    printMonsters(monsters);
+                    cin>>which;
+                    if (cin.bad()) {
+                        cout<<"Problem With cin\n";
+                        return false;
+                    } 
+                    if(cin.fail()){
+                        cout<< "Data entered is not of int type\n"; 
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        flag=true;
+                    }
+                    else{
+                        flag=false;
+                    }
+                }while(flag);
                 if(which==0)
                     continue;
                 if(which>monsters.size()){
@@ -217,15 +231,27 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                 heros.at(i)->attack(monsters.at(which-1));
             }
             else if(action=="CastSpell"){
-                cout<<"Choose a Monster\n";
-                cout<<"0: For changing move\n";
-                printMonsters(monsters);
                 int which;
-                cin>>which;
-                if (cin.bad()) {
-                    cout<<"Problem With cin\n";
-                    return false;
-                }
+                bool falg;
+                do{
+                    cout<<"Choose a Monster\n";
+                    cout<<"0) For changing move\n";
+                    printMonsters(monsters);
+                    cin>>which;
+                    if (cin.bad()) {
+                        cout<<"Problem With cin\n";
+                        return false;
+                    } 
+                    if(cin.fail()){
+                        cout<< "Data entered is not of int type\n"; 
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        flag=true;
+                    }
+                    else{
+                        flag=false;
+                    }
+                }while(flag);
                 if(which==0)
                     continue;
                 if(which>monsters.size()){
