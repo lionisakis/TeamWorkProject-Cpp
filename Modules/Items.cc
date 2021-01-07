@@ -49,7 +49,7 @@ void Item::printCombat(void)const{
     }
     else if (type==POTION){
         Potion* potion=(Potion*)this;
-        cout <<  "Name: " << this->name << ", Level: " << this->level <<", Increase Type: "<<potion->getType()<<", Amount: "<<potion->getAmount()<<", Used"<<potion->getAvailable()<<  endl;
+        cout <<  "Name: " << this->name << ", Level: " << this->level <<", Increase Type: "<<potion->getUsefull()<<", Amount: "<<potion->getAmount()<<", Used"<<potion->getAvailable()<<  endl;
     }
 }
 void Item::print(void)const{
