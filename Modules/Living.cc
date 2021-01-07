@@ -5,7 +5,6 @@ Living::Living(string nameLiving,int levelLiving,int heathlPowerLiving)
     name=nameLiving;
     healthPower=heathlPowerLiving;
     level=levelLiving;
-    cout<<"A new Living organism with name: "<<name<<" has been created\n";
     used=0;
     maxHP=healthPower;
 }

@@ -24,6 +24,7 @@ Living(nameHero,1,100)
     money=0;
     experience=0;
     hands=2;
+    cout<<"A hero has been created with Name: "<<nameHero<<"\n";
 }
 Hero::~Hero(){
     for(int i=0;i<items.size();i++){
@@ -279,7 +280,12 @@ bool Hero::sell(Item* item){
         cout<<"Not enought money";
         return false;
     }
+    if(items.at(index)==weapon1||items.at(index)==weapon2||items.at(index)==armor){
+        cout<<"This item is equiped. Unequiped it first then Sell it.\n";
+        return false;
+    }  
     items.erase(items.begin()+index);
+    delete item;
     addMoney(item->getPrice());
     return true;
 }

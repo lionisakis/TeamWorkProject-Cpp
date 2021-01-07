@@ -22,6 +22,8 @@ armor(armorMonster+levelHero*5),doge(dogeMonster+levelHero*5)
     decreaseAvoid=0;
     decreaseDamage=0;
     decreanseDefence=0;
+    cout<<"A monster has appeard with the following Stats:\n";
+    print();
 }
 
 void Monster::getDepuff(Spell* spell){
