@@ -175,6 +175,8 @@ void Market::useMarket(Hero* hero){
     cout << "1: To see the available products." << endl;
     cout << "2: To buy something." << endl;
     cout << "3: To sell something" << endl;
+    cout << "4: To see wallet." << endl;
+    cout << "5 to see inventory." << endl;
     int index;
     cin >> index;
     if(index == 0)
@@ -185,6 +187,10 @@ void Market::useMarket(Hero* hero){
         this->buy(hero);
     else if(index == 3)
         this->sell(hero);
+    else if(index == 4)
+        hero->printMoney();
+    else if(index == 5)
+        hero->printInventory();
     else{
         cout << "Wrong input please try again" << endl; 
         this->useMarket(hero);
