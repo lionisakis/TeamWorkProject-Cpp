@@ -51,7 +51,7 @@ void checkMarket(Util util){
     Hero* hero = new Hero("AN", 100, 100, 100);
     hero->addMoney(100);
     market->buy(hero);
-    // market->printMarket();
+    market->printMarket();
     hero->printInventory();
 }
 

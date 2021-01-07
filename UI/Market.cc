@@ -110,6 +110,7 @@ void Market::buy(Hero* hero){
         string name_item = item_temp->getName();
         if(index == i){
             hero->buy(item_temp);
+            this->items.erase(this->items.begin() + index);
         }
     }
 
@@ -118,6 +119,7 @@ void Market::buy(Hero* hero){
         Spell* spell_temp = this->spells.at(i);
         string name_spell = spell_temp->getName();
         if(index == k+i){
+            this->spells.erase(this->spells.begin() + index - k);
             hero->buy(spell_temp);
         }
     }

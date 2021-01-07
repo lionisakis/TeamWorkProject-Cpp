@@ -125,7 +125,6 @@ bool Hero::castSpell(Monster* monster){
         }
         return spellcast(monster,spells.at(action-1));
     }    
-
 }
 
 bool Hero::attack(Monster* monster) const{
