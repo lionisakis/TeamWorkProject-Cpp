@@ -24,17 +24,18 @@ void Potion::printInfo(void)const{
     cout << "Amount of increasment: " << this->amount << endl;
 }
 
-void Potion::use(Hero* hero){
+bool Potion::use(Hero* hero){
     if(hero->getLevel() < this->getLevel()){
         cout << "Hero needs to be in a higher level to use that spell" << endl;
-        return;
+        return false;
     }
     if(this->available == false){
         cout << "This potion has already be used" << endl;
-        return;
+        return false;
     }
     string type = this->getUse();
     int amount = this->getAmount();
     this->available = false;
     hero->addToStat(type, amount);
+    return true;
 }

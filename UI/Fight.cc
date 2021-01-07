@@ -244,6 +244,7 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                 }
             }
             else if (action=="Use"){
+                flag=true;
                 if(!heros.at(i)->useInventory()){
                     flag=false;
                 }
