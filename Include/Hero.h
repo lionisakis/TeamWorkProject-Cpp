@@ -71,7 +71,7 @@ class Hero: public Living{
         // un/equip items
         bool equipWeapon(Item* item);
         bool equipArmor(Item* item);
-        void usePotion(Item* item);
+        bool usePotion(Item* item);
         void unequipWeapon();
         void unequipArmor();
 

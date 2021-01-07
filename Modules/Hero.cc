@@ -55,20 +55,30 @@ bool Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPo
 
 void Hero::addToStat(string type,int increase){
     if(type==HEALTHPOWER){
+        cout<<"HealthPower has increasd by "<<increase<<". ";
         increaseHealthPower(increase);
+        cout<<"Total HealthPower: "<<getHP()<<"\n";
     }
     else if (type==MAGICPOWER){
+        cout<<"Magic Power has increasd by "<<increase<<". ";
         magicPower+=increase;
         maxMP+=increase;
+        cout<<"Total Magic Power: "<<magicPower<<"\n";
     }
     else if (type==STRENGTH){
+        cout<<"Strength has increasd by "<<increase<<". ";
         strength+=increase;
+        cout<<"Total Strength: "<<strength<<"\n";
     }
     else if (type==DEXERITY){
+        cout<<"Dexerity has increasd by "<<increase<<". ";
         dexerity+=increase;
+        cout<<"Total Dexerity: "<<dexerity<<"\n";
     }
     else if (type==AGILITY){
+        cout<<"Agility has increasd by "<<increase<<". ";
         agility+=increase;
+        cout<<"Total Agility: "<<agility<<"\n";
     }
 }
 void Hero::restoreMP(int mp){
@@ -218,6 +228,8 @@ bool Hero::useInventory(){
         cout<<"Choose a item\n";
         cout<<"0) cansel action\n";
         printItemsForInventory();
+        cout<<items.size()+1<<") Unequip Sword\n";
+        cout<<items.size()+2<<") Unequip Armor\n";
         cin>>action;
         if (cin.bad()) {
             cout<<"Problem With cin\n";
@@ -226,10 +238,14 @@ bool Hero::useInventory(){
         if (action==0){
             return false;
         }
-        if(action<0||action>items.size())
+        if(action<0||action>items.size()+2)
             continue;
-        return use(items.at(action+1));
-
+        if(action==items.size()+1)
+            unequipWeapon();
+        else if(action==items.size()+2)
+            unequipArmor();
+        else
+            return use(items.at(action-1));
     }while(action!=0);
     return false;
 }
@@ -247,15 +263,14 @@ bool Hero::use(Item* item){
         return false;
     }
     if (item->getType()==WEAPON){
-        equipWeapon(item);
+        return equipWeapon(item);
     }
     else if (item->getType()==ARMOR){
-        equipArmor(item);
+        return equipArmor(item);
     }
     else if (item->getType()==POTION){
-        usePotion(item);
+        return usePotion(item);
     }
-    return true;
 }   
 
 bool Hero::sell(Item* item){
@@ -287,8 +302,13 @@ bool Hero::equipWeapon(Item* item){
     }
     if(hands==2)
         weapon1=weapon;
-    else
+    else if (hands==1){
+        if(weapon1==weapon){
+            cout<<"You have already equiped this weapon\n";
+            return false;
+        }
         weapon2=weapon;
+    }
     hands-=weapon->getHands();
     cout<<"Weapon Equiped:";
     if (weapon1!=NULL){
@@ -309,26 +329,34 @@ bool Hero::equipArmor(Item* item){
     return true;
 }
 
-void Hero::usePotion(Item* item){
+bool Hero::usePotion(Item* item){
     Potion* potion=(Potion*)item;
-    potion->use(this);
+    return potion->use(this);
 }
 
 void Hero::unequipWeapon(){
+    if(weapon1!=NULL){
+        cout<<"Weapon Unequiped:";
+        weapon1->printCombat();
+        if(weapon2!=NULL){
+            weapon2->printCombat();
+        }
+    }
+    else
+        cout<<"No armor to Unequip\n";
     if(hands==0){
         weapon2=NULL;
     }
     weapon1=NULL;
     hands=2;
-    cout<<"Weapon Unequiped:";
-    if (weapon1!=NULL){
-        weapon1->print();
-        if(weapon2!=NULL){
-            weapon2->print();
-        }
-    }
 }
 void Hero::unequipArmor(){
+    if(armor!=NULL){
+        cout<<"Armor Unequiped: ";
+        armor->printCombat();
+    }
+    else
+        cout<<"No armor to Unequip\n";
     armor=NULL;
 }
 
@@ -377,14 +405,12 @@ void Hero::printEquipedItems() const{
         }
     }
     else 
-        cout<<" NONE";
-    cout<<"\n";
+        cout<<" NONE\n";
     cout<<"Armor equipd : ";
     if (armor!=NULL)
         armor->print();
     else 
-        cout<<" NONE";
-    cout<<"\n";
+        cout<<" NONE\n";
 }
 
 void Hero::printSpellsCombat() const{
