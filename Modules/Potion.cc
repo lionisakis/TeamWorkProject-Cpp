@@ -12,7 +12,7 @@ string Potion::getUse(void){
 }
 
 string Potion::getUsefull(void){
-    cout << this->usefull << endl;
+    cout << "here" << endl;
     return this->usefull;
 }
 

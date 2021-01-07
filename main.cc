@@ -36,11 +36,11 @@ int main(void){
    
     // Check for Debug
 
-    Item* item = util.spawnPotion(1, 1, HEALTHPOWER, 10, false);
+    // Item* item = util.spawnPotion(1, 1, HEALTHPOWER, 10, false);
     // item->printCombat();
 
     // checkingFighting(heros, util);
-    // checkMarket(util);
+    checkMarket(util);
 
     // Delete Heros
     // quitGame(heros);
