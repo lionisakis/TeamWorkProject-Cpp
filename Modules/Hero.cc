@@ -309,7 +309,6 @@ bool Hero::sell(Item* item){
     }  
     items.erase(items.begin()+index);
     addMoney(-item->getPrice()/2);
-    delete item;
     return true;
 }
 int Hero::findSpell(Spell* spell)const{
@@ -317,21 +316,6 @@ int Hero::findSpell(Spell* spell)const{
         if(spells.at(i)==spell)
             return i;
     return -1;
-}
-bool Hero::sell(Spell* spell){
-    int index=findSpell(spell);
-    if (index<0){
-        cout<<"Not enought money";
-        return false;
-    }
-    if(spells.at(index)==weapon1||spells.at(index)==weapon2||spells.at(index)==armor){
-        cout<<"This item is equiped. Unequiped it first then Sell it.\n";
-        return false;
-    }  
-    spells.erase(spells.begin()+index);
-    addMoney(-spell->getPrice()/2);
-    delete spell;
-    return true;
 }
 
 bool Hero::sell(Spell* spell){
@@ -341,7 +325,6 @@ bool Hero::sell(Spell* spell){
         return false;
     }
     spells.erase(spells.begin()+index);
-    delete spell;
     addMoney(spell->getPrice() / 2);
     return true;
 }

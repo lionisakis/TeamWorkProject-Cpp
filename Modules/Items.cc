@@ -64,4 +64,5 @@ void Item::print(void)const{
     else if (type==POTION){
         Potion* potion=(Potion*)this;
         cout <<  "Name: " << this->name << ", Price: "<<this->price<< ", Level: " << this->level <<", Increase Type: "<<potion->getUsefull()<<", Amount: "<<potion->getAmount()<<", Used"<<potion->getAvailable()<<  endl;
-    }}
+    }
+}
