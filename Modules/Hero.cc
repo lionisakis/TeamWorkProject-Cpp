@@ -329,17 +329,6 @@ bool Hero::sell(Spell* spell){
     return true;
 }
 
-bool Hero::sell(Spell* spell){
-    int index=findSpell(spell);
-    if (index<0){
-        cout<<"Not enought money";
-        return false;
-    }
-    spells.erase(spells.begin()+index);
-    addMoney(spell->getPrice() / 2);
-    return true;
-}
-
 void Hero::addMoney(int addMoney){
     money+=addMoney;
 }
