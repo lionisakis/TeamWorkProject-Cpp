@@ -11,8 +11,7 @@ string Potion::getUse(void){
     return this->type;
 }
 
-string Potion::getUsefull(void){
-    cout << "here" << endl;
+string Potion::getUsefull(void){;
     return this->usefull;
 }
 
