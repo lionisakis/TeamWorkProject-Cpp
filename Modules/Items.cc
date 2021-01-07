@@ -1,4 +1,7 @@
 #include "Items.h"
+#include "Armor.h"
+#include "Potion.h"
+#include "Weapon.h"
 
 Item::Item(string name_init, int price_init, int level_init){
     this->name = name_init;
@@ -35,7 +38,20 @@ string Item::getType(void)const{
 void Item::setType(string type){
     this->type = type;
 }
-
+void Item::printCombat(void)const{
+    if(type==WEAPON){
+        Weapon* weapon=(Weapon*)this;
+        cout <<  "Name: " << this->name << ", Level: " << this->level <<", Damage: "<<weapon->getDamage()<<", Hands needed: "<<weapon->getHands()<<  endl;
+    }
+    else if (type==ARMOR){
+        Armor* armor=(Armor*)this;
+        cout <<  "Name: " << this->name << ", Level: " << this->level <<", Defence: "<<armor->getDefence()<< endl;
+    }
+    else if (type==POTION){
+        Potion* potion=(Potion*)this;
+        cout <<  "Name: " << this->name << ", Level: " << this->level <<", Increase Type: "<<potion->getType()<<", Amount: "<<potion->getAmount()<<", Used"<<potion->getAvailable()<<  endl;
+    }
+}
 void Item::print(void)const{
     cout <<  "Name: " << this->name << ", Price: " << this->price << ", Level: " << this->level << endl;
 }

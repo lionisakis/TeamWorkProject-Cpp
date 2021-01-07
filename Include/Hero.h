@@ -37,6 +37,7 @@ class Hero: public Living{
 
         bool spellcast(Monster* monster,Spell* spell);
         void printSpellsCombat() const;
+        void printItemsForInventory() const;
     public:
         // stats
         Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero);
@@ -61,7 +62,7 @@ class Hero: public Living{
         bool buy(Spell* spell);
         bool buy(Item* item);
         const vector<Item*> inventory()const;
-        bool useInBattle();
+        bool useInventory();
         bool use(Item* item);
         bool sell(Item* item);
         void addMoney(int addMoney);

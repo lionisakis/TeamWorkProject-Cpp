@@ -120,7 +120,6 @@ bool Hero::castSpell(Monster* monster){
 
 bool Hero::attack(Monster* monster) const{
     cout<<getName()<<"is atacking "<<monster->getName()<<"\n";
-    
     return monster->takeDamage(getDamage());
 }
 
@@ -198,24 +197,27 @@ const vector<Item*> Hero::inventory()const{
     return items;
 }
 
-bool Hero::useInBattle(){
-    vector<Potion*> potions;
-    for(int i=0;i<items.size();i++){
-        if(items.at(i)->getType()==POTION)
-            potions.push_back((Potion*)items.at(i));
+void Hero::printItemsForInventory() const{
+    cout<<"Items:\n";
+    if (items.size()==0){
+        cout<<"\tNo items\n";
+        printEquipedItems();
     }
-    
-    int which;
+    else{
+        for (int i=0 ; i< items.size(); i++){
+            cout<<"\t"<<i+1<<") ";
+            items.at(i)->printCombat();
+        }
+        printEquipedItems();
+    }
+}
+bool Hero::useInventory(){
+    int action;
     do{
 
-        cout<<"Choose a potion\n";
+        cout<<"Choose a item\n";
         cout<<"0) cansel action\n";
-
-        for(int i=0;i<potions.size();i++){
-            cout<<i+1<<")";
-            potions.at(i)->print();
-        }
-        int action;
+        printItemsForInventory();
         cin>>action;
         if (cin.bad()) {
             cout<<"Problem With cin\n";
@@ -224,9 +226,11 @@ bool Hero::useInBattle(){
         if (action==0){
             return false;
         }
-        return use((Item*) potions.at(action));
+        if(action<0||action>items.size())
+            continue;
+        return use(items.at(action+1));
 
-    }while(which!=0);
+    }while(action!=0);
     return false;
 }
 

@@ -35,6 +35,8 @@ void restoreMP(vector<Hero*> heros);
 void herosLose(vector<Hero*> heros,vector<Monster*> monsters);
 void herosWin(vector<Hero*> heros,vector<Monster*> monsters);
 
+// Add Armor and Sword change
+
 bool battle(vector<Hero*> heros,Util util){
     srand(time(NULL));
     vector<Monster*> monsters;
@@ -84,15 +86,20 @@ vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters,Uti
     else
         size=rand()%(heros.size()+2)+1;
     int previous=-1;
+    int previousLevel=heroLevel;
     for (int i=0;i<size;i++){
         int whichMonster;
         do{
             whichMonster=rand()%3;
         }while(previous==whichMonster);
         previous=whichMonster;
-        int levelMonster=rand()%(heroLevel+2)+heroLevel-1;
+        int levelMonster;
+        do{
+            levelMonster=rand()%(heroLevel+2)+heroLevel-1;
+        } while(levelMonster==previousLevel);
         if(levelMonster==0)
             levelMonster=1;
+        previousLevel=levelMonster;
         if(whichMonster==0)
             monsters.push_back( util.spawnDragon(levelMonster));
         else if(whichMonster==1)
@@ -134,7 +141,7 @@ void help(Hero* hero){
     cout<<"Monsters: For the info of the monsters\n";
     cout<<"Attack: For the hero to attack\n";
     cout<<"CastSpell: For the hero to cast spell\n";
-    cout<<"Use: For the hero to use a potion\n";
+    cout<<"Use: For the hero to use a item\n";
     cout<<"Quit: For quiting the Game\n";
     cout<<"Help: For the availble comands\n";
 }
@@ -206,7 +213,7 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                     continue;
                 }
                 flag=true;
-
+                cout<<"\n";
                 heros.at(i)->attack(monsters.at(which-1));
             }
             else if(action=="CastSpell"){
@@ -230,14 +237,14 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                     continue;
                 }
 
-
+                cout<<"\n";
                 flag=true;
                 if(!heros.at(i)->castSpell(monsters.at(which-1))){
                     flag=false;
                 }
             }
             else if (action=="Use"){
-                if(!heros.at(i)->useInBattle()){
+                if(!heros.at(i)->useInventory()){
                     flag=false;
                 }
             }
@@ -290,19 +297,19 @@ void printTheBegining(vector<Hero*> heros,vector<Monster*> monsters){
     while(true){
         if(indexh<heros.size()){
             if(indexh==middle)
-                cout<<heros.at(indexh)->getName()<<"\tvs\t\t";
+                cout<<heros.at(indexh)->getName()<<" Level: "<<heros.at(indexh)->getLevel()<<" HP: "<<heros.at(indexh)->getHP()<<"\tvs\t\t";
             else
-                cout<<heros.at(indexh)->getName()<<"\t\t\t";
+                cout<<heros.at(indexh)->getName()<<" Level: "<<heros.at(indexh)->getLevel()<<" HP: "<<heros.at(indexh)->getHP()<<"\t\t\t";
             indexh++;
         }
         else{
             if(indexm==middle)
-                cout<<"\tvs\t\t";
+                cout<<"\tvs\t\t\t\t\t";
             else
-                cout<<"\t\t\t";
+                cout<<"\t\t\t\t\t\t";
         }
         if(indexm<monsters.size()){
-            cout<<monsters.at(indexm)->getName()<<" "<<monsters.at(indexm)->getType();
+            cout<<monsters.at(indexm)->getName()<<" "<<monsters.at(indexm)->getType()<<" Level: "<<monsters.at(indexm)->getLevel()<<" HP: "<<monsters.at(indexm)->getHP();
             indexm++;
         }
         if(indexh==heros.size()&&indexm==monsters.size())

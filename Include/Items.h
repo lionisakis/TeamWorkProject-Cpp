@@ -20,5 +20,6 @@ class Item{
         int getLevel(void)const;
         void use(void);
         string getType(void)const;
+        void printCombat(void)const;
         void print(void)const;
 };
