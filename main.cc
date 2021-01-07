@@ -39,19 +39,26 @@ int main(void){
     // item->printCombat();
 
     // battle(heros,util);
+<<<<<<< HEAD
     // checkMarket(util);
+=======
+    checkMarket(util);
+>>>>>>> 2f36d1cd2e08d88ebf911deede12c1f1fff4ec56
 
     // Delete Heros
-    quitGame(heros);
+    // quitGame(heros);
 }
 
 void checkMarket(Util util){
     Market* market = new Market(util);
     Hero* hero = new Hero("AN", 100, 100, 100);
-    // hero->addMoney(100);
-    // market->buy(hero);
-    // market->printMarket();
+    hero->addMoney(100);
+    market->buy(hero);
+    market->buy(hero);
     // hero->printInventory();
+    market->sell(hero);
+    // market->printMarket();
+    hero->printInventory();
     delete market;
     delete hero;
 }
