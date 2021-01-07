@@ -24,7 +24,6 @@
 
 
 void checkingForItems();
-void checkingFighting(vector<Hero*> heros, Util util);
 void quitGame(vector<Hero*>);
 void names(Util);
 void checkMarket(Util);
@@ -32,18 +31,18 @@ void checkMarket(Util);
 int main(void){
     Util util;
     // Spawn Heros
-    // vector<Hero*>heros = spawnHeros();
+    vector<Hero*>heros = spawnHeros();
    
     // Check for Debug
 
     // Item* item = util.spawnPotion(1, 1, HEALTHPOWER, 10, false);
     // item->printCombat();
 
-    // checkingFighting(heros, util);
-    checkMarket(util);
+    battle(heros,util);
+    // checkMarket(util);
 
     // Delete Heros
-    // quitGame(heros);
+    quitGame(heros);
 }
 
 void checkMarket(Util util){
