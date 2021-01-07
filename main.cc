@@ -39,11 +39,7 @@ int main(void){
     // item->printCombat();
 
     // battle(heros,util);
-<<<<<<< HEAD
-    // checkMarket(util);
-=======
     checkMarket(util);
->>>>>>> 2f36d1cd2e08d88ebf911deede12c1f1fff4ec56
 
     // Delete Heros
     // quitGame(heros);

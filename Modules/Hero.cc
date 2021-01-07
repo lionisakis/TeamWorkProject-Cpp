@@ -310,7 +310,6 @@ bool Hero::sell(Item* item){
     items.erase(items.begin()+index);
     addMoney(-item->getPrice()/2);
     delete item;
-<<<<<<< HEAD
     return true;
 }
 int Hero::findSpell(Spell* spell)const{
@@ -332,9 +331,6 @@ bool Hero::sell(Spell* spell){
     spells.erase(spells.begin()+index);
     addMoney(-spell->getPrice()/2);
     delete spell;
-=======
-    addMoney(item->getPrice() / 2);
->>>>>>> 2f36d1cd2e08d88ebf911deede12c1f1fff4ec56
     return true;
 }
 
