@@ -76,7 +76,16 @@ Market::Market(Util util){
 }
 
 Market::~Market(){
-    // still left
+    while(this->items.size()){
+        Item* temp = this->items.back();
+        this->items.pop_back();
+        delete temp;
+    }
+    while(this->spells.size()){
+        Spell* temp = this->spells.back();
+        this->spells.pop_back();
+        delete temp;
+    }
 }
 
 void Market::printItems(void)const{
