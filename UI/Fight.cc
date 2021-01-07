@@ -139,13 +139,12 @@ void help(Hero* hero){
     cout<< "Magic Power: "<<hero->getMagicPower()<<"\t";
     cout<< "Basic Damage: "<<hero->getDamage()<<"\n";
     cout<<"Choose one of the following move:\n";
-    cout<<"Stats: For the stats of the hero\n";
-    cout<<"Monsters: For the info of the monsters\n";
-    cout<<"Attack: For the hero to attack\n";
-    cout<<"CastSpell: For the hero to cast spell\n";
-    cout<<"Use: For the hero to use a item\n";
-    cout<<"Quit: For quiting the Game\n";
-    cout<<"Help: For the availble comands\n";
+    cout<<"1) For the STATS of the hero\n";
+    cout<<"2) For the INFO of the monsters\n";
+    cout<<"3) For the hero to ATTACK\n";
+    cout<<"4) For the hero to CAST SPELL\n";
+    cout<<"5) For the hero to USE a item\n";
+    cout<<"6) To QUIT the Game\n";
 }
 void printMonsters(vector<Monster*> monsters){
     for (int i=0;i<monsters.size();i++){
@@ -179,43 +178,25 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
 
         help(heros.at(i));
         do {
-            
+            cout<<"0) For seeing the COMANDS\n";
             cout<<"Write your action\n";
-            string action;
-            cin>>action;
-            if (cin.bad()) {
-                cout<<"Problem With cin\n";
-                // return false;
-            }
-            if(action=="Stats"){
+            int action=readNumber("",0,6);
+            if (action==-1)
+                return true;
+            if(action==1){
                 heros.at(i)->printCharacter();
                 heros.at(i)->printStats();
             }
-            else if(action=="Monsters"){
+            else if(action==2){
                 printMonsters(monsters);
             }
-            else if(action=="Attack"){
+            else if(action==3){
                 int which;
                 bool falg;
-                do{
-                    cout<<"Choose a Monster\n";
-                    cout<<"0) For changing move\n";
-                    printMonsters(monsters);
-                    cin>>which;
-                    if (cin.bad()) {
-                        cout<<"Problem With cin\n";
-                        return false;
-                    } 
-                    if(cin.fail()){
-                        cout<< "Data entered is not of int type\n"; 
-                        cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                        flag=true;
-                    }
-                    else{
-                        flag=false;
-                    }
-                }while(flag);
+                cout<<"Choose a Monster\n";
+                cout<<"0) For changing move\n";
+                printMonsters(monsters);
+                which=readNumber("",0,6);
                 if(which==0)
                     continue;
                 if(which>monsters.size()){
@@ -230,28 +211,11 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                 cout<<"\n";
                 heros.at(i)->attack(monsters.at(which-1));
             }
-            else if(action=="CastSpell"){
+            else if(action==4){
                 int which;
-                bool falg;
-                do{
-                    cout<<"Choose a Monster\n";
-                    cout<<"0) For changing move\n";
-                    printMonsters(monsters);
-                    cin>>which;
-                    if (cin.bad()) {
-                        cout<<"Problem With cin\n";
-                        return false;
-                    } 
-                    if(cin.fail()){
-                        cout<< "Data entered is not of int type\n"; 
-                        cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                        flag=true;
-                    }
-                    else{
-                        flag=false;
-                    }
-                }while(flag);
+                cout<<"Choose a Monster\n";
+                cout<<"0) For changing move\n";
+                which=readNumber("",0,6);
                 if(which==0)
                     continue;
                 if(which>monsters.size()){
@@ -269,18 +233,19 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                     flag=false;
                 }
             }
-            else if (action=="Use"){
+            else if (action==5){
                 flag=true;
                 if(!heros.at(i)->useInventory()){
                     flag=false;
                 }
             }
-            else if (action=="Help"){
-                help(heros.at(i));
-            }
-            else if (action=="Quit"){
+            else if (action==6){
                 return true;
             }
+            else if (action==0){
+                help(heros.at(i));
+            }
+            
 
         } while(!flag);
         cout<<"\n";
