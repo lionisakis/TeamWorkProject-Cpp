@@ -12,7 +12,7 @@ Item::Item(string name_init, int price_init, int level_init){
 }
 
 Item::~Item(){
-    // cout << "An item with name: " << this->name << " is about to be destroyed" << endl;
+    cout << "An item with name: " << this->name << " is about to be destroyed" << endl;
 }
 
 string Item::getName()const{

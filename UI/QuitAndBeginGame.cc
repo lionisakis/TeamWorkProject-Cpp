@@ -103,8 +103,8 @@ vector<Hero*> yourChoise(int howMany){
 void quitGame(vector<Hero*> heros){
     int size=heros.size();
     for(int i=0;i<size;i++){
-        Hero* temp=heros.back();
-        heros.pop_back();
+        Hero* temp=heros.at(0);
+        heros.erase(heros.begin());
         delete temp;
     }
     cout<<"The Game is closing\n";

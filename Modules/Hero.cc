@@ -27,14 +27,14 @@ Living(nameHero,1,100)
     cout<<"A hero has been created with Name: "<<nameHero<<"\n";
 }
 Hero::~Hero(){
-    for(int i=0;i<items.size();i++){
-        Item* temp=items.back();
-        items.pop_back();
+    while(items.size()){
+        Item* temp=items.at(0);
+        items.erase(items.begin());
         delete temp;
     }
-    for(int i=0;i<spells.size();i++){
-        Spell* temp=spells.back();
-        spells.pop_back();
+    while(spells.size()){
+        Spell* temp=spells.at(0);
+        spells.erase(spells.begin());
         delete temp;
     }
 }
@@ -308,8 +308,29 @@ bool Hero::sell(Item* item){
         return false;
     }  
     items.erase(items.begin()+index);
+    addMoney(-item->getPrice()/2);
     delete item;
-    addMoney(item->getPrice());
+    return true;
+}
+int Hero::findSpell(Spell* spell)const{
+    for (int i=0;i<spells.size();i++)
+        if(spells.at(i)==spell)
+            return i;
+    return -1;
+}
+bool Hero::sell(Spell* spell){
+    int index=findSpell(spell);
+    if (index<0){
+        cout<<"Not enought money";
+        return false;
+    }
+    if(spells.at(index)==weapon1||spells.at(index)==weapon2||spells.at(index)==armor){
+        cout<<"This item is equiped. Unequiped it first then Sell it.\n";
+        return false;
+    }  
+    spells.erase(spells.begin()+index);
+    addMoney(-spell->getPrice()/2);
+    delete spell;
     return true;
 }
 void Hero::addMoney(int addMoney){
