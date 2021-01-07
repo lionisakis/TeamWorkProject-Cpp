@@ -39,7 +39,6 @@ int main(void){
     Item* item = util.spawnPotion(1, 1, HEALTHPOWER, 10, false);
     // item->printCombat();
 
-    // checkingForItems();
     // checkingFighting(heros, util);
     // checkMarket(util);
 
@@ -55,16 +54,6 @@ void checkMarket(Util util){
     // market->printMarket();
     hero->printInventory();
 }
-
-void checkingForItems(){
-    Armor* item = new Armor("FirstItem", 2, 4, 3);
-    item->use();
-    item->printInfo();
-
-    IceSpell* spell = new IceSpell("IceSpell", 5, 2, 10);
-    spell->printInfo();
-}
-
 
 void checkingFighting(vector<Hero*> heros,Util util){
 

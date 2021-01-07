@@ -127,13 +127,13 @@ string Util::randomName(string indexType) {
 //     return NULL;
 // }
 Monster* Util::spawnDragon(int levelHero){
-    return (Monster*) new Dragon(randomName(DRAGON),levelHero);
+    return new Dragon(randomName(DRAGON),levelHero);
 }
 Monster* Util::spawnExoskeleton(int levelHero){
-    return (Monster*) new Exoskeleton(randomName(EXOSKELETON),levelHero);
+    return new Exoskeleton(randomName(EXOSKELETON),levelHero);
 }
 Monster* Util::spawnSpirit(int levelHero){
-    return (Monster*) new Spirit(randomName(SPIRIT),levelHero);
+    return new Spirit(randomName(SPIRIT),levelHero);
 }
 
 // Item* Util::spawnItem(string indexType,int price , int level , int  damage_defence_use,int hands_amount,bool available){
@@ -147,14 +147,13 @@ Monster* Util::spawnSpirit(int levelHero){
 //     return NULL;
 // }
 Item* Util::spawnArmor(int price , int level , int  defence){
-    return (Item*) new Armor(randomName(ARMOR),price,level,defence);
+    return new Armor(randomName(ARMOR),price,level,defence);
 }
 Item* Util::spawnPotion(int price , int level , string  use,int amount,bool available){
-    return (Item*) new Potion(randomName(POTION),price,level,use,amount,available);
-
+    return new Potion(randomName(POTION),price,level,use,amount,available);
 }
 Item* Util::spawnWeapon(int price , int level , int  damage,int hands){
-    return (Item*) new Weapon(randomName(WEAPON),price,level,damage,hands);
+    return new Weapon(randomName(WEAPON),price,level,damage,hands);
 
 }
 
@@ -169,12 +168,12 @@ Item* Util::spawnWeapon(int price , int level , int  damage,int hands){
 //     return NULL;
 // }
 Spell* Util::spawnLightingSpell(int price , int level , int decrease){
-    return (Spell*) new LightingSpell(randomName(LIGHTINGSPELL),price,level,decrease);
+    return new LightingSpell(randomName(LIGHTINGSPELL),price,level,decrease);
 }
 Spell* Util::spawnFireSpell(int price , int level , int decrease){
-    return (Spell*) new FireSpell(randomName(FIRESPELL),price,level,decrease);
+    return new FireSpell(randomName(FIRESPELL),price,level,decrease);
 }
 Spell* Util::spawnIceSpell(int price , int level , int decrease){
-    return (Spell*) new IceSpell(randomName(ICESPELL),price,level,decrease);
+    return new IceSpell(randomName(ICESPELL),price,level,decrease);
 
 }
