@@ -7,6 +7,7 @@ class Hero;
 class Potion:public Item{
     private:
         string type; //what increases
+        string usefull;
         int amount; //amount of increasment
         bool available;
     public:
@@ -16,4 +17,5 @@ class Potion:public Item{
         bool getAvailable(void)const;
         void printInfo(void)const;
         bool use(Hero*);
+        string getUsefull(void);
 };
