@@ -20,9 +20,9 @@ using namespace std;
 
 class Market{
     private:
-        vector<Item> items;
+        vector<Item*> items;
 
-        vector<Spell> spells;
+        vector<Spell*> spells;
 
     public:
         Market(Util);
