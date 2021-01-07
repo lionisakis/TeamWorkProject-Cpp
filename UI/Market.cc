@@ -6,7 +6,7 @@ Market::Market(Util util){
     int j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
-        int level = rand() % 10;
+        int level = (rand() % 10) + 1;
         int defence = rand() % 80;
         Item* armor = util.spawnArmor(price, level, defence);
         this->items.push_back(armor);
@@ -15,7 +15,7 @@ Market::Market(Util util){
     j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
-        int level = rand() % 10;
+        int level = (rand() % 10) + 1;
         int damage = rand() % 80;
         int hands = (rand() % 2) + 1;
         Item* weapon = util.spawnWeapon(price, level, damage, hands);
@@ -25,7 +25,7 @@ Market::Market(Util util){
     j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
-        int level = rand() % 10;
+        int level = (rand() % 10) + 1;
         int use = rand() % 5;
         string useString="none";
         if(use==0)
@@ -47,7 +47,7 @@ Market::Market(Util util){
     j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
-        int level = rand() % 10;
+        int level = (rand() % 10) + 1;
         int decrease = rand() % 80;
         Spell* ice = util.spawnIceSpell(price, level, decrease);
         this->spells.push_back(ice);
@@ -56,7 +56,7 @@ Market::Market(Util util){
     j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
-        int level = rand() % 10;
+        int level = (rand() % 10) + 1;
         int decrease = rand() % 80;
         Spell* fire = util.spawnFireSpell(price, level, decrease);
         this->spells.push_back(fire);
@@ -65,7 +65,7 @@ Market::Market(Util util){
     j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
-        int level = rand() % 10;
+        int level = (rand() % 10) + 1;
         int decrease = rand() % 80;
         Spell* light = util.spawnLightingSpell(price, level, decrease);
         this->spells.push_back(light);
@@ -102,23 +102,22 @@ void Market::printMarket(void)const{
 }
 
 void Market::buy(Hero* hero){
-    string name;
-    cout << "Choose item" << endl;
-    getline(cin, name);
+    int index;
+    cout << "Choose item by entering index" << endl;
+    cin >> index;
     for(int i = 0; i < this->items.size(); i++){
         Item* item_temp = this->items.at(i);
         string name_item = item_temp->getName();
-        if(name == name_item){
-            // auto temp = this->items.erase(this->items.begin() + i)->print();
-            // Item temp->print();
+        if(index == i){
             hero->buy(item_temp);
         }
     }
 
+    int k = this->items.size();
     for(int i = 0; i < this->spells.size(); i++){
         Spell* spell_temp = this->spells.at(i);
         string name_spell = spell_temp->getName();
-        if(name == name_spell){
+        if(index == k+i){
             hero->buy(spell_temp);
         }
     }
