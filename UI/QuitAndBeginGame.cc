@@ -111,7 +111,7 @@ int readNumber(string output,int down,int up){
     bool flag;
     do{
         cout<<output;
-        function();
+        // function();
         cin>>number;
         if (cin.bad()) {
             cout<<"Problem With cin\n";
