@@ -27,5 +27,6 @@ class Spell{
         int getDamage(Hero*) const;
         string getType(void) const;
         void setType(string);
+        void printCombat(void)const;
         void print(void) const;
 };

@@ -15,11 +15,11 @@ using namespace std;
 #include "Hero.h"
 
 #ifdef _WIN32
-#include <Windows.h>
-#define SLEEP true
+    #include <Windows.h>
+    #define SLEEP true
 #else
-#include <unistd.h>
-#define SLEEP false
+    #include <unistd.h>
+    #define SLEEP false
 #endif
 
 vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters,Util util);
@@ -80,11 +80,16 @@ vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters,Uti
     heroLevel/=heros.size();
     int size;
     if (heros.size()<3)
-        size=rand()%(heros.size()*3)+1;
+        size=rand()%(heros.size()+2)+1;
     else
-        size=rand()%(heros.size()*2)+1;
+        size=rand()%(heros.size()+2)+1;
+    int previous=-1;
     for (int i=0;i<size;i++){
-        int whichMonster=rand()%3;
+        int whichMonster;
+        do{
+            whichMonster=rand()%3;
+        }while(previous==whichMonster);
+        previous=whichMonster;
         int levelMonster=rand()%(heroLevel+2)+heroLevel-1;
         if(levelMonster==0)
             levelMonster=1;
@@ -120,10 +125,11 @@ bool checkAlive(vector<Hero*> heros,vector<Monster*> monsters){
     return checkAliveMonsters(monsters);
 }
 void help(Hero* hero){
-    cout<< hero->getName()<<" is attacking.\t";
+    cout<< hero->getName()<<" is attacking. ";
     cout<< "HP:"<<hero->getHP()<<"\t";
-    cout<< "Magic Power: "<<hero->getMagicPower()<<"\n";
-    cout<<"\nChoose one of the following move:\n";
+    cout<< "Magic Power: "<<hero->getMagicPower()<<"\t";
+    cout<< "Basic Damage: "<<hero->getDamage()<<"\n";
+    cout<<"Choose one of the following move:\n";
     cout<<"Stats: For the stats of the hero\n";
     cout<<"Monsters: For the info of the monsters\n";
     cout<<"Attack: For the hero to attack\n";
@@ -137,8 +143,14 @@ void printMonsters(vector<Monster*> monsters){
         cout<<"\n";
         cout<<i+1<<")";
         monsters.at(i)->print();
+        if(SLEEP){
+            sleep(40);
+        }
+        else{
+            usleep(1000000);
+        }
     }
-    cout<<"\n";    
+    cout<<"Write the number of the monster.\n";    
 } 
 bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
     for(int i=0;i<heros.size();i++){
@@ -278,14 +290,14 @@ void printTheBegining(vector<Hero*> heros,vector<Monster*> monsters){
     while(true){
         if(indexh<heros.size()){
             if(indexh==middle)
-                cout<<heros.at(indexh)->getName()<<"\t\tvs\t";
+                cout<<heros.at(indexh)->getName()<<"\tvs\t\t";
             else
                 cout<<heros.at(indexh)->getName()<<"\t\t\t";
             indexh++;
         }
         else{
             if(indexm==middle)
-                cout<<"\t\tvs\t";
+                cout<<"\tvs\t\t";
             else
                 cout<<"\t\t\t";
         }
@@ -302,18 +314,15 @@ void printTheBegining(vector<Hero*> heros,vector<Monster*> monsters){
 }
 
 void restoreHP(vector<Hero*> heros,vector<Monster*> monsters){
-    cout<<"RESTORE\n";
     for (int i=0;i<heros.size();i++){
         if(heros.at(i)->getHP()!=0){
             int howMuch= heros.at(i)->getHPUsed();
             if(howMuch==0)
                 continue;
             if (howMuch<=25)
-                howMuch=rand()%(((int)howMuch/2));
-            else if(howMuch<=75)
-                howMuch=rand()%((int)howMuch);
-            else 
-                howMuch=rand()%((int)howMuch*2);
+                howMuch=rand()%(((int)howMuch/4));
+            else
+                howMuch=rand()%((int)howMuch/2);
             heros.at(i)->restoreHP(howMuch);
         }
     }
@@ -322,7 +331,7 @@ void restoreHP(vector<Hero*> heros,vector<Monster*> monsters){
             int howMuch= monsters.at(i)->getHPUsed();
             if(howMuch==0)
                 continue;
-            howMuch=rand()%((int)howMuch/2);
+            howMuch=rand()%((int)howMuch/4);
             monsters.at(i)->restoreHP(howMuch);
         }
     }
@@ -333,7 +342,7 @@ void restoreMP(vector<Hero*> heros){
             int howMuch= heros.at(i)->getMPused();
             if(howMuch==0)
                 continue;
-            howMuch=rand()%(howMuch/2);
+            howMuch=rand()%(howMuch/4);
             heros.at(i)->restoreMP(howMuch);
         }
     }

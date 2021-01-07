@@ -1,6 +1,14 @@
 #include "Hero.h"
 #include "Items.h"
 
+#ifdef _WIN32
+    #include <Windows.h>
+    #define SLEEP true
+#else
+    #include <unistd.h>
+    #define SLEEP false
+#endif
+
 Hero::Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero):
 Living(nameHero,1,100)
 {   
@@ -64,8 +72,10 @@ void Hero::addToStat(string type,int increase){
     }
 }
 void Hero::restoreMP(int mp){
-    if(magicPower+mp<=maxMP)
+    if(magicPower+mp<=maxMP){
         magicPower+=mp;
+        cout<<getName()<<" is resotring Magic Power: "<<mp<<"the total Magic Power is:"<<magicPower<<"\n";
+    }
 }
 
 
@@ -79,11 +89,15 @@ int Hero::getMP(void)const{
 
 bool Hero::castSpell(Monster* monster){
     int action;
+    cout<<"\n";
     while(true){
+        
         cout<<"Magic power: "<<magicPower<<"\n";
+        cout<<"Spells give enemy debufs accordingly to their type and the rounds is affected by their level. Debufs are:\n";
+        cout<<"Fire Spell: Defence Dencrease,\t Ice Spell: Damage Dencrease,\t Lighting Spell Doge Propability Dencrease\n";
         cout<<"Choose a Spell to cast\n";
         cout<<"0) cansel action\n";
-        printSpells();
+        printSpellsCombat();
         cin>>action;
         if (cin.bad()) {
             cout<<"Problem With cin\n";
@@ -106,12 +120,8 @@ bool Hero::castSpell(Monster* monster){
 
 bool Hero::attack(Monster* monster) const{
     cout<<getName()<<"is atacking "<<monster->getName()<<"\n";
-    int weaponDM=0;
-    if (weapon1!=NULL)
-        weaponDM+=weapon1->getDamage();
-    if (weapon2!=NULL)
-        weaponDM+=weapon2->getDamage();
-    return monster->takeDamage(10+strength+weaponDM);
+    
+    return monster->takeDamage(getDamage());
 }
 
 void Hero::useMagicPower(int usemagicPowerHero){
@@ -159,6 +169,16 @@ void Hero::addEXP(int exp){
     int level=getLevel();
     while(levelUp(strength/level,dexerity/level,agility/level,magicPower/level));
 }
+
+int Hero::getDamage()const{
+    int weaponDM=0;
+    if (weapon1!=NULL)
+        weaponDM+=weapon1->getDamage();
+    if (weapon2!=NULL)
+        weaponDM+=weapon2->getDamage();
+    return 10+strength+weaponDM;
+}
+
 bool Hero::buy(Spell* spell){
     if (money-spell->getPrice()<0)
         return false;
@@ -361,6 +381,25 @@ void Hero::printEquipedItems() const{
     else 
         cout<<" NONE";
     cout<<"\n";
+}
+
+void Hero::printSpellsCombat() const{
+    cout<<"Spells:\n";
+    if (spells.size()==0){
+        cout<<"\tNo spells\n";
+    }
+    else{
+        for (int i=0 ; i< spells.size(); i++){
+            cout<<"\t"<<i+1<<") ";
+            spells.at(i)->printCombat();
+            if(SLEEP){
+                sleep(40);
+            }
+            else{
+                usleep(1000000);
+            }
+        }
+    }
 }
 
 void Hero::printSpells() const{

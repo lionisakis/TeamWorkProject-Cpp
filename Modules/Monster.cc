@@ -8,7 +8,6 @@
 #include "LightingSpell.h"
 #include "Spell.h"
 
-
 int countHP(int level){
     srand(time(NULL));
     return rand()%(10*level+20)+25;
@@ -89,8 +88,11 @@ bool Monster::takeDamage(int damage){
         cout<<"Doged the attacked\n";
         return false;
     }
-    cout<<"Taking damge: "<<damage-armor+decreanseDefence<<"\n";
-    Living::takeDamage(damage-armor+decreanseDefence);
+    int totalDamage=damage-armor+decreanseDefence;
+    if (totalDamage<0)
+        totalDamage=0;
+    cout<<"Taking damge: "<<totalDamage<<"\n";
+    Living::takeDamage(totalDamage);
     cout<<getName()<<" has HP: "<<getHP()<<"\n";
     if(getHP()==0){
         cout<<getName()<<" was killed\n";

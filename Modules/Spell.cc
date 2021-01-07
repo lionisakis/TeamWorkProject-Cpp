@@ -59,6 +59,10 @@ void Spell::setType(string type){
     this->type = type;
 }
 
+void Spell::printCombat(void)const{
+    cout << "Name: " << this->name <<", Level: " << this->level <<", Damage Range: ("<<damage_down<<","<<damage_up<<"), Type:"<<getType()<< endl;
+}
+
 void Spell::print(void)const{
     cout << "Name: " << this->name << ", Price: " << this->price << ", Level: " << this->level << endl;
 }

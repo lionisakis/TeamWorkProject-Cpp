@@ -36,6 +36,7 @@ class Hero: public Living{
         int findItem(const Item* item)const;
 
         bool spellcast(Monster* monster,Spell* spell);
+        void printSpellsCombat() const;
     public:
         // stats
         Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero);
@@ -54,8 +55,8 @@ class Hero: public Living{
         bool attack(Monster* monster) const;
         bool takeDamage(int damage);
         void addEXP(int exp);
+        int getDamage()const;
         
-
         // items of the hero
         bool buy(Spell* spell);
         bool buy(Item* item);
