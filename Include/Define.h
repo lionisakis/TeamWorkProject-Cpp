@@ -16,6 +16,15 @@
 #define DEXERITY "Dexerity"
 #define AGILITY "Agility"
 
+#define C "Common"
+#define M "Market"
+#define N "nonAccessible"
+
+#define LEFT "Left"
+#define RIGHT "Right"
+#define UP "Up"
+#define DOWN "Down" 
+
 #define STARTINGSTATS 10
 
 #define PATH "./names/"

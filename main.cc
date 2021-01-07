@@ -21,26 +21,48 @@
 #include "UI.h"
 #include "Util.h"
 #include "Market.h"
+#include "Block.h"
+#include "Grid.h"
 
 
 void checkingForItems();
 void quitGame(vector<Hero*>);
 void names(Util);
 void checkMarket(Util);
+void checkBlock(vector<Hero*>);
+void checkGrid(vector<Hero*>, Util);
 
 int main(void){
     Util util;
     // Spawn Heros
-    // vector<Hero*>heros = spawnHeros();
+    vector<Hero*>heros = spawnHeros();
+    checkGrid(heros, util);
+    // checkBlock(heros);
     // if(heros.size()==0)
     //     return -1;
     // Check for Debug
 
     // battle(heros,util);
-    checkMarket(util);
+    // checkMarket(util);
 
     // Delete Heros
     // quitGame(heros);
+}
+
+void checkGrid(vector <Hero*> heroes, Util util){
+    Grid* block = new Grid(heroes, util);
+    // block->move(heroes);
+    block->place();
+    block->print();
+    // block->move(UP);
+    // cout <<"MOVE TEST " <<  endl;
+    // block->print();
+}
+
+void checkBlock(vector <Hero*> heroes){
+    Block* block = new Block(C);
+    block->move(heroes);
+    block->print();
 }
 
 void checkMarket(Util util){
