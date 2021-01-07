@@ -49,10 +49,13 @@ int main(void){
 void checkMarket(Util util){
     Market* market = new Market(util);
     Hero* hero = new Hero("AN", 100, 100, 100);
-    // hero->addMoney(100);
-    // market->buy(hero);
-    // market->printMarket();
+    hero->addMoney(100);
+    market->buy(hero);
+    market->buy(hero);
     // hero->printInventory();
+    market->sell(hero);
+    // market->printMarket();
+    hero->printInventory();
     delete market;
     delete hero;
 }

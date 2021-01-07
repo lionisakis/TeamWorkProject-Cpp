@@ -32,4 +32,5 @@ class Market{
         void printSpells(void)const;
         void printMarket(void)const;
         void buy(Hero*);
+        void sell(Hero*);
 };

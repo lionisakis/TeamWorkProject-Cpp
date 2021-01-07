@@ -70,9 +70,6 @@ Market::Market(Util util){
         Spell* light = util.spawnLightingSpell(price, level, decrease);
         this->spells.push_back(light);
     }
-
-    this->printItems();
-    this->printSpells();
 }
 
 Market::~Market(){
@@ -111,6 +108,7 @@ void Market::printMarket(void)const{
 }
 
 void Market::buy(Hero* hero){
+    this->printMarket();
     int index;
     cout << "Choose item by entering index" << endl;
     cin >> index;
@@ -128,9 +126,30 @@ void Market::buy(Hero* hero){
         Spell* spell_temp = this->spells.at(i);
         string name_spell = spell_temp->getName();
         if(index == k+i){
-            this->spells.erase(this->spells.begin() + index - k);
             hero->buy(spell_temp);
+            this->spells.erase(this->spells.begin() + index - k);
         }
     }
+}
 
+void Market::sell(Hero* hero){
+    hero->printInventory();
+    int index;
+    int in;
+    cout << "Type 1 for Items and 2 for spells" << endl;
+    cin >> index;
+    if(index == 1){
+        hero->printItems();
+        cout << "Choose item by nymber" << endl;
+        cin >> in;
+        Item* temp = hero->items.at(in);
+        hero->sell(temp);
+    }
+    // if(index == 2){
+    //     hero->printSpells();
+    //     cout << "Choose spell by nymber" << endl;
+    //     cin >> in;
+    //     Spell* temp = hero->spells.at(in);
+    //     hero->sell(temp);
+    // }
 }
