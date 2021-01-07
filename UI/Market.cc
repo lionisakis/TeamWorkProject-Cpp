@@ -83,7 +83,7 @@ void Market::printItems(void)const{
     cout << "The items the market contains are: " << endl;
     for(int i = 0; i < this->items.size(); i++){
         cout << i << ")";
-        this->items.at(i).printCombat();
+        this->items.at(i).print();
     }
 }
 
@@ -92,7 +92,7 @@ void Market::printSpells(void)const{
     int k = this->items.size();
     for(int i = 0; i < this->spells.size(); i++){
         cout << k + i << ")";
-        this->spells.at(i).printCombat();
+        this->spells.at(i).print();
     }
 }
 

@@ -53,5 +53,15 @@ void Item::printCombat(void)const{
     }
 }
 void Item::print(void)const{
-    cout <<  "Name: " << this->name << ", Price: " << this->price << ", Level: " << this->level << endl;
-}
+    if(type==WEAPON){
+        Weapon* weapon=(Weapon*)this;
+        cout <<  "Name: " << this->name << ", Price: "<<this->price<< ", Level: " << this->level <<", Damage: "<<weapon->getDamage()<<", Hands needed: "<<weapon->getHands()<<  endl;
+    }
+    else if (type==ARMOR){
+        Armor* armor=(Armor*)this;
+        cout <<  "Name: " << this->name << ", Price: "<<this->price<<", Level: " << this->level <<", Defence: "<<armor->getDefence()<< endl;
+    }
+    else if (type==POTION){
+        Potion* potion=(Potion*)this;
+        cout <<  "Name: " << this->name << ", Price: "<<this->price<< ", Level: " << this->level <<", Increase Type: "<<potion->getType()<<", Amount: "<<potion->getAmount()<<", Used"<<potion->getAvailable()<<  endl;
+    }}
