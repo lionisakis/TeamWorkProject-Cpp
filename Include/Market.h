@@ -31,6 +31,7 @@ class Market{
         void printItems(void)const;
         void printSpells(void)const;
         void printMarket(void)const;
+        void useMarket(Hero*);
         void buy(Hero*);
         void sell(Hero*);
 };

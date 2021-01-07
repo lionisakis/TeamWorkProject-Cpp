@@ -88,7 +88,7 @@ Market::~Market(){
 void Market::printItems(void)const{
     cout << "The items the market contains are: " << endl;
     for(int i = 0; i < this->items.size(); i++){
-        cout << i << ")";
+        cout << i + 1 << ")";
         this->items.at(i)->print();
     }
 }
@@ -97,7 +97,7 @@ void Market::printSpells(void)const{
     cout << "The spells the market contains are: " << endl;
     int k = this->items.size();
     for(int i = 0; i < this->spells.size(); i++){
-        cout << k + i << ")";
+        cout << k + i + 1 << ")";
         this->spells.at(i)->print();
     }
 }
@@ -110,8 +110,11 @@ void Market::printMarket(void)const{
 void Market::buy(Hero* hero){
     this->printMarket();
     int index;
-    cout << "Choose item by entering index" << endl;
+    cout << "Choose item by entering index or press 0 to quit" << endl;
     cin >> index;
+    if(index == 0)
+        return;
+    index--;
     for(int i = 0; i < this->items.size(); i++){
         Item* item_temp = this->items.at(i);
         string name_item = item_temp->getName();
@@ -136,22 +139,59 @@ void Market::sell(Hero* hero){
     hero->printInventory();
     int index;
     int in;
-    cout << "Type 1 for Items and 2 for spells" << endl;
+    cout << "Type 1 for Items and 2 for spells or press 0 to quit" << endl;
     cin >> index;
+    if(index == 0)
+        return;
     if(index == 1){
         hero->printItems();
-        cout << "Choose item by nymber" << endl;
+        cout << "Choose item by nymber, press 0 to exit" << endl;
         cin >> in;
+        if(in == 0){
+            return;
+        }
         in--;
         Item* temp = hero->getItem(in);
         hero->sell(temp);
+        this->items.push_back(temp);
     }
     if(index == 2){
         hero->printSpells();
-        cout << "Choose spell by nymber" << endl;
+        cout << "Choose spell by nymber, press 0 to exit" << endl;
         cin >> in;
-         in--;
+        if(in == 0){
+            return;
+        }
+        in--;
         Spell* temp = hero->getSpell(in);
+        // this->spells.push_back(temp);
         hero->sell(temp);
     }
+}
+
+void Market::useMarket(Hero* hero){
+    cout << "Welcome to the market press:" << endl;
+    cout << "0: To quit the store." << endl;
+    cout << "1: To see the available products." << endl;
+    cout << "2: To buy something." << endl;
+    cout << "3: To sell something" << endl;
+    int index;
+    cin >> index;
+    if(index == 0)
+        return;
+    else if(index == 1)
+        this->printMarket();
+    else if(index == 2)
+        this->buy(hero);
+    else if(index == 3)
+        this->sell(hero);
+    else{
+        cout << "Wrong input please try again" << endl; 
+        this->useMarket(hero);
+    }
+    cout << "Do you want something else? Press 1 for yes and 2 for no." << endl;
+    cin >> index;
+    if(index == 1)
+        this->useMarket(hero); 
+    return;
 }
