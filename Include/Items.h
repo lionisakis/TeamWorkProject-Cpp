@@ -14,7 +14,6 @@ class Item{
         void setType(string);
     public:
         Item(string name_init = "Nothing", int price_init = 0, int level_init = 1);
-        ~Item();
         string getName(void)const;
         int getPrice(void)const;
         int getLevel(void)const;

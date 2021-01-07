@@ -11,10 +11,6 @@ Item::Item(string name_init, int price_init, int level_init){
     // cout << "A new item with name: " << this->name << " has been created" << endl;
 }
 
-Item::~Item(){
-    cout << "An item with name: " << this->name << " is about to be destroyed" << endl;
-}
-
 string Item::getName()const{
     return this->name;
 }

@@ -65,15 +65,15 @@ class Hero: public Living{
         bool buy(Item* item);
         const vector<Item*> inventory()const;
         bool useInventory();
-        bool use(Item* item);
+        bool use(Item* item,bool flag=true);
         bool sell(Item* item);
         bool sell(Spell* spell);
         void addMoney(int addMoney);
         int getMoney()const;
         
         // un/equip items
-        bool equipWeapon(Item* item);
-        bool equipArmor(Item* item);
+        bool equipWeapon(Item* item,bool flag=true);
+        bool equipArmor(Item* item,bool flag=true);
         bool usePotion(Item* item);
         void unequipWeapon();
         void unequipArmor();

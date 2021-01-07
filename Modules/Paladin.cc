@@ -14,8 +14,8 @@ Paladin::Paladin(string name):
     Hero::buy(weapon);
     Hero::buy(armor);
     Hero::buy(potion1);
-    Hero::use(weapon);
-    Hero::use(armor);
+    Hero::use(weapon,false);
+    Hero::use(armor,false);
     Hero::addMoney(20);
 }
 void Paladin::levelUp(){

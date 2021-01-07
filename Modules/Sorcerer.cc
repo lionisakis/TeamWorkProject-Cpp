@@ -22,7 +22,7 @@ Sorcerer::Sorcerer(string name):
     Hero::buy(spell3);
     Hero::buy(potion1);
     Hero::buy(potion2);
-    Hero::use(weapon);
+    Hero::use(weapon,false);
     Hero::addMoney(20);
 }
 void Sorcerer::levelUp(){

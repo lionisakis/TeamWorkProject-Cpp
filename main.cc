@@ -31,18 +31,19 @@ void checkMarket(Util);
 int main(void){
     Util util;
     // Spawn Heros
-    // vector<Hero*>heros = spawnHeros();
-   
+    vector<Hero*>heros = spawnHeros();
+    if(heros.size()==0)
+        return -1;
     // Check for Debug
 
     // Item* item = util.spawnPotion(1, 1, HEALTHPOWER, 10, false);
     // item->printCombat();
 
     // battle(heros,util);
-    checkMarket(util);
+    // checkMarket(util);
 
     // Delete Heros
-    // quitGame(heros);
+    quitGame(heros);
 }
 
 void checkMarket(Util util){

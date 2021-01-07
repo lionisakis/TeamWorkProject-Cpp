@@ -7,29 +7,27 @@
 #include <vector>
 
 #include <iostream>
+#include <limits>
+
 using namespace std;
 vector<Hero*> basicCombo(int howMany);
 vector<Hero*> yourChoise(int howMany);
 vector<Hero*> spawnHeros(){
-    if(false){
-        int howMany=0;
-        do{
-            cout<<"Type a number of how many heros do you want form 1-3\n";
-            cin>>howMany;
-            if(!(howMany>0&&howMany<4))
-                cout<<"Not acceptable ansewer!\n";
-        }while(!(howMany>0&&howMany<4));
-        int what;
-        do{
-            cout<<"Do you want the basic combo?\n No:0, Yes:1\n";
-            cout<<"Basic Combo:\nIf Party is 1 then Hero is Pladin\n";
-            cout<<"If Party is 2 then Hero is Pladin and Sorcerer\n";
-            cout<<"If Party is 3 then Hero is Pladin and Sorcerer and Warior\n";
-            cin>>what;
-            if(!(what>-1&&what<2))
-                cout<<"Not acceptable ansewer!\n";
-        }while(!(what>-1&&what<2));
-        if(what==1){
+
+    if(true){        
+        int howMany=readNumber("Type a number of how many heros do you want form 1-3\n",1,3);
+        if(howMany==-1){
+            vector<Hero*>heros;
+            return heros;    
+        }
+        string output="Do you want the basic combo?\n No:1, Yes:2\nBasic Combo:\nIf Party is 1 then Hero is Pladin\n";
+        output.append("If Party is 2 then Hero is Pladin and Sorcerer\nIf Party is 3 then Hero is Pladin and Sorcerer and Warior\n");
+        int what=readNumber(output,1,2);
+        if(what==-1){
+            vector<Hero*>heros;
+            return heros;    
+        }
+        else if(what==2){
             return basicCombo(howMany);
         }
         else{
@@ -57,28 +55,36 @@ vector<Hero*> basicCombo(int howMany){
 vector<Hero*> yourChoise(int howMany){
     vector<Hero*> heros;
     for(int i=0;i<howMany;i++){
-        int type;
-        do{
-            cout<<"What Type the hero to be\n";
-            cout<<"1)Paladin\n2)Sorcerer\n3)Warrior\n";
-            cin>>type;
-            if(!(type>=1&&type<=4))
-                cout<<"Not acceptable ansewer!\n";
-        }while(!(type>=1&&type<=4));
-        
-        int name;
-        do{
-            cout<<"What name the hero should have?\n";
-            cout<<"1)I will give him a name\n2)His Type\n\n";
-            cin>>name;
-            if(!(name>=1&&name<=2))
-                cout<<"Not acceptable ansewer!\n";
-        }while(!(name>=1&&name<=2));
-
-        string heroName;
+        int type=readNumber("What Type the hero to be\n1)Paladin\n2)Sorcerer\n3)Warrior\n",1,3);
+        if(type==-1){
+            vector<Hero*>heros;
+            return heros;    
+        }
+        int name=readNumber("What name the hero should have?\n1)I will give him a name\n2)His Type\n\n",1,3);
+        if(name==-1){
+            vector<Hero*>heros;
+            return heros;    
+        }
+        string heroName="";
         if(name==1){
-            cout<<"Give Hero Name\n";
-            cin>>heroName;
+            bool flag=false;
+            do{
+                cout<<"Give Hero Name (one word)\n";
+                string name;
+                cin>> name;
+                heroName.append(" ");
+                heroName.append(name);
+                cout<<"Do you want to add word to the hero name?\nNo:1 Yes:2\nHero Name:"<<heroName<<"\n";
+                int answer=readNumber("",1,2);
+                if(answer==-1){
+                    vector<Hero*>heros;
+                    return heros;    
+                }
+                else if(answer==1)
+                    flag=false;
+                else
+                    flag=true;
+            }while (flag);
             if(type==1)
                 heros.push_back(new Paladin(heroName));
             else if (type==2)
@@ -98,6 +104,34 @@ vector<Hero*> yourChoise(int howMany){
         
     }
     return heros;
+}
+
+int readNumber(string output,int down,int up){
+    int number;
+    bool flag;
+    do{
+        cout<<output;
+        cin>>number;
+        if (cin.bad()) {
+            cout<<"Problem With cin\n";
+            return -1;
+        } 
+        if(cin.fail()){
+            cout<< "Data entered is not of int type\n"; 
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            flag=true;
+        }
+        else{
+            if(!(number>=down&&number<=up)){
+                cout<<"Not acceptable ansewer!\n";
+                flag=true;
+            }
+            else
+                flag=false;
+        }
+    }while(flag);
+    return number;
 }
 
 void quitGame(vector<Hero*> heros){

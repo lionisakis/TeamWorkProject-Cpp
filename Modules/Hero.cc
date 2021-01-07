@@ -274,7 +274,7 @@ bool Hero::useInventory(){
     return false;
 }
 
-bool Hero::use(Item* item){
+bool Hero::use(Item* item,bool flag){
     int index = findItem(item);
     if (item->getLevel() > getLevel()){
         cout<<"The hero has not enough level for this item\n";
@@ -287,14 +287,15 @@ bool Hero::use(Item* item){
         return false;
     }
     if (item->getType()==WEAPON){
-        return equipWeapon(item);
+        return equipWeapon(item,flag);
     }
     else if (item->getType()==ARMOR){
-        return equipArmor(item);
+        return equipArmor(item,flag);
     }
     else if (item->getType()==POTION){
         return usePotion(item);
     }
+    return true;
 }   
 
 bool Hero::sell(Item* item){
@@ -335,7 +336,7 @@ void Hero::addMoney(int addMoney){
 int Hero::getMoney()const{
     return money;
 }
-bool Hero::equipWeapon(Item* item){
+bool Hero::equipWeapon(Item* item,bool flag){
     if (findItem(item)<0 || item->getType()!=WEAPON){
         cout<<"You cannot equip that item!\n";
         return false;
@@ -356,22 +357,34 @@ bool Hero::equipWeapon(Item* item){
         weapon2=weapon;
     }
     hands-=weapon->getHands();
-    cout<<"Weapon Equiped:";
-    if (weapon1!=NULL){
-        weapon1->print();
-        if(weapon2!=NULL){
-            weapon2->print();
+    if(flag){
+        cout<<"Weapon1 Equiped: ";
+        if (weapon1!=NULL){
+            weapon1->print();
+            cout<<"Weapon2 Equiped: ";
+            if(weapon2!=NULL){
+                weapon2->print();
+            }
         }
     }
     return true;
 }
-bool Hero::equipArmor(Item* item){
+bool Hero::equipArmor(Item* item,bool flag){
     if (findItem(item)<0 || item->getType()!=ARMOR){
         cout<<"You do cannot equip that item!\n";
         return false;
     }
-    unequipArmor();
+    if(armor!=NULL){
+        cout<<"Unequip the current armor then equip this armor!\n";
+        return false;
+    }
     armor=(Armor*)item;
+    if(flag){
+        cout<<"Armor Equiped: ";
+        if (armor!=NULL){
+            armor->print();
+        }
+    }
     return true;
 }
 
