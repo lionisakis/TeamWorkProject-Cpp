@@ -3,7 +3,7 @@
 Market::Market(Util util){
     cout << "A new market has been created" << endl;
     srand(time(NULL));
-    int j = rand() % 15;
+    int j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
         int level = rand() % 10;
@@ -12,7 +12,7 @@ Market::Market(Util util){
         this->items.push_back(*armor);
     }
 
-    j = rand() % 15;
+    j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
         int level = rand() % 10;
@@ -22,7 +22,7 @@ Market::Market(Util util){
         this->items.push_back(*weapon);
     }
 
-    j = rand() % 15;
+    j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
         int level = rand() % 10;
@@ -44,7 +44,7 @@ Market::Market(Util util){
         this->items.push_back(*potion);
     }
 
-    j = rand() % 15;
+    j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
         int level = rand() % 10;
@@ -53,7 +53,7 @@ Market::Market(Util util){
         this->spells.push_back(*ice);
     }
 
-    j = rand() % 15;
+    j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
         int level = rand() % 10;
@@ -62,7 +62,7 @@ Market::Market(Util util){
         this->spells.push_back(*fire);
     }
 
-    j = rand() % 15;
+    j = rand() % 5;
     for(int i = 0; i < j; i++){
         int price = rand() % 15;
         int level = rand() % 10;
@@ -82,14 +82,17 @@ Market::~Market(){
 void Market::printItems(void)const{
     cout << "The items the market contains are: " << endl;
     for(int i = 0; i < this->items.size(); i++){
-        this->items.at(i).print();
+        cout << i << ")";
+        this->items.at(i).printCombat();
     }
 }
 
 void Market::printSpells(void)const{
     cout << "The spells the market contains are: " << endl;
+    int k = this->items.size();
     for(int i = 0; i < this->spells.size(); i++){
-        this->spells.at(i).print();
+        cout << k + i << ")";
+        this->spells.at(i).printCombat();
     }
 }
 
@@ -106,6 +109,8 @@ void Market::buy(Hero* hero){
         Item* item_temp = &this->items.at(i);
         string name_item = item_temp->getName();
         if(name == name_item){
+            // auto temp = this->items.erase(this->items.begin() + i)->print();
+            // Item temp->print();
             hero->buy(item_temp);
         }
     }

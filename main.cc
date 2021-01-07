@@ -36,12 +36,15 @@ int main(void){
    
     // Check for Debug
 
+    Item* item = util.spawnPotion(1, 1, HEALTHPOWER, 10, false);
+    item->print();
+
     // checkingForItems();
-    checkingFighting(heros, util);
+    // checkingFighting(heros, util);
     // checkMarket(util);
 
     // Delete Heros
-    quitGame(heros);
+    // quitGame(heros);
 }
 
 void checkMarket(Util util){
@@ -49,6 +52,8 @@ void checkMarket(Util util){
     Hero* hero = new Hero("AN", 100, 100, 100);
     hero->addMoney(100);
     market->buy(hero);
+    // market->printMarket();
+    hero->printInventory();
 }
 
 void checkingForItems(){
