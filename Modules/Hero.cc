@@ -324,10 +324,6 @@ bool Hero::sell(Spell* spell){
         cout<<"Not enought money";
         return false;
     }
-    if(spells.at(index)==weapon1||spells.at(index)==weapon2||spells.at(index)==armor){
-        cout<<"This item is equiped. Unequiped it first then Sell it.\n";
-        return false;
-    }  
     spells.erase(spells.begin()+index);
     addMoney(-spell->getPrice()/2);
     delete spell;
