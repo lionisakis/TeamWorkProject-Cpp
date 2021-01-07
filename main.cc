@@ -36,8 +36,8 @@ int main(void){
     //     return -1;
     // Check for Debug
 
-    battle(heros,util);
-    // checkMarket(util);
+    // battle(heros,util);
+    checkMarket(util);
 
     // Delete Heros
     // quitGame(heros);

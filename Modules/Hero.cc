@@ -557,3 +557,11 @@ Item* Hero::getItem(int index){
 Spell* Hero::getSpell(int index){
     return spells.at(index);
 }
+
+int Hero::getItemSize(void){
+    return items.size();
+}
+
+int Hero::getSpellSize(void){
+    return spells.size();
+}

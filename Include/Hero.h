@@ -82,6 +82,8 @@ class Hero: public Living{
         int getMagicPower(void)const;
         Item* getItem(int);
         Spell* getSpell(int);
+        int getItemSize(void);
+        int getSpellSize(void);
 
         // print functions
         void printStats() const;
