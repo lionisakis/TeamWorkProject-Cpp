@@ -55,20 +55,30 @@ bool Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPo
 
 void Hero::addToStat(string type,int increase){
     if(type==HEALTHPOWER){
+        cout<<"HealthPower has increasd by "<<increase<<". ";
         increaseHealthPower(increase);
+        cout<<"Total HealthPower: "<<getHP()<<"\n";
     }
     else if (type==MAGICPOWER){
+        cout<<"Magic Power has increasd by "<<increase<<". ";
         magicPower+=increase;
         maxMP+=increase;
+        cout<<"Total Magic Power: "<<magicPower<<"\n";
     }
     else if (type==STRENGTH){
+        cout<<"Strength has increasd by "<<increase<<". ";
         strength+=increase;
+        cout<<"Total Strength: "<<strength<<"\n";
     }
     else if (type==DEXERITY){
+        cout<<"Dexerity has increasd by "<<increase<<". ";
         dexerity+=increase;
+        cout<<"Total Dexerity: "<<dexerity<<"\n";
     }
     else if (type==AGILITY){
+        cout<<"Agility has increasd by "<<increase<<". ";
         agility+=increase;
+        cout<<"Total Agility: "<<agility<<"\n";
     }
 }
 void Hero::restoreMP(int mp){
