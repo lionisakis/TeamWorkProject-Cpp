@@ -18,9 +18,9 @@ class Block{
         Block(string name_init = "Nothing");
         ~Block();
         void move(vector <Hero*>);
-        void print(void);
-        int getSize(void);
+        void print(void)const;
+        int getSize(void)const;
         void setName(string);
-        string getName(void);
+        string getName(void)const;
         void clear(void);
 };

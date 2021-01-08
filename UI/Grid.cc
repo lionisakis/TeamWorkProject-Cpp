@@ -2,8 +2,8 @@
 
 Grid::Grid(vector<Hero*> heroes, Util util){
     srand(time(NULL));
-    for(int i = 0; i < 10; i++){
-        for(int j = 0; j < 10; j++){
+    for(int i = 0; i < K; i++){
+        for(int j = 0; j < K; j++){
             int name = rand() % 3;
             if(name == 0)
                 grid[i][j].setName(C);
@@ -13,19 +13,35 @@ Grid::Grid(vector<Hero*> heroes, Util util){
                 grid[i][j].setName(N);
         }
     }
-    grid[0][0].setName(C);
+    grid[30][20].setName(C);
     this->market = new Market(util,MOOfLevelOfHeros(heroes));
     this->heroes = heroes;
-    this->i_heroes = 0;
-    this->j_heroes = 0;
+    this->i_heroes = 30;
+    this->j_heroes = 20;
     this->probability = 40;
     this->util = util;
     this->place();
 }
 
-void Grid::print(void){
-    for(int i = 0; i < 10; i++){
-        for(int j = 0; j < 10; j++){
+void Grid::print(void) const{
+    int lim_i_up = i_heroes - 5;
+    int lim_i_down = i_heroes + 5;
+    int lim_j_up = j_heroes - 5;
+    int lim_j_down = j_heroes + 5;
+
+    if(lim_i_up < 0)
+        lim_i_up = 0;
+    if(lim_j_up < 0)
+        lim_j_up = 0;
+    if(lim_i_down >= K)
+        lim_i_down = K - 1;
+    if(lim_j_down >= K)
+        lim_j_down = K -1;
+
+    cout << lim_i_up <<" " << lim_i_down << " " << lim_j_up << " " << lim_j_down << endl;
+
+    for(int i = lim_i_up; i < lim_i_down; i++){
+        for(int j = lim_j_up; j < lim_j_down; j++){
             cout << this->grid[i][j].getName();
             if(grid[i][j].getSize())
                 cout << "/H";
@@ -53,7 +69,7 @@ void Grid::move(string dest){
         i = this->i_heroes;
         j = this->j_heroes - 1;
     }
-    if(i < 0 || i >= 10 || j < 0 || j >=10){
+    if(i < 0 || i >= K || j < 0 || j >= K){
         cout << "This action will lead you out of the grid. ERROR." << endl;
         return;
     }
@@ -90,5 +106,5 @@ void Grid::move(string dest){
 }
 
 void Grid::place(void){
-    this->grid[0][0].move(this->heroes);
+    this->grid[30][20].move(this->heroes);
 }

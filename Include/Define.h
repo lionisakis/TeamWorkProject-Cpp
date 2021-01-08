@@ -20,6 +20,8 @@
 #define DEXERITY "Dexerity"
 #define AGILITY "Agility"
 
+#define K 100
+
 #define C "C"
 #define M "M"
 #define N "N"

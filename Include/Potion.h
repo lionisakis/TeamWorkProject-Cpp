@@ -17,5 +17,5 @@ class Potion:public Item{
         bool getAvailable(void)const;
         void printInfo(void)const;
         bool use(Hero*);
-        string getUsefull(void);
+        string getUsefull(void)const;
 };

@@ -7,7 +7,7 @@ Potion::Potion(string name_init, int price_init, int level_init, string use_init
     Item::setType(POTION);
 }
 
-string Potion::getUsefull(void){;
+string Potion::getUsefull(void)const{;
     return this->usefull;
 }
 

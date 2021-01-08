@@ -16,14 +16,14 @@ void Block::move(vector <Hero*> heroes){
     this->heroes = heroes;
 }
 
-void Block::print(void){
+void Block::print(void)const{
     for(int i = 0; i < this->heroes.size(); i++){
         cout << "Hero: " << i+1 << " is:" << endl; 
         this->heroes.at(i)->print();
     }
 }
 
-int Block::getSize(void){
+int Block::getSize(void)const{
     return this->heroes.size();
 }
 
@@ -31,7 +31,7 @@ void Block::setName(string name){
     this->name = name;
 }
 
-string Block::getName(void){
+string Block::getName(void)const{
     return this->name;
 }
 

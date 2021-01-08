@@ -39,19 +39,20 @@ int main(void){
     if(heros.size()==0)
         return -1;
 
-    // checkGrid(heros, util);
+    checkGrid(heros, util);
     // checkBlock(heros);
 
-    checkMarket(heros,util);
+    // checkMarket(heros,util);
 
     // Delete Heros
+    // battle(heros, util);
     // quitGame(heros);
 }
 
 void checkGrid(vector <Hero*> heroes, Util util){
     Grid* block = new Grid(heroes, util);
     // block->move(heroes);
-    block->move(UP);
+    block->move(DOWN);
     block->print();
     // cout <<"MOVE TEST " <<  endl;
     // block->print();
