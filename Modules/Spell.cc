@@ -64,5 +64,5 @@ void Spell::printCombat(void)const{
 }
 
 void Spell::print(void)const{
-    cout << "Name: " << this->name << ", Price: " <<", Level: " << this->level <<", Damage Range: ("<<damage_down<<","<<damage_up<<"), Type:"<<getType()<< endl;
+    cout << "Name: " << this->name << ", Price: " <<this->getPrice()<<", Level: " << this->level <<", Damage Range: ("<<damage_down<<","<<damage_up<<"), Type:"<<getType()<< endl;
 }

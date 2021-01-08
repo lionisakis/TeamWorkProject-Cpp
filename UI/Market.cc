@@ -1,32 +1,39 @@
 #include "Market.h"
 #include "UI.h"
 
-Market::Market(Util util){
+Market::Market(Util util,int levelHeros){
     cout << "A new market has been created" << endl;
     srand(time(NULL));
-    int j = rand() % 5;
+    int j = rand() % 3+1;
     for(int i = 0; i < j; i++){
-        int price = rand() % 15;
-        int level = (rand() % 10) + 1;
-        int defence = rand() % 80;
-        Item* armor = util.spawnArmor(price, level, defence);
+        int levelItem = (rand() % (levelHeros+3)) + levelHeros-1;
+        if(levelItem<=0)
+            levelItem=1;
+        int price = ((rand() % levelItem)+1)*((rand()%10)+1);
+        int defence = (rand() % 80+1)*levelItem;
+        Item* armor = util.spawnArmor(price, levelItem, defence);
         this->items.push_back(armor);
     }
 
-    j = rand() % 5;
+    j = rand() % 3+1;
     for(int i = 0; i < j; i++){
-        int price = rand() % 15;
-        int level = (rand() % 10) + 1;
-        int damage = rand() % 80;
+        int levelItem = (rand() % (levelHeros+3)) + levelHeros-1;
+        if(levelItem<=0)
+            levelItem=1;
+        int price = ((rand() % levelItem)+1)*((rand()%10)+1);
+        int damage = (rand() % 80+1)*levelItem;
         int hands = (rand() % 2) + 1;
-        Item* weapon = util.spawnWeapon(price, level, damage, hands);
+        Item* weapon = util.spawnWeapon(price, levelItem, damage, hands);
         this->items.push_back(weapon);
     }
 
-    j = rand() % 5;
+    j = rand() % 4+1;
     for(int i = 0; i < j; i++){
-        int price = rand() % 15;
-        int level = (rand() % 10) + 1;
+        int levelItem = (rand() % (levelHeros+3)) + levelHeros-1;
+        if(levelItem<=0)
+            levelItem=1;
+        int price = ((rand() % levelItem)+1)*((rand()%10)+1);
+        int amount = (rand() % 80+1)*levelItem;
         int use = rand() % 5;
         string useString="none";
         if(use==0)
@@ -40,44 +47,47 @@ Market::Market(Util util){
         else if(use==4)
             useString=AGILITY;
 
-        int amount = rand() % 60;
-        Item* potion = util.spawnPotion(price, level, useString, amount, true);
+        Item* potion = util.spawnPotion(price, levelItem, useString, amount, true);
         this->items.push_back(potion);
     }
 
-    j = rand() % 5;
-    for(int i = 0; i < j; i++){
-        int price = rand() % 15;
-        int level = (rand() % 10) + 1;
-        int decrease = rand() % 80;
-        int damage_up = rand() % 100;
-        int damage_down = 100 + rand() % 500;
-        int mana = 1+ rand() % 10;
-        Spell* ice = util.spawnIceSpell(price, level, decrease, damage_up, damage_down, mana);
+    j = rand() % 2+1;
+    for(int i = 0; i < j; i++){        
+        int levelItem = (rand() % (levelHeros+3)) + levelHeros-1;
+        if(levelItem<=0)
+            levelItem=1;
+        int price = ((rand() % levelItem)+1)*((rand()%10)+1);
+        int decrease = (rand() % 100+1)*levelItem;
+        int damage_down = rand() % (rand() % (100*levelItem)+1)*levelItem;
+        int damage_up = (rand() % (damage_down*2)+damage_down)*levelItem;
+        int mana = 1+ rand() % (levelHeros*20)+levelHeros*5;
+        Spell* ice = util.spawnIceSpell(price, levelItem, decrease, damage_down, damage_up, mana);
         this->spells.push_back(ice);
     }
 
-    j = rand() % 5;
+    j = rand() % 2+1;
     for(int i = 0; i < j; i++){
-        int price = rand() % 15;
-        int level = (rand() % 10) + 1;
-        int decrease = rand() % 80;
-        int damage_up = rand() % 100;
-        int damage_down = 100 + rand() % 500;
-        int mana = 1+ rand() % 10;
-        Spell* fire = util.spawnFireSpell(price, level, decrease, damage_up, damage_down, mana);
+        int levelItem = (rand() % (levelHeros+3)) + levelHeros-1;
+        if(levelItem<=0)
+            levelItem=1;
+        int price = ((rand() % levelItem)+1)*((rand()%10)+1);
+        int decrease = (rand() % 100+1)*levelItem;
+        int damage_down = rand() % (rand() % (100*levelItem)+1)*levelItem;
+        int damage_up = (rand() % (damage_down*2)+damage_down)*levelItem;
+        int mana = 1+ rand() % (levelHeros*20)+levelHeros*5;
+        Spell* fire = util.spawnFireSpell(price, levelItem, decrease, damage_up, damage_down, mana);
         this->spells.push_back(fire);
     }
 
-    j = rand() % 5;
+    j = rand() % 2+1;
     for(int i = 0; i < j; i++){
-        int price = rand() % 15;
-        int level = (rand() % 10) + 1;
-        int decrease = rand() % 80;
-        int damage_up = rand() % 100;
-        int damage_down = 100 + rand() % 500;
-        int mana = 1+ rand() % 10;
-        Spell* light = util.spawnLightingSpell(price, level, decrease, damage_up, damage_down, mana);
+        int levelItem = (rand() % (levelHeros+3)) + 1;
+        int price = ((rand() % levelItem)+1)*((rand()%10)+1);
+        int decrease = (rand() % 100+1)*levelItem;
+        int damage_down = rand() % (rand() % (100*levelItem)+1)*levelItem;
+        int damage_up = (rand() % (damage_down*2)+damage_down)*levelItem;
+        int mana = 1+ rand() % (levelHeros*20)+levelHeros*5;
+        Spell* light = util.spawnLightingSpell(price, levelItem, decrease, damage_up, damage_down, mana);
         this->spells.push_back(light);
     }
 }

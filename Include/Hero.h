@@ -40,6 +40,7 @@ class Hero: public Living{
         void printSpellsCombat() const;
         void printItemsForInventory() const;
         int findSpell(Spell* spell)const;
+        void throwAway(int indexItem);
     public:
         // stats
         Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero);
@@ -70,7 +71,6 @@ class Hero: public Living{
         bool sell(Spell* spell);
         void addMoney(int addMoney);
         int getMoney()const;
-        void throwAway(int indexItem);
         void give(Item* item);
         bool giveItem(Hero* otherHero,int index);
         

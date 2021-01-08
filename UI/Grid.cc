@@ -14,7 +14,7 @@ Grid::Grid(vector<Hero*> heroes, Util util){
         }
     }
     grid[0][0].setName(C);
-    this->market = new Market(util);
+    this->market = new Market(util,MOOfLevelOfHeros(heroes));
     this->heroes = heroes;
     this->i_heroes = 0;
     this->j_heroes = 0;

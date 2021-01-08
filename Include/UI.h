@@ -17,3 +17,4 @@ bool battle(vector<Hero*> heros,Util util);
 void quitGame(vector<Hero*> heros);
 vector<Hero*> spawnHeros();
 int readNumber(string output,int down,int up);
+int MOOfLevelOfHeros(vector<Hero*> heros);

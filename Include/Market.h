@@ -25,7 +25,7 @@ class Market{
         vector<Spell*> spells;
 
     public:
-        Market(Util);
+        Market(Util,int);
         ~Market();
 
         void printItems(void)const;

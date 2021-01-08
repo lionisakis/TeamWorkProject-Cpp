@@ -149,3 +149,10 @@ void quitGame(vector<Hero*> heros){
     }
     cout<<"The Game is closing\n";
 }
+
+int MOOfLevelOfHeros(vector<Hero*> heros){
+    int level=0;
+    for (int i=0;i<heros.size();i++)
+        level+=heros.at(i)->getLevel();
+    return level/heros.size();
+}

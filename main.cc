@@ -64,7 +64,7 @@ void checkBlock(vector <Hero*> heroes){
 }
 
 void checkMarket(vector<Hero*> heros,Util util){
-    Market* market = new Market(util);
+    Market* market = new Market(util,MOOfLevelOfHeros(heros));
     market->useMarket(heros.at(0));
     // market->buy(hero);
     // market->buy(hero);

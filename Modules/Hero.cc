@@ -432,7 +432,9 @@ bool Hero::equipArmor(Item* item,bool flag){
 
 bool Hero::usePotion(Item* item){
     Potion* potion=(Potion*)item;
-    return potion->use(this);
+    bool flag=potion->use(this);
+    throwAway(findItem(item));
+    return flag;
 }
 
 void Hero::unequipWeapon(){
