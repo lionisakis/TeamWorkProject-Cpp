@@ -39,16 +39,19 @@ int main(void){
     if(heros.size()==0)
         return -1;
 
-    checkGrid(heros, util);
+    // checkGrid(heros, util);
     // checkBlock(heros);
     
     // Check for Debug
 
-    // battle(heros,util);
+    battle(heros,util);
+    battle(heros,util);
+    battle(heros,util);
+
     // checkMarket(util);
 
     // Delete Heros
-    // quitGame(heros);
+    quitGame(heros);
 }
 
 void checkGrid(vector <Hero*> heroes, Util util){

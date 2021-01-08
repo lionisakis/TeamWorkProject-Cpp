@@ -368,6 +368,7 @@ void herosWin(vector<Hero*> heros,vector<Monster*> monsters){
     }
     int exp=levelMonsters;
     for(int i=0;i<heros.size();i++){
+        cout<<"Hero "<<heros.at(i)->getName()<<" get "<<exp<<" EXP\n"; 
         heros.at(i)->addEXP((levelMonsters/heros.at(i)->getLevel())*(100/max));       
     }
 }
