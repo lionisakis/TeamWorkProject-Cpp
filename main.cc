@@ -36,10 +36,12 @@ int main(void){
     Util util;
     // Spawn Heros
     vector<Hero*>heros = spawnHeros();
-    checkGrid(heros, util);
-    // checkBlock(heros);
     // if(heros.size()==0)
     //     return -1;
+
+    checkGrid(heros, util);
+    // checkBlock(heros);
+    
     // Check for Debug
 
     // battle(heros,util);
