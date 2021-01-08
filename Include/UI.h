@@ -16,6 +16,4 @@ using namespace std;
 bool battle(vector<Hero*> heros,Util util);
 void quitGame(vector<Hero*> heros);
 vector<Hero*> spawnHeros();
-// int readNumber(string output,int down,int up,void (*function)(vector<Monster*>monster));
-// int readNumber(string output,int down,int up,void (*function)(vector<Hero*>monster));
 int readNumber(string output,int down,int up);

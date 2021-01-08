@@ -1,5 +1,6 @@
 #include "Hero.h"
 #include "Items.h"
+#include "UI.h"
 #include <limits>
 #ifdef _WIN32
     #include <Windows.h>
@@ -27,6 +28,8 @@ Living(nameHero,1,100)
     cout<<"A hero has been created with Name: "<<nameHero<<"\n";
 }
 Hero::~Hero(){
+    // delete all the items that the hero ha on him
+    // so we do not have a mem loss
     while(items.size()){
         Item* temp=items.at(0);
         items.erase(items.begin());
@@ -43,6 +46,7 @@ bool Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPo
     if (experience<100){
         return false;
     }
+    // level up all the stats acording to the level up
     Living::levelUp();
     cout<<"Hero "<<getName()<<" has leved up! Level: "<<getLevel()<<"\n";
     experience=experience-100;
@@ -54,31 +58,32 @@ bool Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPo
     return true;
 }
 
-void Hero::addToStat(string type,int increase){
+void Hero::addToStat(string type,int amount){
+    // increase the stats acording to the type and the amount
     if(type==HEALTHPOWER){
-        cout<<"HealthPower has increasd by "<<increase<<". ";
-        increaseHealthPower(increase);
+        cout<<"HealthPower has increasd by "<<amount<<". ";
+        increaseHealthPower(amount);
         cout<<"Total HealthPower: "<<getHP()<<"\n";
     }
     else if (type==MAGICPOWER){
-        cout<<"Magic Power has increasd by "<<increase<<". ";
-        magicPower+=increase;
-        maxMP+=increase;
+        cout<<"Magic Power has increasd by "<<amount<<". ";
+        magicPower+=amount;
+        maxMP+=amount;
         cout<<"Total Magic Power: "<<magicPower<<"\n";
     }
     else if (type==STRENGTH){
-        cout<<"Strength has increasd by "<<increase<<". ";
-        strength+=increase;
+        cout<<"Strength has increasd by "<<amount<<". ";
+        strength+=amount;
         cout<<"Total Strength: "<<strength<<"\n";
     }
     else if (type==DEXERITY){
-        cout<<"Dexerity has increasd by "<<increase<<". ";
-        dexerity+=increase;
+        cout<<"Dexerity has increasd by "<<amount<<". ";
+        dexerity+=amount;
         cout<<"Total Dexerity: "<<dexerity<<"\n";
     }
     else if (type==AGILITY){
-        cout<<"Agility has increasd by "<<increase<<". ";
-        agility+=increase;
+        cout<<"Agility has increasd by "<<amount<<". ";
+        agility+=amount;
         cout<<"Total Agility: "<<agility<<"\n";
     }
 }
@@ -101,30 +106,13 @@ int Hero::getMP(void)const{
 bool Hero::castSpell(Monster* monster){
     cout<<"\n";
     while(true){
-        int which;
-        bool flag;
-        do{
-            cout<<"Magic power: "<<magicPower<<"\n";
-            cout<<"Spells give enemy debufs accordingly to their type and the rounds is affected by their level. Debufs are:\n";
-            cout<<"Fire Spell: Defence Dencrease,\t Ice Spell: Damage Dencrease,\t Lighting Spell Doge Propability Dencrease\n";
-            cout<<"Choose a Spell to cast\n";
-            cout<<"0) cansel action\n";
-            printSpellsCombat();
-            cin>>which;
-            if (cin.bad()) {
-                cout<<"Problem With cin\n";
-                return false;
-            } 
-            if(cin.fail()){
-                cout<< "Data entered is not of int type\n"; 
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                flag=true;
-            }
-            else{
-                flag=false;
-            }
-        }while(flag);
+        cout<<"Magic power: "<<magicPower<<"\n";
+        cout<<"Spells give enemy debufs accordingly to their type and the rounds is affected by their level. Debufs are:\n";
+        cout<<"Fire Spell: Defence Dencrease,\t Ice Spell: Damage Dencrease,\t Lighting Spell Doge Propability Dencrease\n";
+        cout<<"Choose a Spell to cast\n";
+        cout<<"0) cansel action\n";
+        printSpellsCombat();
+        int which=readNumber("",0,spells.size());
         if(which==0)
             return false;
         if(which>spells.size()){
