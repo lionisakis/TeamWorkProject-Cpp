@@ -53,6 +53,10 @@ void Grid::move(string dest){
         i = this->i_heroes;
         j = this->j_heroes - 1;
     }
+    if(i < 0 || i >= 10 || j < 0 || j >=10){
+        cout << "This action will lead you out of the grid. ERROR." << endl;
+        return;
+    }
     if(this->grid[i][j].getName() == N){
         cout << "This block is non accessible" << endl;
     }

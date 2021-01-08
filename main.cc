@@ -44,18 +44,18 @@ int main(void){
     
     // Check for Debug
 
-    battle(heros,util);
+    // battle(heros,util);
 
     // checkMarket(util);
 
     // Delete Heros
-    quitGame(heros);
+    // quitGame(heros);
 }
 
 void checkGrid(vector <Hero*> heroes, Util util){
     Grid* block = new Grid(heroes, util);
     // block->move(heroes);
-    block->move(DOWN);
+    block->move(UP);
     block->print();
     // cout <<"MOVE TEST " <<  endl;
     // block->print();
