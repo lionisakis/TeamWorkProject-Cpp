@@ -21,3 +21,4 @@ vector<Hero*> spawnHeros();
 int readNumber(string output,int down,int up);
 int MOOfLevelOfHeros(vector<Hero*> heros);
 void PlayGame(Util util, vector<Hero*> hero);
+void recoverMap(vector<Hero*>heros);

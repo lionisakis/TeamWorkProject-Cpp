@@ -204,10 +204,10 @@ void Market::useMarket(Hero* hero){
     else if(index == 6)
         hero->useInventory();
     else{
-        cout << "Wrong input please try again" << endl; 
+        cout << "Wrong input please try again." << endl; 
         this->useMarket(hero);
     }
-    index = readNumber("Do you want something else?\n1) For Yes.\n 2) For No.", 1, 2);
+    index = readNumber("Do you want something else?\n1)Yes.\n 2)No.", 1, 2);
     if(index == 1)
         this->useMarket(hero); 
     return;
