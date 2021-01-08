@@ -29,9 +29,9 @@ class Util{
         string randomName(string indexType) ;
         
         // Monster* spawnMonster(string indexType,int levelHero);
-        Monster* spawnDragon(int levelHero);
-        Monster* spawnExoskeleton(int levelHero);
-        Monster* spawnSpirit(int levelHero);
+        Monster* spawnDragon(int levelHero,int previousHealth=0);
+        Monster* spawnExoskeleton(int levelHero,int previousHealth=0);
+        Monster* spawnSpirit(int levelHero,int previousHealth=0);
 
         // Item* spawnItem(string indexType,int price , int level , int  damage_defence_use,int hands_amount=0,bool available=false);
         Item* spawnArmor(int price , int level , int  defence);

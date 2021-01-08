@@ -29,7 +29,7 @@ Living(nameHero,1,100)
 }
 Hero::~Hero(){
     // delete all the items that the hero ha on him
-    // so we do not have a mem loss
+    // so we do not have a memory loss
     while(items.size()){
         Item* temp=items.at(0);
         items.erase(items.begin());
@@ -106,7 +106,7 @@ int Hero::getMP(void)const{
 bool Hero::castSpell(Monster* monster){
     cout<<"\n";
     while(true){
-        cout<<"Magic power: "<<magicPower<<"\n";
+        cout<<"Magic Power(MP): "<<magicPower<<"\n";
         cout<<"Spells give enemy debufs accordingly to their type and the rounds is affected by their level. Debufs are:\n";
         cout<<"Fire Spell: Defence Dencrease,\t Ice Spell: Damage Dencrease,\t Lighting Spell Doge Propability Dencrease\n";
         cout<<"Choose a Spell to cast\n";
@@ -164,8 +164,11 @@ bool Hero::takeDamage(int damage){
     int armorDF=0;
     if (armor!=NULL)
         armorDF=armor->getDefence();
-    cout<<"Taking damge: "<<damage-armorDF<<"\n";
-    Living::takeDamage(damage-armorDF);
+    int totalDamage=damage-armorDF;
+    if(totalDamage<0)
+        totalDamage=0;
+    cout<<"Taking damge: "<<totalDamage<<"\n";
+    Living::takeDamage(totalDamage);
     cout<<getName()<<" has HP: "<<getHP()<<"\n";
     if(getHP()==0){
         cout<<getName()<<" was killed in combat\n";
@@ -473,7 +476,7 @@ void Hero::printSpellsCombat() const{
                 sleep(40);
             }
             else{
-                usleep(1000000);
+                usleep(500000);
             }
         }
     }

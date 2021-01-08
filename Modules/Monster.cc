@@ -8,13 +8,17 @@
 #include "LightingSpell.h"
 #include "Spell.h"
 
-int countHP(int level){
+int countHP(int level,int previous){
     srand(time(NULL));
-    return rand()%(10*level+20)+25;
+    int current;
+    do{
+        current=rand()%(10*level+20)+25;
+    }while(previous==current);
+    return current;
 }
 
-Monster::Monster(string name,string typeMonster,int levelHero,int minDamageMonster,int maxDamageMonster, int armorMonster,int dogeMonster):
-Living(name,levelHero,countHP(levelHero)),type(typeMonster),maxDamage(maxDamageMonster+levelHero*5),minDamage(minDamageMonster+levelHero*5),
+Monster::Monster(string name,string typeMonster,int levelHero,int minDamageMonster,int maxDamageMonster, int armorMonster,int dogeMonster,int previousMonsterHealth):
+Living(name,levelHero,countHP(levelHero,previousMonsterHealth)),type(typeMonster),maxDamage(maxDamageMonster+levelHero*5),minDamage(minDamageMonster+levelHero*5),
 armor(armorMonster+levelHero*5),doge(dogeMonster+levelHero*5)
 {
     for(int i=0;i<3;i++)

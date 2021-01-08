@@ -26,13 +26,13 @@ using namespace std;
 
 vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters,Util util);
 bool checkAlive(vector<Hero*> heros,vector<Monster*> monsters);
-bool moveHero(vector<Hero*> heros,vector<Monster*> monsters);
+int moveHero(vector<Hero*> heros,vector<Monster*> monsters);
 bool moveMonster(vector<Hero*> heros,vector<Monster*> monsters);  
 void printTheBegining(vector<Hero*>,vector<Monster*>);
 
 bool checkAliveHeros(vector<Hero*>heros);
 bool checkAliveMonsters(vector<Monster*>monsters);
-void restoreHP(vector<Hero*> heros,vector<Monster*> monsters);
+void restoreHP(vector<Hero*> heros,vector<Monster*> monsters,int rounds);
 void restoreMP(vector<Hero*> heros);
 void herosLose(vector<Hero*> heros,vector<Monster*> monsters);
 void herosWin(vector<Hero*> heros,vector<Monster*> monsters);
@@ -43,21 +43,25 @@ bool battle(vector<Hero*> heros,Util util){
     srand(time(NULL));
     vector<Monster*> monsters;
     monsters=createMonster(heros,monsters,util);
-    printTheBegining(heros,monsters);
-    cout<<"\n";
     bool flag=true;
+    int i=1;
     while(flag){
+        printTheBegining(heros,monsters);
         if(checkAlive(heros,monsters))
             break;
-        restoreHP(heros,monsters);
-        if(moveHero(heros,monsters)){
-            flag=false;
+        restoreHP(heros,monsters,i);
+        restoreMP(heros);
+        int results=moveHero(heros,monsters);
+        if(results){
+            if(results==2)
+                flag=false;
             break;
         }
         if(checkAlive(heros,monsters))
             break;
         if(moveMonster(heros,monsters))
             break;
+        i++;
     }
     if(flag){
         if(checkAliveHeros(heros))
@@ -89,6 +93,7 @@ vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters,Uti
         size=rand()%(heros.size()+2)+1;
     int previous=-1;
     int previousLevel=heroLevel;
+    int previousHealth=0;
     for (int i=0;i<size;i++){
         int whichMonster;
         do{
@@ -103,12 +108,12 @@ vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters,Uti
             levelMonster=1;
         previousLevel=levelMonster;
         if(whichMonster==0)
-            monsters.push_back( util.spawnDragon(levelMonster));
+            monsters.push_back( util.spawnDragon(levelMonster,previousHealth));
         else if(whichMonster==1)
-            monsters.push_back(util.spawnSpirit(levelMonster));
+            monsters.push_back(util.spawnSpirit(levelMonster,previousHealth));
         else
-            monsters.push_back(util.spawnExoskeleton(levelMonster));
-
+            monsters.push_back(util.spawnExoskeleton(levelMonster,previousHealth));
+        previousHealth=monsters.at(i)->getHP();
     }
     return monsters;
 }
@@ -144,9 +149,10 @@ void help(Hero* hero){
     cout<<"3) For the hero to ATTACK\n";
     cout<<"4) For the hero to CAST SPELL\n";
     cout<<"5) For the hero to USE a item\n";
-    cout<<"6) To QUIT the Game\n";
+    cout<<"6) For seeing the COMANDS\n";
+    cout<<"0) To QUIT the Game\n";
 }
-void printMonsters(vector<Monster*> monsters){
+void printMonsters(vector<Monster*> monsters,bool flag=true){
     for (int i=0;i<monsters.size();i++){
         cout<<"\n";
         cout<<i+1<<")";
@@ -155,40 +161,47 @@ void printMonsters(vector<Monster*> monsters){
             sleep(40);
         }
         else{
-            usleep(1000000);
+            usleep(500000);
         }
     }
-    cout<<"Write the number of the monster.\n";    
+    if(flag)
+        cout<<"Write the number of the monster.\n";    
 } 
-bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
+int moveHero(vector<Hero*> heros,vector<Monster*> monsters){
     for(int i=0;i<heros.size();i++){
         
         if(heros.at(i)->getHP()==0)
             continue;
         bool flag=false;
         if(!checkAliveMonsters(monsters))
-            return true;
+            return 3;
 
         if(SLEEP){
             sleep(40);
         }
         else{
-            usleep(4000000);
+            usleep(500000);
         }
+        bool flag2=false;
+        cout<<"Write your action\n";
 
         help(heros.at(i));
         do {
-            cout<<"0) For seeing the COMANDS\n";
-            cout<<"Write your action\n";
+            if(flag2){
+                cout<<"Write your action\n";
+                cout<<"6) For seeing the COMANDS\n";
+            }
+            else
+                flag2=true;
             int action=readNumber("",0,6);
             if (action==-1)
-                return true;
+                return 1;
             if(action==1){
                 heros.at(i)->printCharacter();
                 heros.at(i)->printStats();
             }
             else if(action==2){
-                printMonsters(monsters);
+                printMonsters(monsters,false);
             }
             else if(action==3){
                 int which;
@@ -215,6 +228,7 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                 int which;
                 cout<<"Choose a Monster\n";
                 cout<<"0) For changing move\n";
+                printMonsters(monsters);
                 which=readNumber("",0,6);
                 if(which==0)
                     continue;
@@ -239,10 +253,10 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                     flag=false;
                 }
             }
-            else if (action==6){
-                return true;
-            }
             else if (action==0){
+                return 2;
+            }
+            else if (action==6){
                 help(heros.at(i));
             }
             
@@ -250,7 +264,7 @@ bool moveHero(vector<Hero*> heros,vector<Monster*> monsters){
         } while(!flag);
         cout<<"\n";
     }
-    return false;
+    return 0;
 }
 
 bool moveMonster(vector<Hero*> heros,vector<Monster*> monsters){
@@ -261,7 +275,7 @@ bool moveMonster(vector<Hero*> heros,vector<Monster*> monsters){
             sleep(40);
         }
         else{
-            usleep(4000000);
+            usleep(500000);
         }
         cout<<monsters.at(i)->getName()<<" is attacking\n";
         if(!checkAliveHeros(heros))
@@ -309,29 +323,40 @@ void printTheBegining(vector<Hero*> heros,vector<Monster*> monsters){
         cout<<"\n";
     }
     cout<<"\n";
-    cout<<"------------------------------\n";
+    cout<<"------------------------------\n\n";
 }
 
-void restoreHP(vector<Hero*> heros,vector<Monster*> monsters){
+void restoreHP(vector<Hero*> heros,vector<Monster*> monsters,int rounds){
     for (int i=0;i<heros.size();i++){
         if(heros.at(i)->getHP()!=0){
             int howMuch= heros.at(i)->getHPUsed();
-            if(howMuch==0)
+            if(howMuch==0){
+                heros.at(i)->restoreHP(0);
                 continue;
-            if (howMuch<=25)
-                howMuch=rand()%(((int)howMuch/4));
-            else
+            }
+            if (howMuch<25)
                 howMuch=rand()%((int)howMuch/2);
-            heros.at(i)->restoreHP(howMuch);
+            else if (howMuch<50)
+                howMuch=rand()%((int)howMuch/4);
+            else
+                howMuch=rand()%((int)howMuch/8);
+            heros.at(i)->restoreHP(howMuch/rounds);
         }
     }
     for (int i=0;i<monsters.size();i++){
         if(monsters.at(i)->getHP()!=0){
             int howMuch= monsters.at(i)->getHPUsed();
-            if(howMuch==0)
+            if(howMuch==0){
+                monsters.at(i)->restoreHP(0);
                 continue;
-            howMuch=rand()%((int)howMuch/4);
-            monsters.at(i)->restoreHP(howMuch);
+            }
+            if (howMuch<25)
+                howMuch=rand()%(howMuch/2);
+            else if (howMuch<50)
+                howMuch=rand()%(howMuch/4);
+            else
+                howMuch=rand()%(howMuch/8);
+            monsters.at(i)->restoreHP(howMuch/rounds);
         }
     }
 }
@@ -341,7 +366,7 @@ void restoreMP(vector<Hero*> heros){
             int howMuch= heros.at(i)->getMPused();
             if(howMuch==0)
                 continue;
-            howMuch=rand()%(howMuch/4);
+            howMuch=rand()%(howMuch/8);
             heros.at(i)->restoreMP(howMuch);
         }
     }
@@ -368,7 +393,8 @@ void herosWin(vector<Hero*> heros,vector<Monster*> monsters){
     }
     int exp=levelMonsters;
     for(int i=0;i<heros.size();i++){
-        cout<<"Hero "<<heros.at(i)->getName()<<" get "<<exp<<" EXP\n"; 
-        heros.at(i)->addEXP((levelMonsters/heros.at(i)->getLevel())*(100/max));       
+        int totalExp=(levelMonsters/heros.at(i)->getLevel())*(100/max);
+        cout<<"Hero "<<heros.at(i)->getName()<<" get "<<totalExp<<" EXP\n"; 
+        heros.at(i)->addEXP(totalExp);       
     }
 }

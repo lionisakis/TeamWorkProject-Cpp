@@ -126,14 +126,14 @@ string Util::randomName(string indexType) {
 //     cout<<"PROBLEM2\n";
 //     return NULL;
 // }
-Monster* Util::spawnDragon(int levelHero){
-    return new Dragon(randomName(DRAGON),levelHero);
+Monster* Util::spawnDragon(int levelHero,int previousHealth){
+    return new Dragon(randomName(DRAGON),levelHero,previousHealth);
 }
-Monster* Util::spawnExoskeleton(int levelHero){
-    return new Exoskeleton(randomName(EXOSKELETON),levelHero);
+Monster* Util::spawnExoskeleton(int levelHero,int previousHealth){
+    return new Exoskeleton(randomName(EXOSKELETON),levelHero,previousHealth);
 }
-Monster* Util::spawnSpirit(int levelHero){
-    return new Spirit(randomName(SPIRIT),levelHero);
+Monster* Util::spawnSpirit(int levelHero,int previousHealth){
+    return new Spirit(randomName(SPIRIT),levelHero,previousHealth);
 }
 
 // Item* Util::spawnItem(string indexType,int price , int level , int  damage_defence_use,int hands_amount,bool available){

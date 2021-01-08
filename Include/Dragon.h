@@ -7,5 +7,5 @@ using namespace std;
 
 class Dragon:public Monster{
     public:
-        Dragon(string name,int levelHero);
+        Dragon(string name,int levelHero,int previousHealth=0);
 };

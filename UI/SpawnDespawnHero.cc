@@ -14,7 +14,7 @@ vector<Hero*> basicCombo(int howMany);
 vector<Hero*> yourChoise(int howMany);
 vector<Hero*> spawnHeros(){
 
-    if(false){        
+    if(true){        
         int howMany=readNumber("Type a number of how many heros do you want form 1-3\n",1,3);
         if(howMany==-1){
             vector<Hero*>heros;

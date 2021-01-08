@@ -45,8 +45,6 @@ int main(void){
     // Check for Debug
 
     battle(heros,util);
-    battle(heros,util);
-    battle(heros,util);
 
     // checkMarket(util);
 

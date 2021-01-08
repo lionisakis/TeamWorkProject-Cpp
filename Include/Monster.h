@@ -26,7 +26,7 @@ class Monster: public Living{
         int rounds[3];
     public:
         // stats
-        Monster(string name,string type,int levelHero,int maxDamageMonster,int minDamageMonster, int armorMonster,int dogeMonster);
+        Monster(string name,string type,int levelHero,int maxDamageMonster,int minDamageMonster, int armorMonster,int dogeMonster,int previousMonsterHealth=0);
 
         void attack(Hero* hero);
         bool takeDamage(int damage);

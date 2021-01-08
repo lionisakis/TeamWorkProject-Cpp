@@ -20,6 +20,7 @@ void Living::takeDamage(int damage){
     if (healthPower<0)
         healthPower=0;
     used+=damage;
+    cout<<used<<"\n\n";
 }
 
 void Living::levelUp(){
@@ -42,7 +43,7 @@ int Living::getHP() const{
 void Living::restoreHP(int hp){
     if(healthPower+hp<=maxHP){
         healthPower+=hp;
-        cout<<name<<" is resotring Health Power: "<<hp<<" so the total Health Power is:"<<healthPower<<"\n";
+        cout<<name<<" is restoring Health Power: "<<hp<<" so the total Health Power(HP) is:"<<healthPower<<" previous HP:"<<healthPower-hp<<"\n";
     }
 }
 int Living::getHPUsed()const{
