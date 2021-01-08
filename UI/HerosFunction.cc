@@ -66,7 +66,7 @@ vector<Hero*> yourChoise(int howMany){
             vector<Hero*>heros;
             return heros;    
         }
-        int name=readNumber("What name the hero should have?\n1)I will give him a name\n2)His Type\n\n",1,3);
+        int name=readNumber("What name the hero should have?\n1)I will give him a name\n2)His Type\n",1,3);
         if(name==-1){
             vector<Hero*>heros;
             return heros;    
@@ -78,9 +78,9 @@ vector<Hero*> yourChoise(int howMany){
                 cout<<"Give Hero Name (one word)\n";
                 string name;
                 cin>> name;
-                heroName.append(" ");
+                heroName.append("");
                 heroName.append(name);
-                cout<<"Do you want to add word to the hero name?\nNo:1 Yes:2\nHero Name:"<<heroName<<"\n";
+                cout<<"Do you want to add word to the hero name?\n1)No.\n2)Yes.\nHero Name:"<<heroName<<"\n";
                 int answer=readNumber("",1,2);
                 if(answer==-1){
                     vector<Hero*>heros;

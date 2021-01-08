@@ -129,9 +129,7 @@ void Market::printMarket(void)const{
 
 void Market::buy(Hero* hero){
     this->printMarket();
-    int index;
-    cout << "Choose item or spell by entering index or press 0 to quit" << endl;
-    index = readNumber("", 0, this->items.size() + this->spells.size());
+    int index = readNumber("Choose item or spell by entering index or press 0 to quit", 0, this->items.size() + this->spells.size());
     if(index == 0)
         return;
     index--;
@@ -159,14 +157,12 @@ void Market::sell(Hero* hero){
     hero->printInventory();
     int index;
     int in;
-    cout << "Type 1 for Items and 2 for spells or press 0 to quit" << endl;
-    index = readNumber("", 0, 2);
+    index = readNumber("0) To quit\n1) For Items\n2) For spells\n", 0, 2);
     if(index == 0)
         return;
     if(index == 1){
         hero->printItems();
-        cout << "Choose item by nymber, press 0 to exit" << endl;
-        in = readNumber("", 1, hero->getItemSize());
+        in = readNumber("Choose item by nymber, press 0 to exit", 1, hero->getItemSize());
         if(in == 0){
             return;
         }
@@ -177,8 +173,7 @@ void Market::sell(Hero* hero){
     }
     if(index == 2){
         hero->printSpells();
-        cout << "Choose spell by nymber, press 0 to exit" << endl;
-        in = readNumber("", 1, hero->getSpellSize());
+        in = readNumber("Choose spell by nymber, press 0 to exit", 1, hero->getSpellSize());
         if(in == 0){
             return;
         }
@@ -190,16 +185,10 @@ void Market::sell(Hero* hero){
 }
 
 void Market::useMarket(Hero* hero){
-    cout << "Welcome to the market press:" << endl;
-    cout << "0) To quit the store." << endl;
-    cout << "1) To see the available products." << endl;
-    cout << "2) To buy something." << endl;
-    cout << "3) To sell something" << endl;
-    cout << "4) To see wallet." << endl;
-    cout << "5) to see inventory." << endl;
-    cout << "6) to use an Item." << endl;
-    int index;
-    index = readNumber("", 0, 6);
+
+    string output="Welcome to the market press:\n0) To quit the store.\n1) To see the available products.";
+    output.append("2) To buy something.\n3) To sell something\n4) To see wallet.\n5) to see inventory.\n6) to use an Item.\n"); 
+    int index = readNumber(output, 0, 6);
     if(index == 0)
         return;
     else if(index == 1)
@@ -218,8 +207,7 @@ void Market::useMarket(Hero* hero){
         cout << "Wrong input please try again" << endl; 
         this->useMarket(hero);
     }
-    cout << "Do you want something else? Press 1 for yes and 2 for no." << endl;
-    index = readNumber("", 1, 2);
+    index = readNumber("Do you want something else?\n1) For Yes.\n 2) For No.", 1, 2);
     if(index == 1)
         this->useMarket(hero); 
     return;

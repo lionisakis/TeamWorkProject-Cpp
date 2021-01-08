@@ -85,10 +85,7 @@ vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters,Uti
         heroLevel+=heros.at(i)->getLevel();
     heroLevel/=heros.size();
     int size;
-    if (heros.size()<3)
-        size=rand()%(heros.size()+2)+1;
-    else
-        size=rand()%(heros.size()+2)+1;
+    size=rand()%(heros.size()+1)+1;
     int previous=-1;
     int previousLevel=heroLevel;
     int previousHealth=0;
@@ -142,13 +139,13 @@ void help(Hero* hero){
     cout<< "Magic Power: "<<hero->getMagicPower()<<"\t";
     cout<< "Basic Damage: "<<hero->getDamage()<<"\n";
     cout<<"Choose one of the following move:\n";
-    cout<<"1) For the STATS of the hero\n";
-    cout<<"2) For the INFO of the monsters\n";
-    cout<<"3) For the hero to ATTACK\n";
-    cout<<"4) For the hero to CAST SPELL\n";
-    cout<<"5) For the hero to USE a item\n";
-    cout<<"6) For seeing the COMANDS\n";
-    cout<<"0) To QUIT the Game\n";
+    cout<<"1) To see the Stats of the current hero.\n";
+    cout<<"2) To see the Info of the monsters.\n";
+    cout<<"3) To Attack.\n";
+    cout<<"4) To Cast Spell.\n";
+    cout<<"5) To Use an Item.\n";
+    cout<<"6) To See the Commands.\n";
+    cout<<"0) To Quit.\n";
 }
 void printMonsters(vector<Monster*> monsters,bool flag=true){
     for (int i=0;i<monsters.size();i++){
@@ -224,18 +221,18 @@ int moveHero(vector<Hero*> heros,vector<Monster*> monsters){
             }
             else if(action==4){
                 int which;
-                cout<<"Choose a Monster\n";
-                cout<<"0) For changing move\n";
+                cout<<"Choose a Monster.\n";
+                cout<<"0) To Change move.\n";
                 printMonsters(monsters);
                 which=readNumber("",0,6);
                 if(which==0)
                     continue;
                 if(which>monsters.size()){
-                    cout<<"There is not a monster with that number\n";
+                    cout<<"There is not a monster with that number.\n";
                     continue;
                 }
                 if(monsters.at(which-1)->getHP()<=0){
-                    cout<<"That monster is dead. Chose something else\n";
+                    cout<<"That monster is dead. Chose something else.\n";
                     continue;
                 }
 
@@ -275,7 +272,7 @@ bool moveMonster(vector<Hero*> heros,vector<Monster*> monsters){
         else{
             usleep(500000);
         }
-        cout<<monsters.at(i)->getName()<<" "<<monsters.at(i)->getType()<<" is attacking\n";
+        cout<<monsters.at(i)->getName()<<" "<<monsters.at(i)->getType()<<" is attacking.\n";
         if(!checkAliveHeros(heros))
             return true;
         int chooseHero;
@@ -376,7 +373,8 @@ void herosLose(vector<Hero*> heros,vector<Monster*> monsters){
         int money=heros.at(i)->getMoney();
         heros.at(i)->addMoney(-money/2);
         // maybe?
-        // restoreHP(heros,monsters);
+        for(int i=0;i<heros.size();i++)
+            heros.at(i)->restoreHP(heros.at(i)->getHPUsed()/2);
     }
 }
 void herosWin(vector<Hero*> heros,vector<Monster*> monsters,int rounds){
@@ -392,7 +390,7 @@ void herosWin(vector<Hero*> heros,vector<Monster*> monsters,int rounds){
     int exp=levelMonsters;
     for(int i=0;i<heros.size();i++){
         int totalExp=(levelMonsters/heros.at(i)->getLevel())*(100/max)*(rounds/4);
-        cout<<"Hero "<<heros.at(i)->getName()<<" get "<<totalExp<<" EXP\n"; 
+        cout<<"Hero "<<heros.at(i)->getName()<<" get "<<totalExp<<" EXP.\n"; 
         heros.at(i)->addEXP(totalExp);       
     }
 }

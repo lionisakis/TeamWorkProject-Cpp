@@ -6,34 +6,34 @@ using namespace std;
 
 void PlayGame(Util util, vector<Hero*> hero){
     cout << "Welcome to the game. " << endl;
-    cout << "Press 1 to continue or 0 to exit. " << endl;
-    int index = readNumber("", 0, 1);
-    if(index == 0){
-        quitGame(hero);
-    }
-    if(index == 1){
-        Grid* grid = new Grid(hero, util);
-        cout << "A new map has been created for you." << endl;
-        while (true){
-            cout << "Choose your move." << endl;
-            cout << "Press 1 for up." << endl;
-            cout << "Press 2 for down." << endl;
-            cout << "Press 3 for left." << endl;
-            cout << "Press 4 for right." << endl;
-            cout << "Press 0 to quit." << endl;
-            int input = readNumber("", 0, 4);
-            if(input == 0)
-                return;
-            else if(input == 1)
-                grid->move(UP);
-            else if(input == 2)
-                grid->move(DOWN);
-            else if(input == 3)
-                grid->move(LEFT);
-            if(input == 4)
-                grid->move(RIGHT);
+    Grid* grid = new Grid(hero, util);
+    cout << "A new map has been created for you." << endl;
+    while (true){
+        grid->print();
+        string output="Choose your action.\n0) To quit.\n1) To see inventory.\n3) To use an Item.\n5) To see the map.\n7) To see the Stats.\n";
+        output.append("\t8) To go Up.\n4) To go Left.\t\t6) To go Right.\n\t2) To go down.\n");
+        int input = readNumber(output, 0, 8);
+        if(input == 7)
+            for(int i=0;i<hero.size();i++)
+                hero.at(i)->printStats();
+        if(input == 0)
+            return;
+        else if(input == 1)
+            for(int i=0;i<hero.size();i++)
+                hero.at(i)->printInventory();
+        else if(input == 3)
+            for(int i=0;i<hero.size();i++)
+                hero.at(i)->useInventory();
+        else if(input == 8)
             grid->print();
-        }
-        
+        else if(input == 8)
+            grid->move(UP);
+        else if(input == 2)
+            grid->move(DOWN);
+        else if(input == 4)
+            grid->move(LEFT);
+        else if(input == 6)
+            grid->move(RIGHT);
     }
+        
 }
