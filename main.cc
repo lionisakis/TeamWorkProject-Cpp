@@ -41,10 +41,6 @@ int main(void){
 
     checkGrid(heros, util);
     // checkBlock(heros);
-    
-    // Check for Debug
-
-    battle(heros,util);
 
     // checkMarket(util);
 
@@ -81,33 +77,3 @@ void checkMarket(Util util){
     delete market;
     delete hero;
 }
-
-void checkingFighting(vector<Hero*> heros,Util util){
-
-    Item* item = util.spawnWeapon(0,2,5,1);
-    Item* item1 = util.spawnWeapon(0,2,5,1);
-    Item* item2 = util.spawnWeapon(0,2,5,2);
-    Item* item3 = util.spawnArmor(0,1,20);
-    Item* item4 = util.spawnPotion(0,1,HEALTHPOWER,20,true);
-
-    heros.at(0)->giveEXP(100);
-    heros.at(0)->levelUp(0,0,0,0);
-    Spell* spell = util.spawnIceSpell(0,1,10, 200, 400, 3);
-    heros.at(0)->addMoney(100);
-    heros.at(0)->buy(item);
-    heros.at(0)->buy(item1);
-    heros.at(0)->buy(item2);
-    heros.at(0)->buy(item3);
-    heros.at(0)->buy(item4);
-    heros.at(0)->buy(spell);
-    heros.at(0)->use(item);
-    heros.at(0)->use(item3);
-    heros.at(0)->printCombatStats();
-    heros.at(0)->printInventory();
-    cout<<"\n";
-    // if false then quit game
-    if(!battle(heros,util))
-        return ;
-    return ;    
-}
-

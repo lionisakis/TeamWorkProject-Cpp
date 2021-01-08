@@ -37,8 +37,6 @@ void restoreMP(vector<Hero*> heros);
 void herosLose(vector<Hero*> heros,vector<Monster*> monsters);
 void herosWin(vector<Hero*> heros,vector<Monster*> monsters);
 
-// Add Armor and Sword change
-
 bool battle(vector<Hero*> heros,Util util){
     srand(time(NULL));
     vector<Monster*> monsters;
