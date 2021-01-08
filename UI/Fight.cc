@@ -32,10 +32,10 @@ void printTheBegining(vector<Hero*>,vector<Monster*>);
 
 bool checkAliveHeros(vector<Hero*>heros);
 bool checkAliveMonsters(vector<Monster*>monsters);
-void restoreHP(vector<Hero*> heros,vector<Monster*> monsters,int rounds);
+void restoreHP(vector<Hero*> heros,vector<Monster*> monsters);
 void restoreMP(vector<Hero*> heros);
 void herosLose(vector<Hero*> heros,vector<Monster*> monsters);
-void herosWin(vector<Hero*> heros,vector<Monster*> monsters);
+void herosWin(vector<Hero*> heros,vector<Monster*> monsters,int rounds);
 
 bool battle(vector<Hero*> heros,Util util){
     srand(time(NULL));
@@ -47,7 +47,7 @@ bool battle(vector<Hero*> heros,Util util){
         printTheBegining(heros,monsters);
         if(checkAlive(heros,monsters))
             break;
-        restoreHP(heros,monsters,i);
+        restoreHP(heros,monsters);
         restoreMP(heros);
         int results=moveHero(heros,monsters);
         if(results){
@@ -63,7 +63,7 @@ bool battle(vector<Hero*> heros,Util util){
     }
     if(flag){
         if(checkAliveHeros(heros))
-            herosWin(heros,monsters);
+            herosWin(heros,monsters,i);
         else 
             herosLose(heros,monsters);
     }
@@ -275,7 +275,7 @@ bool moveMonster(vector<Hero*> heros,vector<Monster*> monsters){
         else{
             usleep(500000);
         }
-        cout<<monsters.at(i)->getName()<<" is attacking\n";
+        cout<<monsters.at(i)->getName()<<" "<<monsters.at(i)->getType()<<" is attacking\n";
         if(!checkAliveHeros(heros))
             return true;
         int chooseHero;
@@ -324,7 +324,7 @@ void printTheBegining(vector<Hero*> heros,vector<Monster*> monsters){
     cout<<"------------------------------\n\n";
 }
 
-void restoreHP(vector<Hero*> heros,vector<Monster*> monsters,int rounds){
+void restoreHP(vector<Hero*> heros,vector<Monster*> monsters){
     for (int i=0;i<heros.size();i++){
         if(heros.at(i)->getHP()!=0){
             int howMuch= heros.at(i)->getHPUsed();
@@ -338,7 +338,7 @@ void restoreHP(vector<Hero*> heros,vector<Monster*> monsters,int rounds){
                 howMuch=rand()%((int)howMuch/4);
             else
                 howMuch=rand()%((int)howMuch/8);
-            heros.at(i)->restoreHP(howMuch/rounds);
+            heros.at(i)->restoreHP(howMuch);
         }
     }
     for (int i=0;i<monsters.size();i++){
@@ -354,7 +354,7 @@ void restoreHP(vector<Hero*> heros,vector<Monster*> monsters,int rounds){
                 howMuch=rand()%(howMuch/4);
             else
                 howMuch=rand()%(howMuch/8);
-            monsters.at(i)->restoreHP(howMuch/rounds);
+            monsters.at(i)->restoreHP(howMuch);
         }
     }
 }
@@ -379,7 +379,7 @@ void herosLose(vector<Hero*> heros,vector<Monster*> monsters){
         // restoreHP(heros,monsters);
     }
 }
-void herosWin(vector<Hero*> heros,vector<Monster*> monsters){
+void herosWin(vector<Hero*> heros,vector<Monster*> monsters,int rounds){
     cout<<"HEROS HAVE WON THE FIGHT!\n";
     
     double levelMonsters=0;
@@ -391,7 +391,7 @@ void herosWin(vector<Hero*> heros,vector<Monster*> monsters){
     }
     int exp=levelMonsters;
     for(int i=0;i<heros.size();i++){
-        int totalExp=(levelMonsters/heros.at(i)->getLevel())*(100/max);
+        int totalExp=(levelMonsters/heros.at(i)->getLevel())*(100/max)*(rounds/4);
         cout<<"Hero "<<heros.at(i)->getName()<<" get "<<totalExp<<" EXP\n"; 
         heros.at(i)->addEXP(totalExp);       
     }
