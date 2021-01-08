@@ -24,10 +24,10 @@ Grid::Grid(vector<Hero*> heroes, Util util){
 void Grid::print(void){
     for(int i = 0; i < 10; i++){
         for(int j = 0; j < 10; j++){
+            cout << this->grid[i][j].getName();
             if(grid[i][j].getSize())
-                cout << "H/ ";
-            // else
-                cout << this->grid[i][j].getName() << "        ";
+                cout << "/H";
+            cout<< "\t";
         }
         cout << endl;
     }
