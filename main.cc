@@ -41,6 +41,7 @@ int main(void){
 
     PlayGame(util, heros);
 
+
     // Delete Heros
     quitGame(heros);
 }
