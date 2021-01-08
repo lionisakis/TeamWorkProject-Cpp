@@ -28,7 +28,7 @@
 void checkingForItems();
 void quitGame(vector<Hero*>);
 void names(Util);
-void checkMarket(Util);
+void checkMarket(vector<Hero*>,Util);
 void checkBlock(vector<Hero*>);
 void checkGrid(vector<Hero*>, Util);
 
@@ -39,10 +39,10 @@ int main(void){
     if(heros.size()==0)
         return -1;
 
-    checkGrid(heros, util);
+    // checkGrid(heros, util);
     // checkBlock(heros);
 
-    // checkMarket(util);
+    checkMarket(heros,util);
 
     // Delete Heros
     quitGame(heros);
@@ -63,11 +63,9 @@ void checkBlock(vector <Hero*> heroes){
     block->print();
 }
 
-void checkMarket(Util util){
+void checkMarket(vector<Hero*> heros,Util util){
     Market* market = new Market(util);
-    Hero* hero = new Hero("AN", 100, 100, 100);
-    hero->addMoney(100);
-    market->useMarket(hero);
+    market->useMarket(heros.at(0));
     // market->buy(hero);
     // market->buy(hero);
     // // hero->printInventory();
@@ -75,5 +73,4 @@ void checkMarket(Util util){
     market->printMarket();
     // hero->printInventory();
     delete market;
-    delete hero;
 }

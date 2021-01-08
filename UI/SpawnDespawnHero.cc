@@ -33,7 +33,7 @@ vector<Hero*> spawnHeros(){
             vector<Hero*>heros;
             return heros;    
         }
-        else if(what==2){
+        else if(what==1){
             return basicCombo(howMany);
         }
         else{

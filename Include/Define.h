@@ -1,3 +1,7 @@
+#define PALADIN "Paladin"
+#define SORCERER "Sorcerer"
+#define WARRIOR "Warior"
+
 #define DRAGON "Dragon"
 #define EXOSKELETON "Exoskeleton"
 #define SPIRIT "Spirit"

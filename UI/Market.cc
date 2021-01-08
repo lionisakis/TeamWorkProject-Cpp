@@ -181,14 +181,15 @@ void Market::sell(Hero* hero){
 
 void Market::useMarket(Hero* hero){
     cout << "Welcome to the market press:" << endl;
-    cout << "0: To quit the store." << endl;
-    cout << "1: To see the available products." << endl;
-    cout << "2: To buy something." << endl;
-    cout << "3: To sell something" << endl;
-    cout << "4: To see wallet." << endl;
-    cout << "5 to see inventory." << endl;
+    cout << "0) To quit the store." << endl;
+    cout << "1) To see the available products." << endl;
+    cout << "2) To buy something." << endl;
+    cout << "3) To sell something" << endl;
+    cout << "4) To see wallet." << endl;
+    cout << "5) to see inventory." << endl;
+    cout << "6) to use an Item." << endl;
     int index;
-    index = readNumber("", 0, 5);
+    index = readNumber("", 0, 6);
     if(index == 0)
         return;
     else if(index == 1)
@@ -201,6 +202,8 @@ void Market::useMarket(Hero* hero){
         hero->printMoney();
     else if(index == 5)
         hero->printInventory();
+    else if(index == 6)
+        hero->useInventory();
     else{
         cout << "Wrong input please try again" << endl; 
         this->useMarket(hero);

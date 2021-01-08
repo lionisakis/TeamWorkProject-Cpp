@@ -58,6 +58,48 @@ bool Hero::levelUp(int strengthHero,int dexerityHero,int agilityHero,int magicPo
     return true;
 }
 
+void Hero::give(Item* item){
+    items.push_back(item);
+}
+
+void Hero::throwAway(int indexItem){
+    if(indexItem<0||indexItem>items.size()){
+        cout<<"No item with that index\n";
+        return;
+    }
+    Item* item=items.at(indexItem);
+    items.erase(items.begin()+indexItem);
+    delete item;
+}
+
+bool Hero::giveItem(Hero* otherHero,int indexItem){
+    if(otherHero==NULL||indexItem<0||indexItem>=items.size()){
+        cout<<"Unable to do this transaction\n";
+        return false;
+    }
+    if(weapon1!=NULL){
+        if (items.at(indexItem)==weapon1){
+            cout<<"Unequip the Weapon. Then give the Item\n";
+            return false;
+        }
+        if(weapon2!=NULL){
+            if (items.at(indexItem)==weapon2){
+                cout<<"Unequip the Weapon. Then give the Item\n";
+                return false;
+            }
+        } 
+    }
+    if(armor!=NULL){
+        if (items.at(indexItem)==armor){
+            cout<<"Unequip the Armor. Then give the Item\n";
+            return false;
+        }
+    }
+    otherHero->give(items.at(indexItem));
+    items.erase(items.begin()+indexItem);
+    return true;
+}
+
 void Hero::addToStat(string type,int amount){
     // increase the stats acording to the type and the amount
     if(type==HEALTHPOWER){
@@ -86,6 +128,8 @@ void Hero::addToStat(string type,int amount){
         agility+=amount;
         cout<<"Total Agility: "<<agility<<"\n";
     }
+    else
+        cout<<"NONE\n";
 }
 void Hero::restoreMP(int mp){
     if(magicPower+mp<=maxMP){
@@ -299,6 +343,13 @@ bool Hero::sell(Item* item){
         cout<<"This item is equiped. Unequiped it first then Sell it.\n";
         return false;
     }  
+    if(items.at(index)->getType()==POTION){
+        Potion* potion=(Potion*)items.at(index);
+        if(!potion->getAvailable()){
+            cout<<"This Potion has already been used and has lost its value and it cannot been sell. Instead Throw it.\n";
+            return false;
+        }
+    }
     items.erase(items.begin()+index);
     addMoney(-item->getPrice()/2);
     return true;

@@ -45,7 +45,11 @@ void Item::printCombat(void)const{
     }
     else if (type==POTION){
         Potion* potion=(Potion*)this;
-        cout <<  "Name: " << this->name << ", Level: " << this->level <<", Increase Type: "<<potion->getUsefull()<<", Amount: "<<potion->getAmount()<<", Used: "<<potion->getAvailable()<<  endl;
+        cout <<  "Name: " << this->name << ", Level: " << this->level <<", Increase Type: "<<potion->getUsefull()<<", Amount: "<<potion->getAmount();
+        if (potion->getAvailable())
+            cout<<", NOT been Used\n";
+        else
+            cout<<", HAS been Used\n";
     }
 }
 void Item::print(void)const{
@@ -59,6 +63,10 @@ void Item::print(void)const{
     }
     else if (type==POTION){
         Potion* potion=(Potion*)this;
-        cout <<  "Name: " << this->name << ", Price: "<<this->price<< ", Level: " << this->level <<", Increase Type: "<<potion->getUsefull()<<", Amount: "<<potion->getAmount()<<", Used"<<potion->getAvailable()<<  endl;
+        cout <<  "Name: " << this->name << ", Price: "<<this->price<< ", Level: " << this->level <<", Increase Type: "<<potion->getUsefull()<<", Amount: "<<potion->getAmount();
+        if (potion->getAvailable())
+            cout<<", NOT been Used\n";
+        else
+            cout<<", HAS been Used\n";
     }
 }

@@ -70,6 +70,9 @@ class Hero: public Living{
         bool sell(Spell* spell);
         void addMoney(int addMoney);
         int getMoney()const;
+        void throwAway(int indexItem);
+        void give(Item* item);
+        bool giveItem(Hero* otherHero,int index);
         
         // un/equip items
         bool equipWeapon(Item* item,bool flag=true);

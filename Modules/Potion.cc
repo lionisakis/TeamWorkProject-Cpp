@@ -7,10 +7,6 @@ Potion::Potion(string name_init, int price_init, int level_init, string use_init
     Item::setType(POTION);
 }
 
-string Potion::getUse(void){
-    return this->type;
-}
-
 string Potion::getUsefull(void){;
     return this->usefull;
 }
@@ -37,7 +33,7 @@ bool Potion::use(Hero* hero){
         cout << "This potion has already be used" << endl;
         return false;
     }
-    string type = this->getUse();
+    string type = this->getUsefull();
     int amount = this->getAmount();
     this->available = false;
     cout<<"Hero "<<hero->getName()<<" used "<<getName()<<"\n";
