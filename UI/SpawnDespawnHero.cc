@@ -20,8 +20,14 @@ vector<Hero*> spawnHeros(){
             vector<Hero*>heros;
             return heros;    
         }
-        string output="Do you want the basic combo?\n No:1, Yes:2\nBasic Combo:\nIf Party is 1 then Hero is Pladin\n";
-        output.append("If Party is 2 then Hero is Pladin and Sorcerer\nIf Party is 3 then Hero is Pladin and Sorcerer and Warior\n");
+        string output="Do you want the basic combo?\n Yes:1, No:2\nBasic Combo: ";
+        if (howMany==1)
+            output.append("Pladin\n");
+        else if (howMany==2)
+            output.append("Sorcerer and Pladin\n");
+        else
+            output.append("Warior, Sorcerer and Pladin\n");
+        
         int what=readNumber(output,1,2);
         if(what==-1){
             vector<Hero*>heros;
@@ -42,13 +48,13 @@ vector<Hero*> basicCombo(int howMany){
     if(howMany==1)
         heros.push_back(new Paladin("Paladin"));
     else if(howMany==2){
-        heros.push_back(new Paladin("Paladin"));
         heros.push_back(new Sorcerer("Sorcerer"));
+        heros.push_back(new Paladin("Paladin"));
     }
     else {
-        heros.push_back(new Paladin("Paladin"));
         heros.push_back(new Sorcerer("Sorcerer"));
         heros.push_back(new Warrior("Warrior"));
+        heros.push_back(new Paladin("Paladin"));
     }
     return heros;        
 }

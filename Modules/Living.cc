@@ -20,7 +20,6 @@ void Living::takeDamage(int damage){
     if (healthPower<0)
         healthPower=0;
     used+=damage;
-    cout<<used<<"\n\n";
 }
 
 void Living::levelUp(){
