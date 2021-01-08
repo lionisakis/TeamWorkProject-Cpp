@@ -50,7 +50,10 @@ Market::Market(Util util){
         int price = rand() % 15;
         int level = (rand() % 10) + 1;
         int decrease = rand() % 80;
-        Spell* ice = util.spawnIceSpell(price, level, decrease);
+        int damage_up = rand() % 100;
+        int damage_down = 100 + rand() % 500;
+        int mana = 1+ rand() % 10;
+        Spell* ice = util.spawnIceSpell(price, level, decrease, damage_up, damage_down, mana);
         this->spells.push_back(ice);
     }
 
@@ -59,7 +62,10 @@ Market::Market(Util util){
         int price = rand() % 15;
         int level = (rand() % 10) + 1;
         int decrease = rand() % 80;
-        Spell* fire = util.spawnFireSpell(price, level, decrease);
+        int damage_up = rand() % 100;
+        int damage_down = 100 + rand() % 500;
+        int mana = 1+ rand() % 10;
+        Spell* fire = util.spawnFireSpell(price, level, decrease, damage_up, damage_down, mana);
         this->spells.push_back(fire);
     }
 
@@ -68,7 +74,10 @@ Market::Market(Util util){
         int price = rand() % 15;
         int level = (rand() % 10) + 1;
         int decrease = rand() % 80;
-        Spell* light = util.spawnLightingSpell(price, level, decrease);
+        int damage_up = rand() % 100;
+        int damage_down = 100 + rand() % 500;
+        int mana = 1+ rand() % 10;
+        Spell* light = util.spawnLightingSpell(price, level, decrease, damage_up, damage_down, mana);
         this->spells.push_back(light);
     }
 }

@@ -40,6 +40,7 @@ bool Potion::use(Hero* hero){
     string type = this->getUse();
     int amount = this->getAmount();
     this->available = false;
+    cout<<"Hero "<<hero->getName()<<" used "<<getName()<<"\n";
     hero->addToStat(type, amount);
     return true;
 }

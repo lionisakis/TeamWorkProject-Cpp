@@ -39,8 +39,8 @@ class Util{
         Item* spawnWeapon(int price , int level , int  damage,int hands);
 
         // Spell* spawnSpell(string indexType, int price , int level , int decrease);
-        Spell* spawnLightingSpell(int price , int level , int decrease);
-        Spell* spawnFireSpell(int price , int level , int decrease);
-        Spell* spawnIceSpell(int price , int level , int decrease);
+        Spell* spawnLightingSpell(int price , int level , int decrease, int damage_up, int damage_down, int magic_power);
+        Spell* spawnFireSpell(int price , int level , int decrease, int damage_up, int damage_down, int magic_power);
+        Spell* spawnIceSpell(int price , int level , int decrease, int damage_up, int damage_down, int magic_power);
 
 };

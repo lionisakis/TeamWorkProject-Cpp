@@ -1,6 +1,6 @@
 #include "IceSpell.h"
 
-IceSpell::IceSpell(string name_init, int price_init, int level_init, int decrease_init):Spell(name_init, price_init, level_init){
+IceSpell::IceSpell(string name_init, int price_init, int level_init, int decrease_init, int damage_up, int damage_down, int magic_power):Spell(name_init, price_init, level_init, damage_up, damage_down, magic_power){
     this->decrease_damage = decrease_init;
     Spell::setType(ICESPELL);
 }
