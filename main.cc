@@ -39,7 +39,9 @@ int main(void){
     if(heros.size()==0)
         return -1;
 
-    checkGrid(heros, util);
+    PlayGame(util, heros);
+
+    // checkGrid(heros, util);
     // checkBlock(heros);
 
     // checkMarket(heros,util);
