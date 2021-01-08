@@ -39,14 +39,14 @@ int main(void){
     if(heros.size()==0)
         return -1;
 
-    // checkGrid(heros, util);
+    checkGrid(heros, util);
     // checkBlock(heros);
     
     // Check for Debug
 
-    battle(heros,util);
-    battle(heros,util);
-    battle(heros,util);
+    // battle(heros,util);
+    // battle(heros,util);
+    // battle(heros,util);
 
     // checkMarket(util);
 
@@ -57,9 +57,8 @@ int main(void){
 void checkGrid(vector <Hero*> heroes, Util util){
     Grid* block = new Grid(heroes, util);
     // block->move(heroes);
-    block->place();
+    block->move(DOWN);
     block->print();
-    // block->move(UP);
     // cout <<"MOVE TEST " <<  endl;
     // block->print();
 }

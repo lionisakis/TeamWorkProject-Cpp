@@ -8,6 +8,7 @@ using namespace std;
 #include "Market.h"
 #include "Block.h"
 #include "Util.h"
+#include "UI.h"
 
 #pragma once
 
@@ -18,6 +19,8 @@ class Grid{
         vector<Hero*> heroes;
         int i_heroes;
         int j_heroes;
+        int probability;
+        Util util;
     public:
         Grid(vector<Hero*>, Util);
         void print(void);
