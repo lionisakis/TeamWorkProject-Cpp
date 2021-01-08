@@ -8,8 +8,8 @@ void PlayGame(Util util, vector<Hero*> hero){
     cout << "Welcome to the game. " << endl;
     Grid* grid = new Grid(hero, util);
     cout << "A new map has been created for you." << endl;
+    grid->print();
     while (true){
-        grid->print();
         string output="Choose your action.\n0) To quit.\n1) To see inventory.\n3) To use an Item.\n5) To see the map.\n7) To see the Stats.\n";
         output.append("\t8) To go Up.\n4) To go Left.\t\t6) To go Right.\n\t2) To go down.\n");
         int input = readNumber(output, 0, 8);
@@ -34,6 +34,7 @@ void PlayGame(Util util, vector<Hero*> hero){
             grid->move(LEFT);
         else if(input == 6)
             grid->move(RIGHT);
+        grid->print();
     }
         
 }

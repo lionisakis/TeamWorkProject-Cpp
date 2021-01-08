@@ -20,7 +20,7 @@ vector<Hero*> spawnHeros(){
             vector<Hero*>heros;
             return heros;    
         }
-        string output="Do you want the basic combo?\n Yes:1, No:2\nBasic Combo: ";
+        string output="Do you want the basic combo?\n1)Yes.\n2)No.\nBasic Combo: ";
         if (howMany==1)
             output.append("Pladin\n");
         else if (howMany==2)

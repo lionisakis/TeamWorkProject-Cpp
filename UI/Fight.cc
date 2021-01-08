@@ -16,14 +16,6 @@ using namespace std;
 #include "Monster.h"
 #include "Hero.h"
 
-#ifdef _WIN32
-    #include <Windows.h>
-    #define SLEEP true
-#else
-    #include <unistd.h>
-    #define SLEEP false
-#endif
-
 vector<Monster*> createMonster(vector<Hero*> heros,vector<Monster*> monsters,Util util);
 bool checkAlive(vector<Hero*> heros,vector<Monster*> monsters);
 int moveHero(vector<Hero*> heros,vector<Monster*> monsters);
@@ -152,12 +144,6 @@ void printMonsters(vector<Monster*> monsters,bool flag=true){
         cout<<"\n";
         cout<<i+1<<")";
         monsters.at(i)->print();
-        if(SLEEP){
-            sleep(40);
-        }
-        else{
-            usleep(500000);
-        }
     }
     if(flag)
         cout<<"Write the number of the monster.\n";    
@@ -171,20 +157,14 @@ int moveHero(vector<Hero*> heros,vector<Monster*> monsters){
         if(!checkAliveMonsters(monsters))
             return 3;
 
-        if(SLEEP){
-            sleep(40);
-        }
-        else{
-            usleep(500000);
-        }
         bool flag2=false;
-        cout<<"Write your action\n";
+        cout<<"Write your action.\n";
 
         help(heros.at(i));
         do {
             if(flag2){
-                cout<<"Write your action\n";
-                cout<<"6) For seeing the COMANDS\n";
+                cout<<"Write your action.\n";
+                cout<<"6) For seeing the COMANDS.\n";
             }
             else
                 flag2=true;
@@ -201,18 +181,18 @@ int moveHero(vector<Hero*> heros,vector<Monster*> monsters){
             else if(action==3){
                 int which;
                 bool falg;
-                cout<<"Choose a Monster\n";
-                cout<<"0) For changing move\n";
+                cout<<"Choose a Monster.\n";
+                cout<<"0) To change the Move.\n";
                 printMonsters(monsters);
                 which=readNumber("",0,6);
                 if(which==0)
                     continue;
                 if(which>monsters.size()){
-                    cout<<"There is not a monster with that number\n";
+                    cout<<"There is not a monster with that number.\n";
                     continue;
                 }
                 if(monsters.at(which-1)->getHP()<=0){
-                    cout<<"That monster is dead. Chose something else\n";
+                    cout<<"That monster is dead. Chose something else.\n";
                     continue;
                 }
                 flag=true;
@@ -266,12 +246,6 @@ bool moveMonster(vector<Hero*> heros,vector<Monster*> monsters){
     for (int i=0;i<monsters.size();i++){
         if(monsters.at(i)->getHP()==0)
             continue;
-        if(SLEEP){
-            sleep(40);
-        }
-        else{
-            usleep(500000);
-        }
         cout<<monsters.at(i)->getName()<<" "<<monsters.at(i)->getType()<<" is attacking.\n";
         if(!checkAliveHeros(heros))
             return true;
@@ -372,7 +346,6 @@ void herosLose(vector<Hero*> heros,vector<Monster*> monsters){
     for(int i=0;i<heros.size();i++){
         int money=heros.at(i)->getMoney();
         heros.at(i)->addMoney(-money/2);
-        // maybe?
         for(int i=0;i<heros.size();i++)
             heros.at(i)->restoreHP(heros.at(i)->getHPUsed()/2);
     }

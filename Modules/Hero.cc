@@ -2,13 +2,6 @@
 #include "Items.h"
 #include "UI.h"
 #include <limits>
-#ifdef _WIN32
-    #include <Windows.h>
-    #define SLEEP true
-#else
-    #include <unistd.h>
-    #define SLEEP false
-#endif
 
 Hero::Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero):
 Living(nameHero,1,100)
@@ -525,12 +518,6 @@ void Hero::printSpellsCombat() const{
         for (int i=0 ; i< spells.size(); i++){
             cout<<"\t"<<i+1<<") ";
             spells.at(i)->printCombat();
-            if(SLEEP){
-                sleep(40);
-            }
-            else{
-                usleep(500000);
-            }
         }
     }
 }
