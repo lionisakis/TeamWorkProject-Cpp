@@ -90,7 +90,7 @@ void checkingFighting(vector<Hero*> heros,Util util){
 
     heros.at(0)->giveEXP(100);
     heros.at(0)->levelUp(0,0,0,0);
-    Spell* spell = util.spawnIceSpell(0,1,10);
+    Spell* spell = util.spawnIceSpell(0,1,10, 200, 400, 3);
     heros.at(0)->addMoney(100);
     heros.at(0)->buy(item);
     heros.at(0)->buy(item1);

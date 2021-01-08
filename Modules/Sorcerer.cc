@@ -12,8 +12,8 @@ Sorcerer::Sorcerer(string name):
 {
     Item* weapon = new Weapon("Starting Wand",0,1,5,1);
     Spell* spell1 = new FireSpell("Amber",0,1,15);
-    Spell* spell2 = new IceSpell("Ice Shard",0,1,15);
-    Spell* spell3 = new LightingSpell("Lighting Ball",0,1,15);
+    Spell* spell2 = new IceSpell("Ice Shard",0,1,15, 100, 400, 3);
+    Spell* spell3 = new LightingSpell("Lighting Ball",0,1,15, 120, 500, 6);
     Item* potion1=new Potion("Health Potion",0,1,HEALTHPOWER,10,true);
     Item* potion2=new Potion("MP Potion",0,1,MAGICPOWER,10,true);
     Hero::buy(weapon);

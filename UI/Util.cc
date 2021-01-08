@@ -167,13 +167,13 @@ Item* Util::spawnWeapon(int price , int level , int  damage,int hands){
 //     cout<<"PROBLEM4\n";
 //     return NULL;
 // }
-Spell* Util::spawnLightingSpell(int price , int level , int decrease){
-    return new LightingSpell(randomName(LIGHTINGSPELL),price,level,decrease);
+Spell* Util::spawnLightingSpell(int price , int level , int decrease, int damage_up, int damage_down, int magic_power){
+    return new LightingSpell(randomName(LIGHTINGSPELL),price,level,decrease, damage_up, damage_down, magic_power);
 }
-Spell* Util::spawnFireSpell(int price , int level , int decrease){
-    return new FireSpell(randomName(FIRESPELL),price,level,decrease);
+Spell* Util::spawnFireSpell(int price , int level , int decrease, int damage_up, int damage_down, int magic_power){
+    return new FireSpell(randomName(FIRESPELL),price,level,decrease, damage_up, damage_down, magic_power);
 }
-Spell* Util::spawnIceSpell(int price , int level , int decrease){
-    return new IceSpell(randomName(ICESPELL),price,level,decrease);
+Spell* Util::spawnIceSpell(int price , int level , int decrease, int damage_up, int damage_down, int magic_power){
+    return new IceSpell(randomName(ICESPELL),price,level,decrease, damage_up, damage_down, magic_power);
 
 }
