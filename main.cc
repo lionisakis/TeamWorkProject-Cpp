@@ -54,6 +54,7 @@ void checkGrid(vector <Hero*> heroes, Util util){
     // block->move(heroes);
     block->move(DOWN);
     block->print();
+    delete block;
     // cout <<"MOVE TEST " <<  endl;
     // block->print();
 }

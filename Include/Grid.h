@@ -15,7 +15,6 @@ using namespace std;
 class Grid{
     private:
         Block grid[K][K];
-        Market* market;
         vector<Hero*> heroes;
         int i_heroes;
         int j_heroes;
@@ -25,5 +24,5 @@ class Grid{
         Grid(vector<Hero*>, Util);
         void print(void) const;
         void move(string);
-        void place(void);
+        void place(int, int);
 };

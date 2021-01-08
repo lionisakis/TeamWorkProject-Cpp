@@ -13,14 +13,15 @@ Grid::Grid(vector<Hero*> heroes, Util util){
                 grid[i][j].setName(N);
         }
     }
-    grid[30][20].setName(C);
-    this->market = new Market(util,MOOfLevelOfHeros(heroes));
+    int i_temp = rand() % K;
+    int j_temp = rand() % K;
+    grid[i_temp][j_temp].setName(C);
     this->heroes = heroes;
-    this->i_heroes = 30;
-    this->j_heroes = 20;
+    this->i_heroes = i_temp;
+    this->j_heroes = j_temp;
     this->probability = 40;
     this->util = util;
-    this->place();
+    this->place(i_temp, j_temp);
 }
 
 void Grid::print(void) const{
@@ -37,8 +38,6 @@ void Grid::print(void) const{
         lim_i_down = K - 1;
     if(lim_j_down >= K)
         lim_j_down = K -1;
-
-    cout << lim_i_up <<" " << lim_i_down << " " << lim_j_up << " " << lim_j_down << endl;
 
     for(int i = lim_i_up; i < lim_i_down; i++){
         for(int j = lim_j_up; j < lim_j_down; j++){
@@ -87,9 +86,11 @@ void Grid::move(string dest){
         cout << "You are on market do you want to use it? Press 1 for Yes and 2 for No" << endl;
         int index = readNumber("", 1, 2);
         if(index == 1){
+            Market* market = new Market(util,MOOfLevelOfHeros(this->heroes));
             cout << "You have to enter the market one by one due to covid-19." << endl;
             for(int i = 0; i < this->heroes.size(); i++)
-                this->market->useMarket(this->heroes.at(i));
+                market->useMarket(this->heroes.at(i));
+            delete market;
         }
         else
             return;
@@ -105,6 +106,6 @@ void Grid::move(string dest){
     }
 }
 
-void Grid::place(void){
-    this->grid[30][20].move(this->heroes);
+void Grid::place(int i_temp, int j_temp){
+    this->grid[i_temp][j_temp].move(this->heroes);
 }
