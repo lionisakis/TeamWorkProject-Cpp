@@ -7,10 +7,20 @@ Grid::Grid(vector<Hero*> heroes, Util util){
             int name = rand() % 3;
             if(name == 0)
                 grid[i][j].setName(C);
-            else if(name==1)
-                grid[i][j].setName(M);
-            else
-                grid[i][j].setName(N);
+            else if(name==1){
+                int pos = rand() % 3;
+                if(pos == 0 || pos == 1)        
+                    grid[i][j].setName(M);
+                else
+                    grid[i][j].setName(C); 
+            }
+            else{
+                int pos = rand() % 2;
+                if(pos == 0)        
+                    grid[i][j].setName(N);
+                else
+                    grid[i][j].setName(C);
+            }
         }
     }
     int i_temp = rand() % K;
@@ -22,6 +32,15 @@ Grid::Grid(vector<Hero*> heroes, Util util){
     this->probability = 40;
     this->util = util;
     this->place(i_temp, j_temp);
+    if(grid[i_heroes - 1][j_heroes - 1].getName() == N || grid[i_heroes - 1][j_heroes + 1].getName() == N || grid[i_heroes + 1][j_heroes - 1].getName() == N || grid[i_heroes + 1][j_heroes + 1].getName() == N){
+        i_heroes = rand() % K;
+        j_heroes = rand() % K;
+        while(grid[i_heroes][j_heroes].getName() == N){
+            i_heroes = rand() % K;
+            j_heroes = rand() % K;      
+        }
+    this->place(i_heroes, j_heroes);
+    }
 }
 
 void Grid::print(void) const{
@@ -74,6 +93,8 @@ void Grid::move(string dest){
     }
     if(this->grid[i][j].getName() == N){
         cout << "This block is non accessible" << endl;
+        cout << "Please try another direction" << endl;
+        return;
     }
     else{
         this->grid[i][j].move(this->heroes);
@@ -102,7 +123,6 @@ void Grid::move(string dest){
             cout << "Heroes you have entered a fight." << endl;
             battle(this->heroes, this->util);
         }
-
     }
 }
 

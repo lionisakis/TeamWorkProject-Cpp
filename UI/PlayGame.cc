@@ -14,6 +14,13 @@ void PlayGame(Util util, vector<Hero*> hero){
     if(index == 1){
         Grid* grid = new Grid(hero, util);
         cout << "A new map has been created for you." << endl;
+        cout << "Let me help you understand the map." << endl;
+        cout << "C means this block is common." << endl;
+        cout << "M means this block contains a market." << endl;
+        cout << "N means this block is non Accessible." << endl;
+        cout << "H means your team is on this block." << endl;
+        cout << "Every time you stand on a common block you have a possibility enter a fight." << endl;
+        grid->print();
         while (true){
             cout << "Choose your move." << endl;
             cout << "Press 1 for up." << endl;

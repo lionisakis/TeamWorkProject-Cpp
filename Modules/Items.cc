@@ -37,15 +37,15 @@ void Item::setType(string type){
 void Item::printCombat(void)const{
     if(type==WEAPON){
         Weapon* weapon=(Weapon*)this;
-        cout <<  "Name: " << this->name << ", Level: " << this->level <<", Damage: "<<weapon->getDamage()<<", Hands needed: "<<weapon->getHands()<<  endl;
+        cout << "Weapon: " << "Name: " << this->name << ", Level: " << this->level <<", Damage: "<<weapon->getDamage()<<", Hands needed: "<<weapon->getHands()<<  endl;
     }
     else if (type==ARMOR){
         Armor* armor=(Armor*)this;
-        cout <<  "Name: " << this->name << ", Level: " << this->level <<", Defence: "<<armor->getDefence()<< endl;
+        cout << "Armor: " << "Name: " << this->name << ", Level: " << this->level <<", Defence: "<<armor->getDefence()<< endl;
     }
     else if (type==POTION){
         Potion* potion=(Potion*)this;
-        cout <<  "Name: " << this->name << ", Level: " << this->level <<", Increase Type: "<<potion->getUsefull()<<", Amount: "<<potion->getAmount();
+        cout << "Potion: " <<  "Name: " << this->name << ", Level: " << this->level <<", Increase Type: "<<potion->getUsefull()<<", Amount: "<<potion->getAmount();
         if (potion->getAvailable())
             cout<<", NOT been Used\n";
         else
@@ -55,15 +55,15 @@ void Item::printCombat(void)const{
 void Item::print(void)const{
     if(type==WEAPON){
         Weapon* weapon=(Weapon*)this;
-        cout <<  "Name: " << this->name << ", Price: "<<this->price<< ", Level: " << this->level <<", Damage: "<<weapon->getDamage()<<", Hands needed: "<<weapon->getHands()<<  endl;
+        cout << "Weapon: " <<  "Name: " << this->name << ", Price: "<<this->price<< ", Level: " << this->level <<", Damage: "<<weapon->getDamage()<<", Hands needed: "<<weapon->getHands()<<  endl;
     }
     else if (type==ARMOR){
         Armor* armor=(Armor*)this;
-        cout <<  "Name: " << this->name << ", Price: "<<this->price<<", Level: " << this->level <<", Defence: "<<armor->getDefence()<< endl;
+        cout << "Armor: " <<  "Name: " << this->name << ", Price: "<<this->price<<", Level: " << this->level <<", Defence: "<<armor->getDefence()<< endl;
     }
     else if (type==POTION){
         Potion* potion=(Potion*)this;
-        cout <<  "Name: " << this->name << ", Price: "<<this->price<< ", Level: " << this->level <<", Increase Type: "<<potion->getUsefull()<<", Amount: "<<potion->getAmount();
+        cout << "Potion: " <<  "Name: " << this->name << ", Price: "<<this->price<< ", Level: " << this->level <<", Increase Type: "<<potion->getUsefull()<<", Amount: "<<potion->getAmount();
         if (potion->getAvailable())
             cout<<", NOT been Used\n";
         else

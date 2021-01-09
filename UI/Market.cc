@@ -204,8 +204,11 @@ void Market::useMarket(Hero* hero){
         return;
     else if(index == 1)
         this->printMarket();
-    else if(index == 2)
+    else if(index == 2){
+        cout << "Your total amount of money is: ";
+        hero->printMoney();
         this->buy(hero);
+    }
     else if(index == 3)
         this->sell(hero);
     else if(index == 4)
