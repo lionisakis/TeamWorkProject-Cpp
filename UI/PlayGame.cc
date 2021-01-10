@@ -27,6 +27,7 @@ void PlayGame(Util util, vector<Hero*> hero){
             cout << "Press 2 for down." << endl;
             cout << "Press 3 for left." << endl;
             cout << "Press 4 for right." << endl;
+            cout << "Press 5 to display map." << endl;
             cout << "Press 0 to quit." << endl;
             int input = readNumber("", 0, 4);
             if(input == 0)
@@ -37,8 +38,10 @@ void PlayGame(Util util, vector<Hero*> hero){
                 grid->move(DOWN);
             else if(input == 3)
                 grid->move(LEFT);
-            if(input == 4)
+            else if(input == 4)
                 grid->move(RIGHT);
+            else if(input == 5)
+                grid->print()
             grid->print();
         }
         
