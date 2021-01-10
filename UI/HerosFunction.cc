@@ -20,7 +20,7 @@ vector<Hero*> spawnHeros(){
             vector<Hero*>heros;
             return heros;    
         }
-        string output="Do you want the basic combo?\n Yes:1, No:2\nBasic Combo: ";
+        string output="Do you want the basic combo?\n1)Yes.\n2)No.\nBasic Combo: ";
         if (howMany==1)
             output.append("Pladin\n");
         else if (howMany==2)
@@ -61,12 +61,12 @@ vector<Hero*> basicCombo(int howMany){
 vector<Hero*> yourChoise(int howMany){
     vector<Hero*> heros;
     for(int i=0;i<howMany;i++){
-        int type=readNumber("What Type the hero to be\n1)Paladin\n2)Sorcerer\n3)Warrior\n",1,3);
+        int type=readNumber("What Type the hero to be.\n1)Paladin.\n2)Sorcerer.\n3)Warrior.\n",1,3);
         if(type==-1){
             vector<Hero*>heros;
             return heros;    
         }
-        int name=readNumber("What name the hero should have?\n1)I will give him a name\n2)His Type\n\n",1,3);
+        int name=readNumber("What name the hero should have?\n1)I will give him a name.\n2)His Type.\n",1,3);
         if(name==-1){
             vector<Hero*>heros;
             return heros;    
@@ -75,12 +75,12 @@ vector<Hero*> yourChoise(int howMany){
         if(name==1){
             bool flag=false;
             do{
-                cout<<"Give Hero Name (one word)\n";
+                cout<<"Give Hero Name (one word).\n";
                 string name;
                 cin>> name;
-                heroName.append(" ");
+                heroName.append("");
                 heroName.append(name);
-                cout<<"Do you want to add word to the hero name?\nNo:1 Yes:2\nHero Name:"<<heroName<<"\n";
+                cout<<"Do you want to add word to the hero name?\n1)No.\n2)Yes.\nHero Name:"<<heroName<<"\n";
                 int answer=readNumber("",1,2);
                 if(answer==-1){
                     vector<Hero*>heros;
@@ -119,18 +119,18 @@ int readNumber(string output,int down,int up){
         cout<<output;
         cin>>number;
         if (cin.bad()) {
-            cout<<"Problem With cin\n";
+            cout<<"Problem With cin!\n";
             return -1;
         } 
         if(cin.fail()){
-            cout<< "Data entered is not of int type\n"; 
+            cout<< "Data entered is not of int type.\n"; 
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             flag=true;
         }
         else{
             if(!(number>=down&&number<=up)){
-                cout<<"Not acceptable ansewer!\n";
+                cout<<"Not acceptable answer!\n";
                 flag=true;
             }
             else
@@ -147,7 +147,7 @@ void quitGame(vector<Hero*> heros){
         heros.erase(heros.begin());
         delete temp;
     }
-    cout<<"The Game is closing\n";
+    cout<<"The Game is closing.\n";
 }
 
 int MOOfLevelOfHeros(vector<Hero*> heros){
@@ -155,4 +155,11 @@ int MOOfLevelOfHeros(vector<Hero*> heros){
     for (int i=0;i<heros.size();i++)
         level+=heros.at(i)->getLevel();
     return level/heros.size();
+}
+
+void recoverMap(vector<Hero*>heros){
+    for(int i=0;i<heros.size();i++)
+        heros.at(i)->restoreHP(heros.at(i)->getHPUsed()/2);
+    for(int i=0;i<heros.size();i++)
+        heros.at(i)->restoreMP(heros.at(i)->getMPused()/4);
 }

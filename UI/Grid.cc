@@ -104,8 +104,7 @@ void Grid::move(string dest){
     }
     if(this->grid[i_heroes][j_heroes].getName() == M){
         cout << "Market" << endl;
-        cout << "You are on market do you want to use it? Press 1 for Yes and 2 for No" << endl;
-        int index = readNumber("", 1, 2);
+        int index = readNumber("You are on a market do you want to use it?\n1)Yes.\n2)No.", 1, 2);
         if(index == 1){
             Market* market = new Market(util,MOOfLevelOfHeros(this->heroes));
             cout << "You have to enter the market one by one due to covid-19." << endl;
