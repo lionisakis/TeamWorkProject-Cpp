@@ -31,7 +31,7 @@ Grid::Grid(vector<Hero*> heroes, Util util){
     this->j_heroes = j_temp;
     this->probability = 40;
     this->util = util;
-    this->place(i_temp, j_temp);
+    // this->place(i_temp, j_temp);
     if(grid[i_heroes - 1][j_heroes - 1].getName() == N || grid[i_heroes - 1][j_heroes + 1].getName() == N || grid[i_heroes + 1][j_heroes - 1].getName() == N || grid[i_heroes + 1][j_heroes + 1].getName() == N){
         i_heroes = rand() % K;
         j_heroes = rand() % K;
@@ -39,8 +39,8 @@ Grid::Grid(vector<Hero*> heroes, Util util){
             i_heroes = rand() % K;
             j_heroes = rand() % K;      
         }
-    this->place(i_heroes, j_heroes);
     }
+    this->place(i_heroes, j_heroes);
 }
 
 void Grid::print(void) const{
@@ -104,7 +104,7 @@ void Grid::move(string dest){
     }
     if(this->grid[i_heroes][j_heroes].getName() == M){
         cout << "Market" << endl;
-        int index = readNumber("You are on a market do you want to use it?\n1)Yes.\n2)No.", 1, 2);
+        int index = readNumber("You are on a market do you want to use it?\n1)Yes.\n2)No.\n", 1, 2);
         if(index == 1){
             Market* market = new Market(util,MOOfLevelOfHeros(this->heroes));
             cout << "You have to enter the market one by one due to covid-19." << endl;
