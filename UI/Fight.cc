@@ -130,14 +130,14 @@ void help(Hero* hero){
     cout<< "HP:"<<hero->getHP()<<"\t";
     cout<< "Magic Power: "<<hero->getMagicPower()<<"\t";
     cout<< "Basic Damage: "<<hero->getDamage()<<"\n";
-    cout<<"Choose one of the following move:\n";
+    cout<<"Choose one of the following moves:\n";
+    cout<<"0) To Quit.\n";
     cout<<"1) To see the Stats of the current hero.\n";
     cout<<"2) To see the Info of the monsters.\n";
     cout<<"3) To Attack.\n";
     cout<<"4) To Cast Spell.\n";
     cout<<"5) To Use an Item.\n";
     cout<<"6) To See the Commands.\n";
-    cout<<"0) To Quit.\n";
 }
 void printMonsters(vector<Monster*> monsters,bool flag=true){
     for (int i=0;i<monsters.size();i++){
@@ -164,7 +164,7 @@ int moveHero(vector<Hero*> heros,vector<Monster*> monsters){
         do {
             if(flag2){
                 cout<<"Write your action.\n";
-                cout<<"6) For seeing the COMANDS.\n";
+                cout<<"Press 6 for seeing the commands.\n";
             }
             else
                 flag2=true;
@@ -182,7 +182,7 @@ int moveHero(vector<Hero*> heros,vector<Monster*> monsters){
                 int which;
                 bool falg;
                 cout<<"Choose a Monster.\n";
-                cout<<"0) To change the Move.\n";
+                cout<<"Press 0 to change your move.\n";
                 printMonsters(monsters);
                 which=readNumber("",0,6);
                 if(which==0)
@@ -202,7 +202,7 @@ int moveHero(vector<Hero*> heros,vector<Monster*> monsters){
             else if(action==4){
                 int which;
                 cout<<"Choose a Monster.\n";
-                cout<<"0) To Change move.\n";
+                cout<<"Press 0 to change your move.\n";
                 printMonsters(monsters);
                 which=readNumber("",0,6);
                 if(which==0)
