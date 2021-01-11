@@ -31,13 +31,38 @@ Grid::Grid(vector<Hero*> heroes, Util util){
     this->j_heroes = j_temp;
     this->probability = 40;
     this->util = util;
-    // this->place(i_temp, j_temp);
-    if(grid[i_heroes - 1][j_heroes - 1].getName() == N || grid[i_heroes - 1][j_heroes + 1].getName() == N || grid[i_heroes + 1][j_heroes - 1].getName() == N || grid[i_heroes + 1][j_heroes + 1].getName() == N){
-        i_heroes = rand() % K;
-        j_heroes = rand() % K;
-        while(grid[i_heroes][j_heroes].getName() == N){
+    int i_check_up, i_check_down, j_check_up, j_check_down;
+    while(true){
+        if(i_heroes == 0){
+            i_check_up = i_heroes + 1;
+            i_check_down = 0;
+        }
+        else if(i_heroes == K - 1){
+            i_check_up = K - 1;
+            i_check_down = i_heroes - 1;          
+        }
+        else{
+            i_check_up = i_heroes + 1;
+            i_check_down = i_heroes - 1;
+        }
+        if(j_heroes == 0){
+            j_check_up = j_heroes + 1;
+            j_check_down = 0;
+        }
+        else if(j_heroes == K - 1){
+            j_check_up = K - 1;
+            j_check_down = j_heroes - 1;          
+        }
+        else{
+            j_check_up = j_heroes + 1;
+            j_check_down = j_heroes - 1;
+        }
+        if(grid[i_check_down][j_check_up].getName() == N || grid[i_check_down][j_check_down].getName() == N || grid[i_check_up][j_check_down].getName() == N || grid[i_check_up][j_check_up].getName() == N || (grid[i_heroes][j_heroes].getName() == N)){
             i_heroes = rand() % K;
-            j_heroes = rand() % K;      
+            j_heroes = rand() % K;
+        }
+        else{
+            break;
         }
     }
     this->place(i_heroes, j_heroes);
