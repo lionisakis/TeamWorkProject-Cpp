@@ -8,7 +8,6 @@ Block::~Block(){
     while(this->heroes.size()){
         Hero* hero = this->heroes.back();
         this->heroes.pop_back();
-        delete hero;
     }
 }
 
