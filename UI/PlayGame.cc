@@ -13,8 +13,10 @@ void PlayGame(Util util, vector<Hero*> hero){
         string output="Choose your action.\n0) To quit.\n1) To see Info of heroes.\n2) To use an Item. \n3) To see the map. \n4) To go Down.  \n5) To go Left. \n6) To go Right.\n";
         output.append("7) To go Up.\n");
         int input = readNumber(output, 0, 7);
-        if(input == 0)
+        if(input == 0){
+            delete grid;    
             return; 
+        }
         if(input == 1)
             for(int i=0;i<hero.size();i++)
                 hero.at(i)->print();
@@ -34,5 +36,4 @@ void PlayGame(Util util, vector<Hero*> hero){
         recoverMap(hero);
         grid->print();
     }
-        
-}
+}   
