@@ -5,6 +5,8 @@ Athors:
 - Lionis Emmanouil Georgios(akis)
 - Skevofylaka Maria
 
+**There is a problem with Valgrind that sometimes does not work properly (it does not use "free" at space that its itself creates). It is not a problem with my code but it is a problem with the library Valgrind itself. It does not occur in all the computers but with those that have an old version of Valgrind. The issue that Valgrind itself told is at https://www.valgrind.org/docs/manual/faq.html#faq.reports  in the 4.1 section.**
+
 ## Compile and Execution Commands: ##
 The project contains a Makefile which is responsible for the compilation and execution of the program. So:
 
@@ -18,7 +20,7 @@ The program simulates a game that creates a specific number of heroes and a map 
 ## Explanation of the files: ##
 There are 3 folders (include,modules,UI), which helps organize the files. The include folder has all the necessary .h files. The modules folder has all the executes of the class that are an object of the world. The UI has the files that execute the world and how it creates the heroes, how the heroes move around, how the shop and how they fight.
 
-## Explanation of the code ##
+## Explanation of the code: ##
 The code has been  separated into 6 groups. The groups are Heroes, Monsters, Items, Spells, Market, Fight and Grid.
 
 ### Item ###
