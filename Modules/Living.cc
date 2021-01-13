@@ -40,8 +40,11 @@ int Living::getHP() const{
     return healthPower;
 }
 void Living::restoreHP(int hp){
-    if(healthPower+hp<=maxHP){
-        healthPower+=hp;
+    if(healthPower<maxHP){
+        if(healthPower+hp<=maxHP)
+            healthPower+=hp;
+        else
+            healthPower=maxHP;        
         cout<<name<<" is restoring Health Power: "<<hp<<" so the total Health Power(HP) is:"<<healthPower<<" previous HP:"<<healthPower-hp<<"\n";
     }
 }

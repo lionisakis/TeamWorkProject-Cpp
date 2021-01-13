@@ -1,7 +1,7 @@
 #include "Hero.h"
 #include "Items.h"
 #include "UI.h"
-#include <limits>
+#include <limits>   
 
 Hero::Hero(string nameHero,int strengthHero,int dexerityHero, int agilityHero):
 Living(nameHero,1,100)
@@ -21,7 +21,7 @@ Living(nameHero,1,100)
     cout<<"A hero has been created with Name: "<<nameHero<<"\n";
 }
 Hero::~Hero(){
-    // delete all the items that the hero ha on him
+    // delete all the items that the hero has on him
     // so we do not have a memory loss
     while(items.size()){
         Item* temp=items.at(0);
@@ -56,6 +56,8 @@ void Hero::give(Item* item){
 }
 
 void Hero::throwAway(int indexItem){
+    // delete all the item that the hero 
+    // so we do not have a memory loss
     if(indexItem<0||indexItem>items.size()){
         cout<<"No item with that index\n";
         return;
@@ -131,7 +133,6 @@ void Hero::restoreMP(int mp){
     }
 }
 
-
 int Hero::getDexterity(void)const{
     return dexerity;
 }
@@ -143,12 +144,14 @@ int Hero::getMP(void)const{
 bool Hero::castSpell(Monster* monster){
     cout<<"\n";
     while(true){
+        // print the spells that are available
         cout<<"Magic Power(MP): "<<magicPower<<"\n";
         cout<<"Spells give enemy debufs accordingly to their type and the rounds is affected by their level. Debufs are:\n";
         cout<<"Fire Spell: Defence Dencrease,\t Ice Spell: Damage Dencrease,\t Lighting Spell Doge Propability Dencrease\n";
         cout<<"Choose a Spell to cast\n";
         cout<<"0) cansel action\n";
         printSpellsCombat();
+        // take wich spell to cast
         int which=readNumber("",0,spells.size());
         if(which==0)
             return false;
@@ -160,6 +163,7 @@ bool Hero::castSpell(Monster* monster){
             cout<<"You do not have enought level to cast this spell!\n";
             continue;
         }
+        // cast that spell
         return spellcast(monster,spells.at(which-1));
     }    
 }
@@ -175,12 +179,15 @@ void Hero::useMagicPower(int usemagicPowerHero){
         magicPower=0;
     mpUsed+=usemagicPowerHero;
 }
+
 int Hero::getMPused()const{
     return mpUsed;
 }
+
 int Hero::giveEXP(int exp){
     return experience+=exp;
 }
+
 bool Hero::spellcast(Monster* monster,Spell* spell){
     if (magicPower-spell->getMagicPower()<0){
         cout<<"Not enought Magic Power left for this spell\n";
@@ -191,13 +198,16 @@ bool Hero::spellcast(Monster* monster,Spell* spell){
         monster->getDepuff(spell);
     return true;
 }
+
 bool Hero::takeDamage(int damage){
     srand(time(NULL));
+    // see if that damage is doged
     int prob= (int) rand()%100;
     if (prob<=agility){
         cout<<"Doged the attack\n";
         return false;
     }
+    // reduce the damage accordingly
     int armorDF=0;
     if (armor!=NULL)
         armorDF=armor->getDefence();
@@ -263,35 +273,21 @@ void Hero::printItemsForInventory() const{
 bool Hero::useInventory(){
     int action;
     while(true){
-        int which;
         bool flag=false;
-        do{
-            cout<<"Choose a item\n";
-            cout<<"0) cansel action\n";
-            printItemsForInventory();
-            cout<<items.size()+1<<") Unequip Sword\n";
-            cout<<items.size()+2<<") Unequip Armor\n";
-
-            cin>>which;
-            if (cin.bad()) {
-                cout<<"Problem With cin\n";
-                return false;
-            } 
-            if(cin.fail()){
-                cout<< "Data entered is not of int type\n"; 
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                flag=true;
-            }
-            else{
-                flag=false;
-            }
-        }while(flag);
+        // print the items
+        cout<<"Choose a item\n";
+        cout<<"0) cansel action\n";
+        printItemsForInventory();
+        cout<<items.size()+1<<") Unequip Sword\n";
+        cout<<items.size()+2<<") Unequip Armor\n";
+        // read the action
+        int which=readNumber("",0,items.size()+2);
         if (which==0){
             return false;
         }
         if(which<0||which>items.size()+2)
             continue;
+        // do the action
         if(which==items.size()+1)
             unequipWeapon();
         else if(which==items.size()+2)
@@ -303,6 +299,7 @@ bool Hero::useInventory(){
 }
 
 bool Hero::use(Item* item,bool flag){
+    // find the item
     int index = findItem(item);
     if (item->getLevel() > getLevel()){
         cout<<"The hero has not enough level for this item\n";
@@ -314,6 +311,7 @@ bool Hero::use(Item* item,bool flag){
         cout<<"You do not have that item";
         return false;
     }
+    // use that item
     if (item->getType()==WEAPON){
         return equipWeapon(item,flag);
     }
@@ -327,6 +325,7 @@ bool Hero::use(Item* item,bool flag){
 }   
 
 bool Hero::sell(Item* item){
+    // find that item
     int index=findItem(item);
     if (index<0){
         cout<<"Not enought money";
@@ -343,7 +342,7 @@ bool Hero::sell(Item* item){
             return false;
         }
     }
-    items.erase(items.begin()+index);
+    throwAway(index);
     addMoney(-item->getPrice()/2);
     return true;
 }

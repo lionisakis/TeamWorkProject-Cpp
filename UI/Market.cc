@@ -161,8 +161,9 @@ void Market::sell(Hero* hero){
     if(index == 0)
         return;
     if(index == 1){
+        cout<<"0) To quit";
         hero->printItems();
-        in = readNumber("Choose item by nymber, press 0 to exit", 1, hero->getItemSize());
+        in = readNumber("", 0, hero->getItemSize());
         if(in == 0){
             return;
         }
@@ -172,8 +173,9 @@ void Market::sell(Hero* hero){
         this->items.push_back(temp);
     }
     if(index == 2){
+        cout<<"0) To quit";
         hero->printSpells();
-        in = readNumber("Choose spell by nymber, press 0 to exit", 1, hero->getSpellSize());
+        in = readNumber("", 0, hero->getSpellSize());
         if(in == 0){
             return;
         }

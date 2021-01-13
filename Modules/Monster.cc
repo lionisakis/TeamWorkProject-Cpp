@@ -8,6 +8,7 @@
 #include "LightingSpell.h"
 #include "Spell.h"
 
+// a function to take a random hp 
 int countHP(int level,int previous){
     srand(time(NULL));
     int current;
@@ -33,6 +34,7 @@ armor(armorMonster+levelHero*5),doge(dogeMonster+levelHero*5)
 void Monster::getDepuff(Spell* spell){
     string type= spell->getType();
     int round= spell->getLevel()/2;
+    // take the debuf
     if(type==FIRESPELL){
         FireSpell* fireSpell=(FireSpell*)spell;
         decreanseDefence+=fireSpell->getDecreaseDefence();
@@ -67,6 +69,7 @@ void Monster::attack(Hero* hero){
     hero->takeDamage(damage-decreaseDamage);
 
     for(int i=0;i<3;i++){
+        // reduce the debuf
         if(rounds[i]>0){
             
             rounds[i]--;

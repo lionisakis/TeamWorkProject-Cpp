@@ -33,7 +33,8 @@ void PlayGame(Util util, vector<Hero*> hero){
             grid->move(RIGHT);
         else if(input == 7)
             grid->move(UP);
-        recoverMap(hero);
+        if(input>3)
+            recoverMap(hero);
         grid->print();
     }
 }   

@@ -159,7 +159,7 @@ int MOOfLevelOfHeros(vector<Hero*> heros){
 
 void recoverMap(vector<Hero*>heros){
     for(int i=0;i<heros.size();i++)
-        heros.at(i)->restoreHP(heros.at(i)->getHPUsed()/2);
+        heros.at(i)->restoreHP(10);
     for(int i=0;i<heros.size();i++)
-        heros.at(i)->restoreMP(heros.at(i)->getMPused()/4);
+        heros.at(i)->restoreMP(10);
 }
