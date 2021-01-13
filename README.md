@@ -1,6 +1,5 @@
-# Object Oriented Programming - Winter 2020-21 #
-# Final Project in C++ #
----
+# Object Oriented Programming Team Project 
+
 Athors:
 - Lionis Emmanouil Georgios(akis)
 - Skevofylaka Maria
