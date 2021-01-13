@@ -154,6 +154,8 @@ int MOOfLevelOfHeros(vector<Hero*> heros){
     int level=0;
     for (int i=0;i<heros.size();i++)
         level+=heros.at(i)->getLevel();
+    if(heros.size()==0)
+        return level;
     return level/heros.size();
 }
 
