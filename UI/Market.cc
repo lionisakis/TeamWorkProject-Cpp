@@ -58,8 +58,8 @@ Market::Market(Util util,int levelHeros){
             levelItem=1;
         int price = ((rand() % levelItem)+1)*((rand()%10)+1);
         int decrease = (rand() % 100+1)*levelItem;
-        int damage_down = rand() % (rand() % (100*levelItem)+1)*levelItem;
-        int damage_up = (rand() % (damage_down*2)+damage_down)*levelItem;
+        int damage_down = rand() % (rand() % (100*levelItem)+1)*levelItem+1;
+        int damage_up = (rand() % (damage_down*2)+damage_down)*levelItem+damage_down+10;
         int mana = 1+ rand() % (levelHeros*20)+levelHeros*5;
         Spell* ice = util.spawnIceSpell(price, levelItem, decrease, damage_down, damage_up, mana);
         this->spells.push_back(ice);
@@ -72,8 +72,8 @@ Market::Market(Util util,int levelHeros){
             levelItem=1;
         int price = ((rand() % levelItem)+1)*((rand()%10)+1);
         int decrease = (rand() % 100+1)*levelItem;
-        int damage_down = rand() % (rand() % (100*levelItem)+1)*levelItem;
-        int damage_up = (rand() % (damage_down*2)+damage_down)*levelItem;
+        int damage_down = rand() % (rand() % (100*levelItem)+1)*levelItem+1;
+        int damage_up = (rand() % (damage_down*2)+damage_down)*levelItem+damage_down+10;
         int mana = 1+ rand() % (levelHeros*20)+levelHeros*5;
         Spell* fire = util.spawnFireSpell(price, levelItem, decrease, damage_up, damage_down, mana);
         this->spells.push_back(fire);
@@ -81,11 +81,13 @@ Market::Market(Util util,int levelHeros){
 
     j = rand() % 2+1;
     for(int i = 0; i < j; i++){
-        int levelItem = (rand() % (levelHeros+3)) + 1;
+        int levelItem = (rand() % (levelHeros+3)) + levelHeros-1;
+        if(levelItem<=0)
+            levelItem=1;
         int price = ((rand() % levelItem)+1)*((rand()%10)+1);
         int decrease = (rand() % 100+1)*levelItem;
-        int damage_down = rand() % (rand() % (100*levelItem)+1)*levelItem;
-        int damage_up = (rand() % (damage_down*2)+damage_down)*levelItem;
+        int damage_down = rand() % (rand() % (100*levelItem)+1)*levelItem+1;
+        int damage_up = (rand() % (damage_down*2)+damage_down)*levelItem+damage_down+10;
         int mana = 1+ rand() % (levelHeros*20)+levelHeros*5;
         Spell* light = util.spawnLightingSpell(price, levelItem, decrease, damage_up, damage_down, mana);
         this->spells.push_back(light);
