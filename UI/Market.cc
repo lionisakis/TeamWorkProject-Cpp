@@ -172,6 +172,7 @@ void Market::sell(Hero* hero){
             return;
         }
         in--;
+        cout << in << endl;
         Item* temp = hero->getItem(in);
         hero->sell(temp);
         this->items.push_back(temp);
@@ -216,8 +217,8 @@ void Market::useMarket(Hero* hero){
         cout << "Wrong input please try again." << endl; 
         this->useMarket(hero);
     }
-    index = readNumber("Do you want something else?\n1)Yes.\n2)No.\n", 1, 2);
-    if(index == 1)
+    int in = readNumber("Do you want something else?\n1)Yes.\n2)No.\n", 1, 2);
+    if(in == 1)
         this->useMarket(hero); 
     return;
 }
