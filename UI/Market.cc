@@ -133,7 +133,7 @@ void Market::printMarket(void)const{
 
 void Market::buy(Hero* hero){
     this->printMarket();
-    int index = readNumber("Choose item or spell by entering index or press 0 to quit", 0, this->items.size() + this->spells.size());
+    int index = readNumber("Choose item or spell by entering index or press 0 to quit\n", 0, this->items.size() + this->spells.size());
     if(index == 0)
         return;
     index--;
