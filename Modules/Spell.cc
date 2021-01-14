@@ -32,6 +32,7 @@ int Spell::getMagicPower(void)const{
 }
 
 int Spell::getDamage(Hero* hero)const{
+    //decrease the damages rage and return a random amount of damage
     int magicPower = hero->getMP();
     hero->useMagicPower(this->getMagicPower());
     int dexterity = hero->getDexterity();

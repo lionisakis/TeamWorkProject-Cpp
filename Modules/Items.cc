@@ -8,7 +8,6 @@ Item::Item(string name_init, int price_init, int level_init){
     this->price = price_init;
     this->level = level_init;
     this->type = "None";
-    // cout << "A new item with name: " << this->name << " has been created" << endl;
 }
 
 string Item::getName()const{

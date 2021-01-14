@@ -2,6 +2,7 @@
 #include "UI.h"
 
 Market::Market(Util util,int levelHeros){
+    //initialize the market with a random amount of spells and items
     cout << "A new market has been created" << endl;
     srand(time(NULL));
     int j = rand() % 3+1;
@@ -95,6 +96,7 @@ Market::Market(Util util,int levelHeros){
 }
 
 Market::~Market(){
+    //empty the vectors and delete the items
     while(this->items.size()){
         Item* temp = this->items.back();
         this->items.pop_back();
@@ -189,7 +191,7 @@ void Market::sell(Hero* hero){
 }
 
 void Market::useMarket(Hero* hero){
-
+    //prints the menu and act based on the hero's choose
     string output="Welcome to the market press:\n0) To quit the store.\n1) To see the available products.\n";
     output.append("2) To buy something.\n3) To sell something\n4) To see wallet.\n5) to see inventory.\n6) to use an Item.\n"); 
     int index = readNumber(output, 0, 6);
