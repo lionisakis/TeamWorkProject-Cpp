@@ -1,6 +1,7 @@
 #include "Grid.h"
 
 Grid::Grid(vector<Hero*> heroes, Util util){
+    //create a map of blocks and give each block a random name
     srand(time(NULL));
     for(int i = 0; i < K; i++){
         for(int j = 0; j < K; j++){
@@ -23,6 +24,7 @@ Grid::Grid(vector<Hero*> heroes, Util util){
             }
         }
     }
+    //place the heroes at one block that is for sure common and it is not surrounded by nonAccessible blocks
     int i_temp = rand() % K;
     int j_temp = rand() % K;
     grid[i_temp][j_temp].setName(C);
@@ -69,6 +71,7 @@ Grid::Grid(vector<Hero*> heroes, Util util){
 }
 
 void Grid::print(void) const{
+    //print an 10x10 array around the heroes
     int lim_i_up = i_heroes - 5;
     int lim_i_down = i_heroes + 5;
     int lim_j_up = j_heroes - 5;
@@ -132,6 +135,7 @@ void Grid::move(string dest){
         int index = readNumber("You are on a market do you want to use it?\n1)Yes.\n2)No.\n", 1, 2);
         if(index == 1){
             Market* market = new Market(util,MOOfLevelOfHeros(this->heroes));
+            //if that block is a market and the heroes want to use it they have to enter one by one
             cout << "You have to enter the market one by one due to covid-19." << endl;
             for(int i = 0; i < this->heroes.size(); i++)
                 market->useMarket(this->heroes.at(i));
@@ -141,6 +145,7 @@ void Grid::move(string dest){
             return;
     }
     else if(this->grid[i_heroes][j_heroes].getName() == C){
+        //if the block is common heroes may enter a fight based on a specific probability
         cout << "Common" << endl;
         int fight_prob = rand() % 100;
         if(fight_prob > this->probability){

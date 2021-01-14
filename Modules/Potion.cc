@@ -25,6 +25,7 @@ void Potion::printInfo(void)const{
 }
 
 bool Potion::use(Hero* hero){
+    //if the hero is in smaller level than the potion's requirments or the potion has already be used it can not use it.
     if(hero->getLevel() < this->getLevel()){
         cout << "Hero needs to be in a higher level to use that spell" << endl;
         return false;
