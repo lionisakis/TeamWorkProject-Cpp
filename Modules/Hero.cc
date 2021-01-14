@@ -342,7 +342,7 @@ bool Hero::sell(Item* item){
             return false;
         }
     }
-    throwAway(index);
+    items.erase(items.begin()+index);
     addMoney(-item->getPrice()/2);
     return true;
 }
