@@ -15,10 +15,10 @@ using namespace std;
 
 #include "Hero.h"
 
-bool battle(vector<Hero*> heros,Util util);
-void quitGame(vector<Hero*> heros);
-vector<Hero*> spawnHeros();
+bool battle(vector<Hero*> Heroes,Util util);
+void quitGame(vector<Hero*> Heroes);
+vector<Hero*> spawnHeroes();
 int readNumber(string output,int down,int up);
-int MOOfLevelOfHeros(vector<Hero*> heros);
+int MOOfLevelOfHeroes(vector<Hero*> Heroes);
 void PlayGame(Util util, vector<Hero*> hero);
-void recoverMap(vector<Hero*>heros);
+void recoverMap(vector<Hero*>Heroes);

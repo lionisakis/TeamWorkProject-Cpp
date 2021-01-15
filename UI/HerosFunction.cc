@@ -12,13 +12,13 @@
 using namespace std;
 vector<Hero*> basicCombo(int howMany);
 vector<Hero*> yourChoise(int howMany);
-vector<Hero*> spawnHeros(){
+vector<Hero*> spawnHeroes(){
 
     if(true){        
-        int howMany=readNumber("Type a number of how many heros do you want form 1-3\n",1,3);
+        int howMany=readNumber("Type a number of how many heroes do you want form 1-3\n",1,3);
         if(howMany==-1){
-            vector<Hero*>heros;
-            return heros;    
+            vector<Hero*>heroes;
+            return heroes;    
         }
         string output="Do you want the basic combo?\n1)Yes.\n2)No.\nBasic Combo: ";
         if (howMany==1)
@@ -30,8 +30,8 @@ vector<Hero*> spawnHeros(){
         
         int what=readNumber(output,1,2);
         if(what==-1){
-            vector<Hero*>heros;
-            return heros;    
+            vector<Hero*>heroes;
+            return heroes;    
         }
         else if(what==1){
             return basicCombo(howMany);
@@ -44,32 +44,32 @@ vector<Hero*> spawnHeros(){
 }
 
 vector<Hero*> basicCombo(int howMany){
-    vector<Hero*> heros;
+    vector<Hero*> heroes;
     if(howMany==1)
-        heros.push_back(new Paladin("Paladin"));
+        heroes.push_back(new Paladin("Paladin"));
     else if(howMany==2){
-        heros.push_back(new Sorcerer("Sorcerer"));
-        heros.push_back(new Paladin("Paladin"));
+        heroes.push_back(new Sorcerer("Sorcerer"));
+        heroes.push_back(new Paladin("Paladin"));
     }
     else {
-        heros.push_back(new Sorcerer("Sorcerer"));
-        heros.push_back(new Warrior("Warrior"));
-        heros.push_back(new Paladin("Paladin"));
+        heroes.push_back(new Sorcerer("Sorcerer"));
+        heroes.push_back(new Warrior("Warrior"));
+        heroes.push_back(new Paladin("Paladin"));
     }
-    return heros;        
+    return heroes;        
 }
 vector<Hero*> yourChoise(int howMany){
-    vector<Hero*> heros;
+    vector<Hero*> heroes;
     for(int i=0;i<howMany;i++){
         int type=readNumber("What Type the hero to be.\n1)Paladin.\n2)Sorcerer.\n3)Warrior.\n",1,3);
         if(type==-1){
-            vector<Hero*>heros;
-            return heros;    
+            vector<Hero*>heroes;
+            return heroes;    
         }
         int name=readNumber("What name the hero should have?\n1)I will give him a name.\n2)His Type.\n",1,3);
         if(name==-1){
-            vector<Hero*>heros;
-            return heros;    
+            vector<Hero*>heroes;
+            return heroes;    
         }
         string heroName="";
         if(name==1){
@@ -83,8 +83,8 @@ vector<Hero*> yourChoise(int howMany){
                 cout<<"Do you want to add word to the hero name?\n1)No.\n2)Yes.\nHero Name:"<<heroName<<"\n";
                 int answer=readNumber("",1,2);
                 if(answer==-1){
-                    vector<Hero*>heros;
-                    return heros;    
+                    vector<Hero*>heroes;
+                    return heroes;    
                 }
                 else if(answer==1)
                     flag=false;
@@ -92,24 +92,24 @@ vector<Hero*> yourChoise(int howMany){
                     flag=true;
             }while (flag);
             if(type==1)
-                heros.push_back(new Paladin(heroName));
+                heroes.push_back(new Paladin(heroName));
             else if (type==2)
-                heros.push_back(new Sorcerer(heroName));
+                heroes.push_back(new Sorcerer(heroName));
             else
-                heros.push_back(new Warrior(heroName));
+                heroes.push_back(new Warrior(heroName));
     
         }
         else{
             if(type==1)
-                heros.push_back(new Paladin("Paladin"));
+                heroes.push_back(new Paladin("Paladin"));
             else if (type==2)
-                heros.push_back(new Sorcerer("Sorcerer"));
+                heroes.push_back(new Sorcerer("Sorcerer"));
             else
-                heros.push_back(new Warrior("Warrior"));
+                heroes.push_back(new Warrior("Warrior"));
         }
         
     }
-    return heros;
+    return heroes;
 }
 
 int readNumber(string output,int down,int up){
@@ -140,28 +140,28 @@ int readNumber(string output,int down,int up){
     return number;
 }
 
-void quitGame(vector<Hero*> heros){
-    int size=heros.size();
+void quitGame(vector<Hero*> heroes){
+    int size=heroes.size();
     for(int i=0;i<size;i++){
-        Hero* temp=heros.at(0);
-        heros.erase(heros.begin());
+        Hero* temp=heroes.at(0);
+        heroes.erase(heroes.begin());
         delete temp;
     }
     cout<<"The Game is closing.\n";
 }
 
-int MOOfLevelOfHeros(vector<Hero*> heros){
+int MOOfLevelOfHeroes(vector<Hero*> heroes){
     int level=0;
-    for (int i=0;i<heros.size();i++)
-        level+=heros.at(i)->getLevel();
-    if(heros.size()==0)
+    for (int i=0;i<heroes.size();i++)
+        level+=heroes.at(i)->getLevel();
+    if(heroes.size()==0)
         return level;
-    return level/heros.size();
+    return level/heroes.size();
 }
 
-void recoverMap(vector<Hero*>heros){
-    for(int i=0;i<heros.size();i++)
-        heros.at(i)->restoreHP(10);
-    for(int i=0;i<heros.size();i++)
-        heros.at(i)->restoreMP(10);
+void recoverMap(vector<Hero*>heroes){
+    for(int i=0;i<heroes.size();i++)
+        heroes.at(i)->restoreHP(10);
+    for(int i=0;i<heroes.size();i++)
+        heroes.at(i)->restoreMP(10);
 }

@@ -134,7 +134,7 @@ void Grid::move(string dest){
         cout << "Market" << endl;
         int index = readNumber("You are on a market do you want to use it?\n1)Yes.\n2)No.\n", 1, 2);
         if(index == 1){
-            Market* market = new Market(util,MOOfLevelOfHeros(this->heroes));
+            Market* market = new Market(util,MOOfLevelOfHeroes(this->heroes));
             //if that block is a market and the heroes want to use it they have to enter one by one
             cout << "You have to enter the market one by one due to covid-19." << endl;
             for(int i = 0; i < this->heroes.size(); i++)

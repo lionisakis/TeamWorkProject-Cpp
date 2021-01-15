@@ -34,14 +34,14 @@ void checkGrid(vector<Hero*>, Util);
 
 int main(void){
     Util util;
-    // Spawn Heros
-    vector<Hero*>heros = spawnHeros();
-    if(heros.size()==0)
+    // Spawn Heroes
+    vector<Hero*>Heroes = spawnHeroes();
+    if(Heroes.size()==0)
         return -1;
 
-    PlayGame(util, heros);
+    PlayGame(util, Heroes);
 
 
-    // Delete Heros
-    quitGame(heros);
+    // Delete Heroes
+    quitGame(Heroes);
 }

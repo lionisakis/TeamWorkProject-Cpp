@@ -116,16 +116,6 @@ string Util::randomName(string indexType) {
     return "PROBLEM";
 }
 
-// Monster* Util::spawnMonster(string indexType,int levelHero){
-//     if (indexType==DRAGON)
-//         return spawnDragon(levelHero);
-//     else if (indexType==EXOSKELETON)
-//         return spawnExoskeleton(levelHero);
-//     else if (indexType==SPIRIT)
-//         return spawnSpirit(levelHero);
-//     cout<<"PROBLEM2\n";
-//     return NULL;
-// }
 Monster* Util::spawnDragon(int levelHero,int previousHealth){
     return new Dragon(randomName(DRAGON),levelHero,previousHealth);
 }
@@ -136,16 +126,6 @@ Monster* Util::spawnSpirit(int levelHero,int previousHealth){
     return new Spirit(randomName(SPIRIT),levelHero,previousHealth);
 }
 
-// Item* Util::spawnItem(string indexType,int price , int level , int  damage_defence_use,int hands_amount,bool available){
-//     if (indexType==ARMOR)
-//         return spawnArmor(price,level,damage_defence_use);
-//     else if (indexType==POTION)
-//         return spawnPotion(price ,level ,damage_defence_use,hands_amount,available);
-//     else if (indexType==WEAPON)
-//         return spawnWeapon(price,level,damage_defence_use,hands_amount);
-//     cout<<"PROBLEM3\n";
-//     return NULL;
-// }
 Item* Util::spawnArmor(int price , int level , int  defence){
     return new Armor(randomName(ARMOR),price,level,defence);
 }
@@ -157,16 +137,6 @@ Item* Util::spawnWeapon(int price , int level , int  damage,int hands){
 
 }
 
-// Spell* Util::spawnSpell(string indexType, int price , int level , int decrease){
-//     if (indexType==LIGHTINGSPELL)
-//         return spawnLightingSpell(price,level,decrease);
-//     else if (indexType==FIRESPELL)
-//         return spawnFireSpell(price,level,decrease);
-//     else if (indexType==ICESPELL)
-//         return spawnIceSpell(price,level,decrease);
-//     cout<<"PROBLEM4\n";
-//     return NULL;
-// }
 Spell* Util::spawnLightingSpell(int price , int level , int decrease, int damage_up, int damage_down, int magic_power){
     return new LightingSpell(randomName(LIGHTINGSPELL),price,level,decrease, damage_up, damage_down, magic_power);
 }
