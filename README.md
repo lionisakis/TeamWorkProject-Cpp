@@ -44,3 +44,6 @@ The functions are: createMonster (which creates a pack of random types of monste
 
 ### Grid ###
 The class Grid simulates the map of the game. It contains an array of blocks which are common or market or non accessible. The grid is created by giving names to the different blocks and places the heroes to a specific block which makes sure it is common and it is not surrounded by non accessible blocks. Also the print function prints an 10*10 array around the heroes in order to save space. The move function takes as input a direction and moves the heroes to this specific block. 
+
+# Work Flow#
+The work was been divided by tow so it could be easier for the team to write more efficient the code that is written. At first, we divided the first 2 classes. George took the living organism and the subclasses such as Heros the subclasses of Heros and Monsters and the subclasses of Monster and in the meanwhile Maria took the classes of the Items and the subclasses and the Spells and the Subclasses. When the code was finished then we splitted the work again and George took the fighting sceen and Maria took the shop. At the end George made the beginning interaction and Maria made the moving interaction(map). Finally, the project was completed. 
