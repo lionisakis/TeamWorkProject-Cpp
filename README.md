@@ -1,64 +1,49 @@
-# Unix Systems Programming HomeWork 1 Spring 2022
+# Object Oriented Programming Team Project 
 
 Athors:
 - Lionis Emmanouil Georgios(akis)
+- Skevofylaka Maria             
+
+**There is a problem with Valgrind that sometimes does not work properly (it does not use "free" at space that its itself creates). It is not a problem with my code but it is a problem with the library Valgrind itself. It does not occur in all the computers but with those that have an old version of Valgrind. The issue that Valgrind itself told is at https://www.valgrind.org/docs/manual/faq.html#faq.reports  in the 4.1 section.**
 
 ## Compile and Execution Commands: ##
+The project contains a Makefile which is responsible for the compilation and execution of the program. So:
 
-### Compile and Ececute the C programs ##
-The project contains a Makefile which is responsible for the compilation and execution of the program in c. So:
-
-- compile : `make`
-- compile and execution: `make run`
-- compile and valgrind: `make valgrind`
-
-In the Makefile you can *uncomment* or *change* the ARG section. The ARG section passes the arguments to the programm.
-If the ARG section is commented, then the program will be executed without arguments and will listen to the same folder that the
-program is in.
-
-If the ARG section is not commented then the arguments have to be `ARGS= -p [path]` 
-with [path] being the folder that you want the program to listen to.
-
-### Compile and Execute the bash program ##
-You will have to execute the bash program by writing: `./finder [args]` with args being all the TLD arguments that the user wants
-
-If there is an execute permission error you will have to write: `chmod +x ./finder`
+- compile: make
+- compile and execution: make run
+- compile and valgrind: make valgrind
 
 ## Summary of the program: ##
-The program in c hears if in a folder there is created or moved to that folder a <filesname> and then it checks if that file has any urls. It collects those urls and extracts the location and the appearance of the location. Later on it prints them in the folder *output* in a file <filename>.out (which is either created or written on).
-  
-The bash script sees all the files in folder *output* that have an ending *.out* and then sees if the TLD argument that it took is in there. It counts the appearance of it by seeing in how many locations it is on and how many times those locations have appeared and then echos the result.
+The program simulates a game that creates a specific number of heroes and a map in which they travel. Every block of the map is a common block or a market block or a non accessible block in which heroes can not go. If the block is a common block heroes may fight with a specific probability or may not and just continue their adventure. If they fight they have to end the fight (by killing the monsters or by dying themselves) to move on the next block. If the block is a market block they can either use the market or leave. In case that they choose to use the market they can either buy or sell something. The game continues by the time the player press quit.
 
 ## Explanation of the files: ##
-There are 2 folders (include,modules), which help organize the files. The include folder has all the necessary .h files. The modules folder has all the executes of the listern,worker and the basic Data Structers Queue and List. 
-  
+There are 3 folders (include,modules,UI), which helps organize the files. The include folder has all the necessary .h files. The modules folder has all the executes of the class that are an object of the world. The UI has the files that execute the world and how it creates the heroes, how the heroes move around, how the shop and how they fight.
+
 ## Explanation of the code: ##
-The code has been separated into 3 parts. The manager, listener and worker.
+The code has been  separated into 6 groups. The groups are Heroes, Monsters, Items, Spells, Market, Fight and Grid.
 
-### Listener ###
-The listener function uses the inotifywait program through the use of execv with arguments `-m -e created -e moved_to`.
-  
-### Worker ###
-The worker program takes as argument a path to a FIFO (named pipe) and then copies it. Then it puts itself on stop mode. When it is awakened, it opens 
-the FIFO and reads a <filename>. After that, it opens that <filename> and reads each byte. It has to also connect the string if some words are cut. After the connection, it calls the function find location which checks if the string has a url and then it puts it in the List. Later on, it creates or writes in the ./output/<filename>.out the location and how many times it is acquired. Later, id deletes everything and is put to sleep on its own.
-  
-### Manager ###
-The Manager program checks if the arguments are correct. If they are correct, it makes a pipe. Next it forks itself. 
-  
-The kid(listener) uses the pipe to output every message that it has with the use of dup2 and then calls the listern function.
-  
-The parent(Manager) creates a queue so it can store the workers. For everything that it hears from the read. it checks if there are any available workers. Available workers are those that are stopped. If there are none, it creates a new worker by fork. The child of the fork is the worker that is executed by excv. The parent of the the fork is the manager that waits the child to be stopped and checks if there is any other available worker. After it takes from the queue that stores the available workers and makes a FIFO(named pipe). Next it wakes the worker and passes the file that it heard from the listener. Then it closes the fifo. This is done infinitely until it hears a SGNINT that it has killed all the workers and the listener.
-  
-The manager has also a signal handler that hears if a worker is stopped and then it marks a flag1 to true.
-The manager has also a signal handler that hears if SGNINT was given and marks a flag2 to true.
-  
-Also it has a function put workers that if the flag1 is true it sees which workers are stopped and puts them in the queue.
-Finaly, it has a function that kills all childern if the flag2 is true.
+### Item ###
+The class Item is a super-class which contains three sub-classes(Armor, Weapon, Potion).  The class Item describes a token the hero uses during the game in order to become stronger and defeat its enemies. The most important functions of the Item are the print and print combat functions that print the most important information about that Item such as their name, type, price etc.
 
-## Bash ##
-The finder.sh checks if the folder ./output exists. Then it takes all the files that have .out as ending. Then for all the arguments for each file it takes each string of that file and checks if the argument is inside and how many times it has appeared and it echos it.
-  
-## Necessary infrastructure ##
-The program has to have the inotifywait bash script and then put the correct path in the listener. 
-The default inotifywait path is made such so it can run in the Linux Computer of National and Kapodestrian University of Athens.
-  
+### Spells ###
+The class Spell is a super-class which contains three sub-classes(IceSpell, FireSpell, LightingSpell). This class simulates a spell used by the hero to increase a specific characteristic of its enemy. The two most important functions of the Spell class are: getDamage and printCombat. The getDamage function returns a “random” amount of damage that the hero causes to its enemy. The printCombat function works just like the Item’s printCombat function and prints the most important characteristics of the spell.
+
+### Heroes ###
+The class Heroes have a super-class Living which describes a living organism. Also, it has sub-classes for different types of Heroes (Paladin, Sorcerer, Warrior). The class hero has many functions which help it interact with the world. The most important are: buy (which buys an item or a spell), sell ( which sells an item or a spell), attack(which attacks a monster), castSpell ( which shows the user the spells with each spell to have a number. Then the User chooses a number and then that spell is being casted to a monster by using a helpful function spellCast), takeDamage (which sees if it doge the attack and sees how much damage it takes), useInventory( which shows the inventory with each item to have a number. Then the User chooses a number and then that item is being used by using a helpful function. It also has the ability to unequip an armor or a weapon.
+
+### Monster ###
+The class Monster has a super-class Living which describes a living organism. Also, it has sub-classes for different types of Monsters (Dragon, Spirit, Exoskeleton). The class Monster has the basic functions: attack(which attacks a random Hero), takeDamage (which sees if it dodges the attack and sees how much damage it takes).
+
+
+### Market ###
+The class Market simulates a shop in which heroes can buy and sell Items and Spells. This class contains many different functions. First of all its constructor function contains a new market with a random amount of spells and items available. The useMarket function shows up a menu that allows the hero to get some specific options. If the hero chooses to buy something, it sees the list of the available products and either buys or goes. If he buys something, it removes from the market’s list and is added to the hero's inventory. Also its money is decreased by the product’s price. On the other side if he chooses to sell something, that token is removed from its inventory and added to the store’s list. Also its money is increased by the product’s half price
+
+### Fight ###
+The file Fight has many functions that combined make the heroes fight monsters.
+The functions are: createMonster (which creates a pack of random types of monster), checkAlive (which checks if all the heroes and the monsters are alive), checkAliveMonsters(which checks if the monsters are alive), checkAliveHeroes(which checks if the heroes are alive), restoreHP (which restores the hp of heroes and monsters), resotreMP (which restores the MP of the heroes), moveHero (which lets the user to choose a move of a hero), moveMonster (which all the monster attack random heroes), herosLose (which takes the half of the money of the heroes), heroWin (which gives money and experience to the heroes).  Finally, the function fight combines all the previous functions to simulate a fight.
+
+### Grid ###
+The class Grid simulates the map of the game. It contains an array of blocks which are common or market or non accessible. The grid is created by giving names to the different blocks and places the heroes to a specific block which makes sure it is common and it is not surrounded by non accessible blocks. Also the print function prints an 10*10 array around the heroes in order to save space. The move function takes as input a direction and moves the heroes to this specific block. 
+
+# Work Flow#
+The work was been divided by tow so it could be easier for the team to write more efficient the code that is written. At first, we divided the first 2 classes. George took the living organism and the subclasses such as Heros the subclasses of Heros and Monsters and the subclasses of Monster and in the meanwhile Maria took the classes of the Items and the subclasses and the Spells and the Subclasses. When the code was finished then we splitted the work again and George took the fighting sceen and Maria took the shop. At the end George made the beginning interaction and Maria made the moving interaction(map). Finally, the project was completed. 
